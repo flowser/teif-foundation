@@ -623,10 +623,11 @@
                             type: 'success',
                             title: 'Client Created successfully'
                             })
-                            this.$store.dispatch('organisation');
+                            // this.$store.dispatch('organisation');
                             $('#ClientModal').modal('hide')
-                            this.$refs.wizard.reset()
+                            this.clientform.reset()
                               this.$Progress.finish()
+
                     })
                     .catch(()=>{
                         this.$Progress.fail()

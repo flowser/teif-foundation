@@ -229,7 +229,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Html' => Spatie\Html\Facades\Html::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+
 
     ],
 

@@ -20,6 +20,7 @@ class CreateReviewsTable extends Migration
             $table->text('review')->nullable();
             $table->string('what_to_improve')->nullable();
             $table->string('ratings')->nullable();
+            $table->tinyInteger('approval_status')->default(0)->unsigned(); //pending aproval
             $table->softDeletes();
             $table->timestamps();
 

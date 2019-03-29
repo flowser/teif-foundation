@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cce3261ad99527862f61cc49137c8323",
+    "content-hash": "ac6da06dac2715169d252162c2be048a",
     "packages": [
         {
             "name": "darryldecode/cart",
@@ -1742,6 +1742,58 @@
                 "random"
             ],
             "time": "2018-07-02T15:55:56+00:00"
+        },
+        {
+            "name": "pdazcom/laravel-referrals",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pdazcom/laravel-referrals.git",
+                "reference": "ba1728c190256b51b3dde1e6186e5737f7c324b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pdazcom/laravel-referrals/zipball/ba1728c190256b51b3dde1e6186e5737f7c324b1",
+                "reference": "ba1728c190256b51b3dde1e6186e5737f7c324b1",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.3.0",
+                "php": "^7.0",
+                "ramsey/uuid": "^3.7"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.5",
+                "orchestra/testbench": "~3.3.0",
+                "phpunit/phpunit": "^5.7",
+                "vlucas/phpdotenv": "^2.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pdazcom\\Referrals\\Providers\\ReferralsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pdazcom\\Referrals\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin A.",
+                    "email": "kostya.dn@gmail.com"
+                }
+            ],
+            "description": "A referrals system for a laravel projects.",
+            "homepage": "http://github.com/pdazcom/laravel-referrals",
+            "time": "2018-09-27T14:11:39+00:00"
         },
         {
             "name": "php-http/guzzle6-adapter",

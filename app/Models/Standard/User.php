@@ -11,9 +11,15 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Organisation\Organisation;
 use App\Models\Standard\Webservices\About;
 use App\Models\Standard\Webservices\Advert;
+use App\Models\Course\Referral\ReferralLink;
 use App\Models\Standard\Webservices\Feature;
 use Illuminate\Database\Eloquent\SoftDeletes;
+// use Pdazcom\Referrals\Models\ReferralProgram;
+// use Pdazcom\Referrals\Models\ReferralProgram;
+use App\Models\Course\Referral\ReferralCourse;
 use App\Models\Organisation\OrganisationAdmin;
+use App\Models\Client\Standard\Manual_Collection;
+use App\Models\Client\Standard\Parcel_Collection;
 use App\Models\Standard\Webservices\ServiceModel;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -23,6 +29,7 @@ class User extends Authenticatable
         Notifiable,
         // SendUserPasswordReset,
         SoftDeletes;
+
 
 
 
@@ -74,10 +81,12 @@ class User extends Authenticatable
         'confirmed' => 'boolean',
     ];
 
+
       public function getFullNameAttribute()
       {
           return $this->last_name ? $this->first_name.' '.$this->last_name : $this->first_name;
       }
+
 
       /**
        * @return string
@@ -86,6 +95,23 @@ class User extends Authenticatable
       {
           return $this->full_name;
       }
+
+      public function getReferrals()
+    {
+        return ReferralCourse::all()->map(function ($course) {
+            return ReferralLink::getReferral($this, $course);
+        });
+    }
+
+    public function manual_collections()
+    {
+        return $this->hasMany(Manual_Collection::class);
+    }
+    public function parcel_collections()
+    {
+        return $this->hasMany(Parcel_Collection::class);
+    }
+
       public function organisationdirectors()
       {
           return $this->belongsToMany(Organisation::class,'organisation_director')

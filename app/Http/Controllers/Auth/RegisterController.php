@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 
+
 use App\Models\Client\Client;
 use App\Models\Standard\User;
 use App\Http\Controllers\Controller;
@@ -31,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -58,18 +59,18 @@ class RegisterController extends Controller
             'email'            => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password'         => ['required', 'string', 'min:6'],
             // 'password_confirmation' =>['required'],
-            'phone'            => ['required','digits_between:10,12'],
-            'id_no'            => ['required','digits_between:7,10'],
-            'address'          => ['required','digits_between:1,20'],
-            'gender_id'        => ['required'],
-            'education_id'     => ['required'],
-            'country_id'       => ['required'],
-            'county_id'        => ['required'],
-            'constituency_id'  => ['required'],
-            'ward_id'          => ['required'],
-            'photo'            => ['required'],
-            'id_photo_front'   => ['required'],
-            'id_photo_back'    => ['required'],
+            // 'phone'            => ['required','digits_between:10,12'],
+            // 'id_no'            => ['required','digits_between:7,10'],
+            // 'address'          => ['required','digits_between:1,20'],
+            // 'gender_id'        => ['required'],
+            // 'education_id'     => ['required'],
+            // 'country_id'       => ['required'],
+            // 'county_id'        => ['required'],
+            // 'constituency_id'  => ['required'],
+            // 'ward_id'          => ['required'],
+            // 'photo'            => ['required'],
+            // 'id_photo_front'   => ['required'],
+            // 'id_photo_back'    => ['required'],
         ]);
     }
 
@@ -79,6 +80,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
     protected function create(array $data)
     {
         $user = User::create([
@@ -86,16 +88,21 @@ class RegisterController extends Controller
             'last_name'         => $data['last_name'],
             'email'             => $data['email'],
             'password' => Hash::make($data['password']),
-            'user_type'         => 'Client',
+            'user_type'         => 'Organisation Director',
             'active'            => true,
             'confirmed'         => true,
             'confirmation_code' => md5(uniqid(mt_rand(), true)),
         ]);
 
-        $user->assignRole('Client');
-        $user ->givePermissionTo('View Backend');
-
         if($user){
+
+            // event(new UserReferred(request()->cookie('ref'), $user));
+            event(new \App\Events\UserReferred(request()->cookie('ref'), $user));
+
+            $user->assignRole('Client');
+            // $user->assignRole('Client');
+            $user ->givePermissionTo('View Backend');
+
                 $passport = $data['photo'];
                 if($passport){
                      //processing passport name
@@ -159,6 +166,9 @@ class RegisterController extends Controller
                 $client ->ward_id          = $data['ward_id'];
                 $client->save();
             }
-            // return $user;
+
+
+
+            return $user;
     }
 }

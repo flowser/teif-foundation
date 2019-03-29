@@ -19,19 +19,9 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
 
-            if (auth()->check()) {
-                if (auth()->user()->hasRole('Client')) {
+            return redirect('/home');
 
-                        return redirect('/');
-
-                    }else{
-
-                        return redirect('/admin_home');
-
-                    }
-                }
         }
-
         return $next($request);
     }
 }

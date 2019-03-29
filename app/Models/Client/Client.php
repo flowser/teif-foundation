@@ -12,6 +12,8 @@ use App\Models\Client\Standard\Result;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Client\Standard\Education;
 use App\Models\Client\Standard\Certificate;
+use App\Models\Client\Standard\Manual_Collection;
+use App\Models\Client\Standard\Parcel_Collection;
 
 class Client extends Model
 {
@@ -33,17 +35,17 @@ class Client extends Model
         'ward_id',
     ];
 
-    public function certificates()
-    {
-        return $this->hasMany(Certificate::class);
-    }
-    public function results()
+       public function results()
     {
         return $this->hasMany(Result::class);
     }
-    public function parcels()
+    public function manual_collections()
     {
-        return $this->hasMany(Parcel::class);
+        return $this->hasMany(Manual_Collection::class);
+    }
+    public function parcel_collections()
+    {
+        return $this->hasMany(Parcel_Collection::class);
     }
     public function user()
     {

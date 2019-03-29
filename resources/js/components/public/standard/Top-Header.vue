@@ -6,6 +6,7 @@
             <a href="mailto:Support@info.com" title="Support@info.com"><i class="fa fa-envelope-o" aria-hidden="true"></i>Emailus: Support@info.com</a>
         </div>
         <div class="topheader-right">
+            <a href="logout" title="Login" @click.prevent="loginClientModal()"><i class="fa fa-sign-out" aria-hidden="true"></i>Login</a>
             <a href="#" title="Login" @click.prevent="loginClientModal()"><i class="fa fa-sign-out" aria-hidden="true"></i>Login</a>
             <a href="#" title="Register" @click.prevent="loginClientModal()">Register</a>
         </div>

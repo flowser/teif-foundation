@@ -62,7 +62,7 @@ Route::get('/', [PublicController::class, 'index'])->name('public.index');
 
 Auth::routes();
 
-Route::get('admin_home', [HomeController::class, 'index'])->name('adminhome');
+Route::get('home', [HomeController::class, 'index'])->name('home');
 
     //     /*
     //      * User CRUD

@@ -13,7 +13,7 @@
                         <div class="single-sidebar-widget widget_categories">
                             <h4>Services</h4>
                             <ul >
-                                <li v-for="service in Services" :key="service.id"  v-if="service.servicemodels.length>0">
+                                <li v-for="service in Services" :key="service.id"  v-show="service.servicemodels.length>0">
                                     <router-link :to="`/pservices/${service.id}`">{{service.title}}</router-link>
                                     <span>({{service.servicemodels.length}})</span>
                                 </li>

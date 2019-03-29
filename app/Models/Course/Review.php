@@ -14,6 +14,7 @@ class Review extends Model
         'review',
         'what_to_improve',
         'ratings',
+        'approval_status'
     ];
 
     public function course()

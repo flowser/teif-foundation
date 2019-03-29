@@ -179,6 +179,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <div class="content">
+          @forelse(auth()->user()->getReferrals() as $referral)
+         {{-- {{(auth()->user()->getReferrals()->count)}} --}}
+                <h4>
+                    {{ $referral->referralcourse->course_name }}
+                </h4>
+                <code>
+                    {{ $referral->link }}
+                </code>
+                <p>
+                    Number of referred users: {{ $referral->relationships()->count() }}
+                </p>
+            @empty
+                No referrals --}}
+     @endforelse
                 <admin-main></admin-main>
         </div>
         <!-- /.content -->
