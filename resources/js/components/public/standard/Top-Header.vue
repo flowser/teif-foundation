@@ -6,9 +6,9 @@
             <a href="mailto:Support@info.com" title="Support@info.com"><i class="fa fa-envelope-o" aria-hidden="true"></i>Emailus: Support@info.com</a>
         </div>
         <div class="topheader-right">
-            <a href="logout" title="Login" @click.prevent="loginClientModal()"><i class="fa fa-sign-out" aria-hidden="true"></i>Login</a>
-            <a href="#" title="Login" @click.prevent="loginClientModal()"><i class="fa fa-sign-out" aria-hidden="true"></i>Login</a>
-            <a href="#" title="Register" @click.prevent="loginClientModal()">Register</a>
+            <a href="#" v-if="User == null" title="Login" @click.prevent="loginModal()"><i class="fa fa-sign-out" aria-hidden="true"></i>Login</a>
+            <a href="#" v-if="User == null" title="Register" @click.prevent="registerClientModal()">Register</a>
+            <a href="#" v-show="User != null" title="Logout" @click.prevent="logout">Logout</a>
         </div>
     </div>
   </div>
@@ -19,6 +19,12 @@
         name:"Top-Header",
         data(){
             return{
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                loginform: new Form({
+                        email:'',
+                        password:'',
+                        remember:'',
+                }),
                 enrollform: new Form({
                         id:'',
                         name:'',
@@ -79,8 +85,12 @@
             this.loadWards();
             this.loadEducations();
             this.loadGenders();
+            this.loadUser();
         },
         computed:{
+            User(){
+                return this.$store.getters.User
+            },
             Countries(){
                 return this.$store.getters.Countries
             },
@@ -118,6 +128,9 @@
 
         },
         methods:{
+            loadUser(){
+                this.$store.commit('setAuthUser', window.logged_user);
+            },
             loadCourses(){
                 return this.$store.dispatch("courses")
             },
@@ -178,11 +191,9 @@
                  this.clientform.organisation_id;
                      $('#ClientModal').modal('show')
             },
-            loginClientModal(){
-                 this.editmodeClient= false;
-                 this.clientform.reset()
-                 this.clientform.organisation_id;
-                     $('#ClientModal').modal('show')
+            loginModal(){
+                 this.loginform.reset()
+                     $('#LoginModal').modal('show')
             },
             //organisation client passposrt image
             clientLoadPassPhoto(clientpivot_photo){
@@ -412,6 +423,7 @@
                  if(this.enrollform.courseType == "Regular"){
                     this.enrollform.parttime_fee = null;
                 }
+                this.$Progress.start();
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
                      toast({
@@ -440,6 +452,7 @@
                 if(this.enrollform.courseType == "Parttime"){
                     this.enrollform.regular_fee = null;
                 }
+                this.$Progress.start();
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
                     console.log(response)
@@ -464,6 +477,7 @@
             },
             Remove(cartItem_id){
                 console.log(cartItem_id)
+                this.$Progress.start();
                 axios.get('/cart/remove/'+cartItem_id)
                 .then((response)=>{
                      toast({
@@ -484,6 +498,7 @@
             },
             Clear(CartItems){
                 console.log(CartItems)
+                this.$Progress.start();
                 axios.get('/cart/clear/'+CartItems)
                  .then((response)=>{
                      toast({
@@ -529,6 +544,7 @@
             Checkout(CartItems){
                this.transactionform.cartItems= CartItems
                 console.log(this.transactionform)
+                this.$Progress.start();
                 this.transactionform.patch('/order/checkout/'+CartItems)
                 .then((response)=>{
                      toast({
@@ -550,6 +566,55 @@
                     })
                 })
 
+            },
+            login(){
+                this.$Progress.start();
+                this.loginform.post('login')
+                .then((response)=>{
+                     window.location.replace('home')
+                        toast({
+                            type: 'success',
+                            title: 'You have been logged out successfully'
+                        })
+                        this.loadCourses()
+                        this.loadCartItems()
+                        this.$Progress.finish()
+                })
+                .catch((response)=>{
+                    this.$Progress.fail()
+                    toast({
+                        type: 'error',
+                        title: 'Sorry there seems to be an issue check it ut first and try again.'
+                    })
+                })
+            },
+
+
+            logout(){
+                this.$Progress.start();
+                axios.post('logout')
+                .then((response)=>{
+                    this.$store.dispatch('logoutUser');
+                    this.$store.commit('setAuthUser', window.logged_user);
+                     window.location.replace('/')
+                    // if (response.status === 302 || 401) {
+                    // this.$router.push('/')//home when logged out
+                        toast({
+                            type: 'success',
+                            title: 'You have been logged out successfully'
+                        })
+                        this.loadCourses()
+                        this.loadCartItems()
+                        this.$Progress.finish()
+                //   }
+                })
+                .catch((response)=>{
+                    this.$Progress.fail()
+                    toast({
+                        type: 'error',
+                        title: 'Sorry there seems to be an issue check it ut first and try again.'
+                    })
+                })
             },
         },
     }

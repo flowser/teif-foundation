@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 
 
+use Illuminate\Http\Request;
 use App\Models\Client\Client;
 use App\Models\Standard\User;
 use App\Http\Controllers\Controller;
@@ -50,27 +51,25 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator( array $data)
     {
-        // return $data;
         return Validator::make($data, [
             'first_name'       => ['required', 'string', 'max:255'],
             'last_name'        => ['required', 'string', 'max:255'],
             'email'            => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password'         => ['required', 'string', 'min:6'],
-            // 'password_confirmation' =>['required'],
-            // 'phone'            => ['required','digits_between:10,12'],
-            // 'id_no'            => ['required','digits_between:7,10'],
-            // 'address'          => ['required','digits_between:1,20'],
-            // 'gender_id'        => ['required'],
-            // 'education_id'     => ['required'],
-            // 'country_id'       => ['required'],
-            // 'county_id'        => ['required'],
-            // 'constituency_id'  => ['required'],
-            // 'ward_id'          => ['required'],
-            // 'photo'            => ['required'],
-            // 'id_photo_front'   => ['required'],
-            // 'id_photo_back'    => ['required'],
+            'phone'            => ['required','digits_between:10,12'],
+            'id_no'            => ['required','digits_between:7,10'],
+            'address'          => ['required','digits_between:1,20'],
+            'gender_id'        => ['required'],
+            'education_id'     => ['required'],
+            'country_id'       => ['required'],
+            'county_id'        => ['required'],
+            'constituency_id'  => ['required'],
+            'ward_id'          => ['required'],
+            'photo'            => ['required'],
+            'id_photo_front'   => ['required'],
+            'id_photo_back'    => ['required'],
         ]);
     }
 
@@ -83,12 +82,13 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
+
         $user = User::create([
             'first_name'        => $data['first_name'],
             'last_name'         => $data['last_name'],
             'email'             => $data['email'],
             'password' => Hash::make($data['password']),
-            'user_type'         => 'Organisation Director',
+            'user_type'         => 'Client',
             'active'            => true,
             'confirmed'         => true,
             'confirmation_code' => md5(uniqid(mt_rand(), true)),
@@ -166,9 +166,6 @@ class RegisterController extends Controller
                 $client ->ward_id          = $data['ward_id'];
                 $client->save();
             }
-
-
-
             return $user;
     }
 }

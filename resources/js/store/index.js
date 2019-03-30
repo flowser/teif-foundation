@@ -41,6 +41,7 @@ import syllabus from './modules/course/syllabus/syllabus';
 import education from './modules/client/standard/education';
 //client
 import client from './modules/client/client';
+import loggeduser from './modules/client/loggeduser';
 import cart from './modules/order/standard/cart';
 import order from './modules/order/order';
 
@@ -88,6 +89,7 @@ import order from './modules/order/order';
 
                 //client
                 client,
+                loggeduser,
                 education,
 
                 //Order

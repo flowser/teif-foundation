@@ -16,7 +16,7 @@ import AdminHome from './components/admins/AdminHome.vue';
         //user
         import UserList from './components/admins/organisation/superadmin/user/List.vue';
         //Organisation settings
-        import Orgsetting from './components/admins/organisation/Organisation.vue'; 
+        import Orgsetting from './components/admins/organisation/Organisation.vue';
 
         //single about image full more
         import SingleAboutImage from './components/admins/organisation/SingleAboutPic.vue';

@@ -56,13 +56,14 @@ use App\Http\Controllers\Backend\Course\Standard\CourseFeatureController;
 |
 */
 
-Route::get('/', [PublicController::class, 'index'])->name('public.index');
+Route::get('/', [PublicController::class, 'index'])->name('public');
+// Route::get('/public', [PublicController::class, 'routes'])->name('public.index');
 
 // Route::get('/{anypath}', [PublicController::class, 'routes'])->where('path','[\/\w\.-]*');
 
 Auth::routes();
 
-Route::get('home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     //     /*
     //      * User CRUD

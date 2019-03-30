@@ -119,13 +119,13 @@
                                     <div class=" row">
                                         <div class="form-group col-md-3">
                                             <label for="phone" class="col-form-label"> Password</label>
-                                            <input v-validate="'required'" ref="password" v-model="clientform.password" type="password" id="password" placeholder="Password"
+                                            <input  ref="password" v-model="clientform.password" type="password" id="password" placeholder="Password"
                                                 class="form-control" :class="{ 'is-invalid': clientform.errors.has('password') }">
                                             <has-error :form="clientform" field="password"></has-error>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="password-confirm" class="col-form-label"> Confirm Password</label>
-                                            <input v-validate="'required|confirmed:$password'" v-model="clientform.password_confirm" type="password" id="password-confirm" name="password_confirmation" placeholder="Password"
+                                            <input v-model="clientform.password_confirm" type="password" id="password-confirm" name="password_confirmation" placeholder="Password"
                                                 class="form-control" :class="{ 'is-invalid': clientform.errors.has('password') }" >
                                             <has-error :form="clientform" field="password"></has-error>
                                         </div>
@@ -244,6 +244,112 @@
                 </div>
             </div>
         </div>
+        <!-- //login -->
+        <div class="modal fade " id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form role="form" @submit.prevent="login()" >
+                        <div class="modal-body">
+                            <h5 class="modal-title text-center" id="LoginModalLabel">Login</h5>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="email" class=" col-form-label">Email </label>
+                                            <input v-model="loginform.email" type="email" name="email" placeholder="Email Address"
+                                                class="form-control" :class="{ 'is-invalid': loginform.errors.has('email') }" >
+                                            <has-error style="color: #e83e8c" :form="loginform" field="email"></has-error>
+                                        </div>
+                                    </div>
+                                    <div class=" row">
+                                        <div class="form-group col-md-12">
+                                            <label for="phone" class="col-form-label"> Password</label>
+                                            <input  ref="password" v-model="loginform.password" type="password" id="password" placeholder="Password"
+                                                class="form-control" :class="{ 'is-invalid': loginform.errors.has('password') }">
+                                            <has-error :form="loginform" field="password"></has-error>
+                                        </div>
+                                    </div>
+                                    <div class=" row">
+                                        <div class="form-group col-md-12">
+                                            <div class="form-check">
+                                                <el-checkbox v-model="loginform.remember">Option</el-checkbox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" row">
+                                        <div class="form-group col-md-12">
+                                            <div class="form-check">
+                                                <a href="#" title="Reset password" @click.prevent="resetPasswordModal()">Forgot Your Password?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success float-right">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+<!-- //reset -->
+        <div class="modal fade " id="ResetModal" tabindex="-1" role="dialog" aria-labelledby="ResetModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form role="form" @submit.prevent="reset()" >
+                        <div class="modal-body">
+                            <h5 class="modal-title text-center" id="ResetModalLabel">Reset Password</h5>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="email" class=" col-form-label">Email </label>
+                                            <input v-model="resetform.email" type="email" name="email" placeholder="Email Address"
+                                                class="form-control" :class="{ 'is-invalid': resetform.errors.has('email') }" >
+                                            <has-error style="color: #e83e8c" :form="resetform" field="email"></has-error>
+                                        </div>
+                                    </div>
+                                    <div class=" row">
+                                        <div class="form-group col-md-12">
+                                            <label for="phone" class="col-form-label"> Password</label>
+                                            <input  ref="password" v-model="resetform.password" type="password" id="password" placeholder="Password"
+                                                class="form-control" :class="{ 'is-invalid': resetform.errors.has('password') }">
+                                            <has-error :form="resetform" field="password"></has-error>
+                                        </div>
+                                    </div>
+                                    <div class=" row">
+                                        <div class="form-group col-md-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                                                <label class="form-check-label" for="remember">Remember Me</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" row">
+                                        <div class="form-group col-md-12">
+                                            <div class="form-check">
+                                                <a href="#" title="Reset password" @click.prevent="resetPasswordModal()">Forgot Your Password?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
 
 
         <router-view></router-view>
@@ -266,6 +372,16 @@
         name:"Home",
         data(){
             return{
+                loginform: new Form({
+                        email:'',
+                        password:'',
+                        remember: false,
+                }),
+                resetform: new Form({
+                        email:'',
+                        password:'',
+
+                }),
                 enrollform: new Form({
                         id:'',
                         name:'',
@@ -424,17 +540,61 @@
                 console.log(constituency_id);
                 this.$store.dispatch('constituencywards', constituency_id); //send to store to the action with id
             },
-            loginClientModal(){
-                console.log('ddddddd')
-                 this.editmodeClient= false;
-                 this.clientform.reset()
-                 this.clientform.organisation_id;
-                     $('#ClientModal').modal('show')
+            loginModal(){
+                 this.loginform.reset()
+                     $('#LoginModal').modal('show')
+            },
+            resetPasswordModal(){
+                 this.resetform.reset()
+                     $('#resetModal').modal('show')
+            },
+            login(){
+                this.$Progress.start();
+                    this.loginform.post('login')
+                   .then((response)=>{
+                        window.location.replace('home')
+                        toast({
+                            type: 'success',
+                            title: 'You have been logged out successfully'
+                        })
+                        this.loadCourses()
+                        this.loadCartItems()
+                        this.$Progress.finish()
+                })
+                .catch((response)=>{
+                    this.$Progress.fail()
+                    toast({
+                        type: 'error',
+                        title: 'Sorry there seems to be an issue check it ut first and try again.'
+                    })
+                })
+            },
+            logout(){
+                this.$Progress.start();
+                axios.post('logout')
+                .then((response)=>{
+                    // if (response.status === 302 || 401) {
+                    window.location.replace('/')
+                        toast({
+                            type: 'success',
+                            title: 'You have been logged out successfully'
+                        })
+                        this.loadCourses()
+                        this.loadCartItems()
+                        this.$Progress.finish()
+                //   }
+                })
+                .catch((response)=>{
+                    this.$Progress.fail()
+                    toast({
+                        type: 'error',
+                        title: 'Sorry there seems to be an issue check it ut first and try again.'
+                    })
+                })
             },
             registerClientModal(){
                  this.editmodeClient= false;
                  this.clientform.reset()
-                 this.clientform.organisation_id;
                      $('#ClientModal').modal('show')
             },
             //organisation client passposrt image

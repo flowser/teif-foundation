@@ -51,11 +51,16 @@
 
 <body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
   <div id="app">
-    <home-main></home-main>
-
+        {{ Auth::check() }}
+    <home-main ></home-main>
   </div>
 </body>
-
+@if(Auth::user())
+   <script>
+           window.logged_user = {!! json_encode($logged_user); !!}
+  </script>
+   {{-- <script>var window.logged_user = {{ Auth::check() }};</script> --}}
+@endif
 <script src="{{asset("js/app.js")}}"></script>
 <!-- JQuery v1.11.3 -->
 <script src="{{asset('main_theme/js/jquery.min.js')}}"></script>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
+use App\Models\Standard\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Organisation\Organisation;
 use App\Models\Standard\Webservices\Advert;
 use App\Models\Standard\Webservices\ServiceModel;
@@ -11,15 +13,22 @@ use App\Models\Standard\Webservices\ServiceModel;
 class PublicController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-         return view('layouts.homemaster');
+        if (auth()->check()) {
+            if (auth()->user()->hasRole('Client')) {
+                $logged_user =Auth::user();
+
+                return view('layouts.homemaster')->with('logged_user', $logged_user);
+            }
+        }else{
+            return view('layouts.homemaster');
+        }
     }
     public function routes()
     {
          return view('layouts.homemaster');
     }
-
 
     /**
      * Show the form for creating a new resource.

@@ -28,7 +28,6 @@ class RewardUser
      */
     public function handle(UserReferred $event)
     {
-
         // $vent =
         // UserReferred {#543 ▼
         //     +referralId: "1"
@@ -64,7 +63,7 @@ class RewardUser
         if (!is_null($referral)) {
             ReferralRelationship::create(['referral_link_id' => $referral->id, 'user_id' => $event->user->id]);
 
-            // $refferallink  =
+            // $refferal  =
             // "id" => 1
             // "user_id" => 1
             // "organisation_affiliate_id" => null

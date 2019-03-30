@@ -109,8 +109,11 @@ class HomeController extends Controller
             }
             elseif (auth()->user()->hasRole('Client')) {
 
+                // return ['redirect' => route('public')];
                  return redirect('/');
             }
+        }else{
+            return redirect('/');
         }
     }
 }
