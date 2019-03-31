@@ -17,14 +17,16 @@ class CartController extends Controller
     {
         // Cart::clear();
         $cartItems = Cart::getContent();
-
+        $Count     = $cartItems->count();
         $subTotal = Cart::getSubTotal();
+
 
         $Total = Cart::getTotal();
             return response()-> json([
             'cartItems' => $cartItems,
             'subTotal' =>$subTotal,
             'Total' =>$Total,
+            'Count' =>$Count,
         ], 200);
     }
 

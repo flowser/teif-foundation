@@ -6,6 +6,7 @@ const state = {
     cartItem:[],
     subTotal:[],
     Total:[],
+    Count:[],
   };
 const getters = {
     CartItems(state){
@@ -19,6 +20,9 @@ const getters = {
     },
     Total(state){
       return state.Total;
+    },
+    Count(state){
+      return state.Count;
     }
   };
 const actions = {
@@ -29,6 +33,7 @@ const actions = {
         context.commit('cartItems', response.data.cartItems);
         context.commit('subTotal', response.data.subTotal);
         context.commit('Total', response.data.Total);
+        context.commit('Count', response.data.Count);
       });
     },
     CartItemById(context, payload){
@@ -52,6 +57,9 @@ const mutations = {
     },
     Total(state, data){
       return state.Total = data;
+    },
+    Count(state, data){
+      return state.Count = data;
     }
   };
 

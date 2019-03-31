@@ -14,29 +14,14 @@
                         </button>
                          <router-link :to="`/`" title="Logo" class="navbar-brand"> <img src="main_theme/images/logo.png" alt="logo"/>TEIF<span>Education of Best</span></router-link>
                          <router-link :to="`/`" title="Logo" class="mobile-logo" ><h3>TEIF</h3> </router-link>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="navbar-collapse collapse" id="navbar">
-                        <ul class="nav navbar-nav menubar">
-                            <li class="dropdown active">
-                                 <router-link :to="`/`" aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Home">Home</router-link>
-                                <i class="ddl-switch fa fa-angle-down"></i>
-                            </li>
-                            <li class="dropdown">
-                                <a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Courses" >Courses</a>
-                                <i class="ddl-switch fa fa-angle-down"></i>
-                                <ul class="dropdown-menu" style="min-width: 375px;">
-                                     <li class="dropdown">
-                                         <router-link aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Courses"
-                                                   v-for="course in Courses" :key="course.id" :to="`/coursedetails/${course.id}`">{{course.name}}
-                                                        <br v-if="course.coursesyllabus"> ({{course.coursesyllabus.lessons}} lessons)
-                                         </router-link>
-                                      </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Courses" >Courses</a>
+                         <router-link :to="`/`" title="Logo" class="mobile-logo" ><h3> My Account</h3> </router-link>
+                         <ul class="nav navbar-nav menubar mobile-logo">
+                            <li class="dropdown mobile-logo">
+                                <a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Cart" >
+                                    <button type="button" class="btn btn-default btn-sm">
+                                         <span style="color:red">({{Count}})</span><span class="glyphicon glyphicon-shopping-cart" style="color:purple"></span>Cart
+                                    </button>
+                                </a>
                                 <i class="ddl-switch fa fa-angle-down"></i>
                                 <ul class="dropdown-menu" style="min-width: 375px; padding-right: 0px; padding-left: 0px;">
                                      <li class="dropdown">
@@ -73,7 +58,82 @@
                                                 </div>
                                                 <div class="col-md-5" style="padding-left: 5px;padding-right: 0px;">
                                                     <div style="color: #fff; margin-top: 7px;">
-                                                        Total: Kshs. {{subTotal}}
+                                                        subTotal: Kshs. {{subTotal}}
+                                                    </div>
+                                                     <hr style="margin-top: 3px;margin-bottom: 3px;">
+                                                    <div style="color: #fff; margin-top: 7px;">
+                                                        Total: Kshs. {{Total}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="navbar-collapse collapse" id="navbar">
+                        <ul class="nav navbar-nav menubar">
+                            <li>
+                                 <router-link :to="`/`" title="Home">Home</router-link>
+                            </li>
+                            <li class="dropdown">
+                                <a href="" aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Courses" >Courses</a>
+                                <i class="ddl-switch fa fa-angle-down"></i>
+                                <ul class="dropdown-menu" style="min-width: 375px;">
+                                     <li class="dropdown">
+                                         <router-link aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Courses"
+                                                   v-for="course in Courses" :key="course.id" :to="`/coursedetails/${course.id}`">{{course.name}}<br>
+                                                        <small v-if="course.coursesyllabus"> ({{course.coursesyllabus.lessons}} lessons) </small>
+                                         </router-link>
+                                      </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Cart" >
+                                    <button type="button" class="btn btn-default btn-sm">
+                                         <span style="color:red">({{Count}})</span><span class="glyphicon glyphicon-shopping-cart" style="color:purple"></span>Cart
+                                    </button>
+                                </a>
+                                <i class="ddl-switch fa fa-angle-down"></i>
+                                <ul class="dropdown-menu" style="min-width: 375px; padding-right: 0px; padding-left: 0px;">
+                                     <li class="dropdown">
+                                         <a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Courses"
+                                                   v-for="cartItem in CartItems" :key="cartItem.id" href=""
+                                                    style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                                            <div class="row" style="margin-right: 0px;margin-left: 0px;margin-top: 4px;">
+                                                <div class="col-md-2" style="padding-left: 1px;padding-right: 1px;">
+                                                    <img :src="courseLoadImage(cartItem.attributes.image)" alt="welcome1" style="width:100%; height:100%"/>
+                                                </div>
+                                                <div class="col-md-7" style="bottom:0px;padding-left: 1px;padding-right: 0px;font-size: 10px;line-height: 10px;">
+                                                    <router-link title="Courses" :to="`/coursedetails/${cartItem.id}`"
+                                                     style="font-size: 9px;line-height: 13px;color:#f7c51d;">
+                                                        {{cartItem.name}}<br>
+                                                        {{cartItem.attributes.courseType}}<br>
+                                                        {{cartItem.attributes.skill}}<br>
+                                                    </router-link>
+                                                </div>
+                                                <div class="col-md-3" style="padding-left: 1px;padding-right: 0px;font-size: 10px;line-height: 10px;">
+                                                    <span> Kshs.</span> <span title="Fee">{{cartItem.price}}</span>
+                                                    <span><i class="el-icon-close" title="remove" @click.prevent="Remove(cartItem.id)"></i></span>
+                                                </div>
+                                            </div>
+                                         </a>
+                                         <hr style="margin-top: 3px;margin-bottom: 3px;">
+                                         <div class="row" style="margin-right: 0px;margin-left: 0px;margin-bottom:5px;">
+                                                <div class="col-md-5" style="padding-left: 5px;padding-right: 0px;">
+                                                    <el-button type="success" plain size="small"
+                                                     class="col" title="Apply now" @click.prevent="openCheckoutModal(CartItems)">Checkout</el-button>
+                                                </div>
+                                                <div class="col-md-2" style="padding-left: 5px;padding-right: 0px;">
+                                                    <el-button type="danger" plain size="small"
+                                                      title="Apply now" @click.prevent="Clear(CartItems)">Clear</el-button>
+                                                </div>
+                                                <div class="col-md-5" style="padding-left: 5px;padding-right: 0px;">
+                                                    <div style="color: #fff; margin-top: 7px;">
+                                                        subTotal: Kshs. {{subTotal}}
                                                     </div>
                                                      <hr style="margin-top: 3px;margin-bottom: 3px;">
                                                     <div style="color: #fff; margin-top: 7px;">
@@ -90,7 +150,7 @@
                             <li><router-link title="About" :to="`/about`">About</router-link></li>
                             <!-- <li><router-link title="Contact Us" :to="`/contact`">Contact</router-link></li> -->
 
-                            <li class="menu-search">
+                            <!-- <li class="menu-search">
                                <div id="sb-search" class="sb-search">
                                    <form>
                                        <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search" />
@@ -98,7 +158,7 @@
                                        <span class="sb-icon-search"></span>
                                    </form>
                                </div>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -145,6 +205,9 @@
             },
             Total(){
                 return this.$store.getters.Total
+            },
+            Count(){
+                return this.$store.getters.Count
             },
         },
         methods:{

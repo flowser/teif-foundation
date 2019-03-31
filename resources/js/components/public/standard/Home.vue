@@ -107,7 +107,7 @@
                           <h3>{{course.name}}</h3>
                       </div>
                       <div class="welcome-content" style="padding-left: 10px;padding-right: 0px;width: 101%;top: 80px;">
-                          <span style="margin-bottom: 0px;">({{course.type.name}})</span>
+                          <span style="margin-bottom: 0px;" v-if="course.type">({{course.type.name}})</span>
                           <p style="margin-bottom: 0px;font-size: 12px;line-height: 13px;color:#ffffff" >
                               {{course.brief}}</p>
                           <ul class="course-detail">
@@ -118,12 +118,14 @@
                                  <span>Part time: {{course.parttime_duration}} Days</span>
                               </li>
                               <li style="font-size: 11px;margin-bottom: 0px;line-height: 19px;" ><i class="fa fa-calendar" aria-hidden="true"></i>
-                                 Lessons: <span style="color: #ffc722;"> {{course.coursesyllabus.lessons }} </span> <span> | </span>
-                                 <span style="color:#ffffff">Hours: </span> <span style="color: #ffc722;">{{course.coursesyllabus.hours}} </span>
+                                 Lessons: <span style="color: #ffc722;" v-if="course.coursesyllabus"> {{course.coursesyllabus.lessons }} </span> <span> | </span>
+                                 <span style="color:#ffffff">Hours: </span> <span style="color: #ffc722;" v-if="course.coursesyllabus">
+                                     {{course.coursesyllabus.hours}} </span>
                               </li>
-                              <li style="font-size: 11px;margin-bottom: 0px;line-height: 19px;">Requirement: <span style="color: #ffc722;">{{course.coursesyllabus.requirement}}</span></li>
+                              <li style="font-size: 11px;margin-bottom: 0px;line-height: 19px;">Requirement: <span style="color: #ffc722;" v-if="course.coursesyllabus">
+                                  {{course.coursesyllabus.requirement}}</span></li>
                               <li style="font-size: 11px;margin-bottom: 0px;line-height: 19px;">
-                                  What to Learn: <span style="margin-bottom: 0px;font-size: 12px;line-height: 13px;color:#ffffff;color: #ffc722;" >
+                                  What to Learn: <span style="margin-bottom: 0px;font-size: 12px;line-height: 13px;color:#ffffff;color: #ffc722;" v-if="course.coursesyllabus">
                                     {{course.coursesyllabus.what_to_learn | sortlength(80, "...")}}
                                      <!-- <a href="" @click.prevent="ParttimeEnroll(course)" class="col" title="Read More" style="color:white">Read More</a> -->
                                      <router-link :to="`/coursedetails/${course.id}`" class="read-more" title="Read More" style="color:white">Read More</router-link>
@@ -212,6 +214,9 @@ import EventSection from "./Event-Section.vue";
             },
             Total(){
                 return this.$store.getters.Total
+            },
+            Count(){
+                return this.$store.getters.Count
             },
         },
         methods:{

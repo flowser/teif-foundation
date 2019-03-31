@@ -221,12 +221,12 @@
             this.loadSkills(); //from methods
             this.loadCourseFeatures(); //from methods
             this.loadPractices(); //from methods
-            this.loadCourses(); //from methods
+            // this.loadCourses(); //from methods
         },
         computed:{
-            Courses(){
-                return this.$store.getters.Courses
-            },
+            // Courses(){
+            //     return this.$store.getters.Courses
+            // },
             Educations(){
                return this.$store.getters.Educations
             },
@@ -262,9 +262,9 @@
             },
         },
         methods:{
-            loadCourses(){
-                return this.$store.dispatch("courses")
-            },
+            // loadCourses(){
+            //     return this.$store.dispatch("courses")
+            // },
             loadGenders(){
                return this.$store.dispatch("genders")
             },
