@@ -29,6 +29,7 @@ class CourseController extends Controller
             'feature',
             'language'
           )->get();
+        //   )->paginate(6);
             return response()-> json([
                  'courses' => $courses,
             ], 200);

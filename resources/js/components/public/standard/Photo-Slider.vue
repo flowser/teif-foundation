@@ -58,7 +58,6 @@
         mounted(){
             this.loadOrganisation();
             this.loadCourses();
-            this.loadCartItems();
         },
         computed:{
             Courses(){

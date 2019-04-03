@@ -13,16 +13,22 @@ use App\Models\Standard\Webservices\ServiceModel;
 class PublicController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(Request $request) 
     {
         if (auth()->check()) {
             if (auth()->user()->hasRole('Client')) {
                 $logged_user =Auth::user();
+                $organisation = Organisation::with('about','services', 'servicemodels', 'adverts', 
+                               'organisationdirectors', 'organisationadmins', 'organisationemployees')
+                               ->first();
 
-                return view('layouts.homemaster')->with('logged_user', $logged_user);
+                return view('layouts.homemaster')->with(
+                    'logged_user','organisation');
             }
         }else{
-            return view('layouts.homemaster');
+            $organisation = Organisation::with('about','services', 'servicemodels', 'adverts')
+                               ->first();
+                return view('layouts.homemaster', compact("organisation"));
         }
     }
     public function routes()

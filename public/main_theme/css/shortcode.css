@@ -232,7 +232,7 @@
 	right: 0;
 	display: inline-block;
 	width: 100%;
-	padding-right: 49px;
+	padding-right: 0;
 	transition: all 1s ease 0s;
 	-webkit-transition: all 1s ease 0s;
 	-moz-transition: all 1s ease 0s;
@@ -254,7 +254,7 @@
 	position: absolute;
 	content: "";
 	left: 0;
-	right: 49px;
+	right: 0;
 	bottom: 0;
     top: 0;
     background-color: rgba(30, 32, 35, 0.58);

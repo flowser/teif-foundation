@@ -34,6 +34,10 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 import{routes} from './routes';
 
+//support laravel pagination
+Vue.use(require('vue-resource'));
+Vue.component('pagination', require('laravel-vue-pagination'));
+
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('admin-main', require('./components/admins/AdminMaster.vue').default);

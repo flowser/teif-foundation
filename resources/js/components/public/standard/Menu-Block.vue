@@ -4,7 +4,7 @@
         <div class="row">
             <!-- Navigation -->
             <nav class="navbar ow-navigation">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="navbar-header">
                         <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                             <span class="sr-only">Toggle navigation</span>
@@ -12,10 +12,19 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                         <router-link :to="`/`" title="Logo" class="navbar-brand"> <img src="main_theme/images/logo.png" alt="logo"/>TEIF<span>Education of Best</span></router-link>
-                         <router-link :to="`/`" title="Logo" class="mobile-logo" ><h3>TEIF</h3> </router-link>
-                         <router-link :to="`/`" title="Logo" v-show ="User != null" class="mobile-logo" ><h3> My Account</h3> </router-link>
-                         <ul class="nav navbar-nav menubar mobile-logo">
+                         <router-link :to="`/`"  class="navbar-brand">
+                            <img :src="organisationLoadImage(Organisation.logo)" alt="logo" style="width: 17%;top: -12px;"/>
+                            <!-- <img src="main_theme/images/logo.png" alt="logo"/> -->
+                            <h3 style="padding-left: 21px;font-weight: 600;margin-top: 0px;margin-bottom: 0px;">
+                                {{Organisation.name}}
+                                </h3>
+                            <h5 v-if="Organisation.about" style="padding-left: 21px;font-weight: 600;margin-top: 0px;margin-bottom: 0px;">
+                                {{Organisation.about.subtitle}}
+                            </h5>
+                          </router-link>
+                         <router-link :to="`/`" class="mobile-logo" ><h3>{{Organisation.name}}</h3> </router-link>
+                         <router-link :to="`/myaccount`" title="My account" v-show ="User != null" class="mobile-logo" ><h3> My Account</h3> </router-link>
+                         <!-- <ul class="nav navbar-nav menubar mobile-logo">
                             <li class="dropdown mobile-logo">
                                 <a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Cart" >
                                     <button type="button" class="btn btn-default btn-sm">
@@ -69,17 +78,17 @@
                                       </li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul> -->
 
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav navbar-nav menubar">
                             <li><router-link :to="`/`" title="Home">Home</router-link></li>
                             <li><router-link :to="`/myaccount`" v-show ="User != null" title="MyAccount">My Account</router-link></li>
                             <li class="dropdown">
-                                <a href="" aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Courses" >Courses</a>
+                                <a  aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Courses" >Courses</a>
                                 <i class="ddl-switch fa fa-angle-down"></i>
                                 <ul class="dropdown-menu" style="min-width: 375px;">
                                      <li class="dropdown">
@@ -189,11 +198,15 @@
            }
         },
         mounted(){
+            this.loadOrganisation();
             this.loadUser();
             this.loadCourses(); //from methods
             this.loadCartItems();
         },
         computed:{
+            Organisation(){
+               return this.$store.getters.Organisation
+            },
             User(){
                 return this.$store.getters.User
             },
@@ -214,6 +227,16 @@
             },
         },
         methods:{
+            loadOrganisation(){
+               return this.$store.dispatch( "organisation")
+            },
+            organisationLoadImage(organisation_logo){
+                if(organisation_logo){
+                    return "/assets/organisation/img/logo/"+organisation_logo;
+                }else{
+                    return "/assets/organisation/img/website/empty.png";
+                }
+            },
             //logged
             loadUser(){
                 this.$store.commit('setAuthUser', window.logged_user);

@@ -15,7 +15,7 @@
 	<title>Teif Foundation - @yield('title')</title>
 	{{--  <title>Home -Knowledge</title>  --}}
 	<!-- Standard Favicon -->
-	<link rel="icon" type="image/x-icon" href="{{asset('main_theme/images/favicon.ico')}}"/>
+	<link rel="icon" type="image/x-icon" href="{{asset('assets/organisation/img/logo')}}/{{$organisation->logo}}"/>
 
 	<!-- For iPhone 4 Retina display: -->
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('main_theme/images/apple-touch-icon-114x114-precomposed.png')}}">
@@ -46,12 +46,14 @@
 	<!--[if lt IE 9]>
 		<script src="{{asset('main_theme/js/html5/respond.min.js')}}"></script>
     <![endif]-->
-
+ 
 </head>
 
 <body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
   <div id="app">
-        {{-- {{ Auth::check() }} --}}
+				{{-- {{ Auth::check() }} --}}
+				{{--  {{$organisation}}
+				llllll  --}}
     <home-main ></home-main>
   </div>
 </body>

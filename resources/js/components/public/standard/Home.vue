@@ -12,41 +12,6 @@
                 <div class="searchcourses-block">
                     <h3 style="margin: 0px;">No Need to wait, be among the top with Our Short Courses</h3>
                 </div>
-                <!-- <div class="container-fluid" style="padding-bottom: 5px; margin-bottom: 0px;">
-                    <div class="form-group col-xs-3 col-sm-3 col-md-3 col-md-3 col-lg-3" style="width: 100px; padding-left: 5px; padding-right: 0px;">
-                         <label for="education">Age Limit</label>
-                         <select class="form-control" >
-                                 <option disabled value="">Age</option>
-                                 <option class="option" value="15-20">15-20 years</option>
-                                 <option class="option" value="21-25">21-25 years</option>
-                                 <option  class="option" value="26-30">26-30 years</option>
-                                 <option class="option" value="31-35">31-35 years</option>
-                                 <option class="option"  value="36-40">36-40 years</option>
-                                 <option class="option"  value="41-50">41-50 years</option>
-                         </select>
-                     </div>
-
-                    <div class="form-group col-xs-3 col-sm-3 col-md-3 col-md-3 col-lg-3" style="width: 100px; padding-left: 5px; padding-right: 0px;">
-                         <label for="education">Age Limit</label>
-                         <select class="form-control" >
-                                 <option disabled value="">Age</option>
-                                 <option class="option" value="15-20">15-20 years</option>
-                                 <option class="option" value="21-25">21-25 years</option>
-                                 <option  class="option" value="26-30">26-30 years</option>
-                                 <option class="option" value="31-35">31-35 years</option>
-                                 <option class="option"  value="36-40">36-40 years</option>
-                                 <option class="option"  value="41-50">41-50 years</option>
-                         </select>
-                     </div>
-                    <div class="form-group col-xs-3 col-sm-3 col-md-3 col-md-3 col-lg-3" style="width: 100px; padding-left: 5px; padding-right: 0px;">
-                        <div class="input-group" style="top: 25px;">
-                            <input type="text" class="form-control" placeholder="Keyword . . . " style="width: 100px">
-                            <span class="input-group-btn">
-                                <button class="btn" type="button" title="Search">Search</button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
                 <div class="search-categories">
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <p><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>Over 500 students Enrolled Learn Skills</span></p>
@@ -60,7 +25,7 @@
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <p><i class="fa fa-user-md" aria-hidden="true"></i><span>More than 320 Instructors Available</span></p>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
@@ -68,16 +33,17 @@
 
     <!-- Courses Section -->
     <div class="container-fluid welcome-section">
-      <div class="row">
+      <div class="row" style="padding-top: 10px;">
            <!--sidebar filter  -->
           <!-- <div class="col-md-3" style="padding-left: 23px; "> -->
-            <div class="col-md-2 col-sm-4 widget-area animated fadeInRight" style="padding-left: 20px; padding-right: 5px;">
+            <div class="col-md-2 " >
 				<LeftSideBar/>
 			</div>
 
           <!-- </div> -->
-          <div class="col-md-10" style="padding-left: 1px; padding-right: 1px;">
-              <div class="row" style="height: 63px; padding-top: 6px;">
+          <div class="col-md-10" >
+
+              <!-- <div class="row" style="height: 63px; padding-top: 6px;"> -->
                   <!-- <el-tag
                     :key="tag"
                     v-for="tag in enrollform.duration_id"
@@ -98,18 +64,18 @@
                     >
                 </el-input> -->
                 <!-- <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button> -->
-              </div>
+              <!-- </div> -->
               <div class="row">
-                  <div class="col-md-3 col-sm-6 col-xs-6" style="padding-left: 1px; padding-right: 1px;" v-for="course in Courses" :key="course.id">
+                  <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left: 5px;padding-right: 5px;" v-for="course in Courses" :key="course.id">
                   <div class="welcome-box">
                       <img :src="courseLoadImage(course.image)" alt="welcome1" style="width:100%; height:360px"/>
-                      <div class="welcome-title" style="width: 385px;bottom: 0px;">
+                      <div class="welcome-title" style="width: 100%;bottom: 0px;">
                           <h3>{{course.name}}</h3>
                       </div>
                       <div class="welcome-content" style="padding-left: 10px;padding-right: 0px;width: 101%;top: 80px;">
                           <span style="margin-bottom: 0px;" v-if="course.type">({{course.type.name}})</span>
                           <p style="margin-bottom: 0px;font-size: 12px;line-height: 13px;color:#ffffff" >
-                              {{course.brief}}</p>
+                              {{course.brief  | sortlength(80, "...")}}</p>
                           <ul class="course-detail">
                               <li style="font-size: 11px;margin-bottom: 0px;line-height: 19px;" ><i class="fa fa-calendar" aria-hidden="true"></i>
                                  Start: {{course.start_date | dateformat}} <span> | </span>
@@ -156,6 +122,7 @@
               </div>
 
               </div>
+              
 
           </div>
        </div>
@@ -221,6 +188,28 @@ import EventSection from "./Event-Section.vue";
         },
         methods:{
             loadCourses(){
+            // loadCourses(page){
+
+                // if(typeof page === 'undefined'){
+                //     page = 1;
+                //     this.$store.dispatch("CoursesByPage", page)
+
+                // }else{
+
+                //      this.$store.dispatch("CoursesByPage", page)
+                // }
+                // if (typeof page === 'undefined') {
+                //     page = 1;
+                // }
+      
+                // this.$http.get('/courses/get/?page=' + page)
+                //     .then(response => {
+                //         return response.json();
+                //     }).then(data => {
+                //         console.log(response.data)
+                //         // this.laravelData = data;
+                //     });
+                
                 return this.$store.dispatch("courses")
             },
             loadCartItems(){
