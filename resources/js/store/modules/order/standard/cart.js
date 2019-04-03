@@ -29,7 +29,7 @@ const actions = {
     cartItems(context){//permission.index route laravel
       axios.get('/cart/get')
       .then((response)=>{
-        console.log(response.data, 'jj')
+        // console.log(response.data, 'jj')
         context.commit('cartItems', response.data.cartItems);
         context.commit('subTotal', response.data.subTotal);
         context.commit('Total', response.data.Total);
@@ -39,7 +39,7 @@ const actions = {
     CartItemById(context, payload){
         axios.get('/cart/show/'+payload)
               .then((response)=>{
-                  console.log(response.data);
+                //   console.log(response.data);
                   context.commit('cartItem', response.data.cartItem);
               });
     }

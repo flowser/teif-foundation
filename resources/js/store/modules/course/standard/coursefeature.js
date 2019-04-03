@@ -13,7 +13,7 @@ const actions = {
     coursefeatures(context){//permission.index route laravel
       axios.get('/coursefeature/get')
       .then((response)=>{
-        console.log(response.data)
+        // console.log(response.data)
         context.commit('features', response.data.features);
       });
     },

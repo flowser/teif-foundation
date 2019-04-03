@@ -1,16 +1,23 @@
 <template>
   <div id="about-us">
-      <div class="container-fluid no-padding pagebanner">
-          <div class="container">
-              <div class="pagebanner-content">
-                  <h3>About us</h3>
-                  <ol class="breadcrumb">
-                      <li><router-link :to="`/`" class="read-more" title="Home" style="color:white">Home</router-link></li>
-                      <li>About us</li>
-                  </ol>
-              </div>
-          </div>
-      </div><!-- PageBanner /- -->
+      <div class="container-fluid no-padding " :style="{ background: `url(${imageUrl}) no-repeat center` }" style="height: 220px" >
+		<!-- background_image -->
+        <div class="container">
+			<div class="pagebanner-content" style="margin-top: 80px;">
+                <div class="">
+                    <div class="pull-left">
+                        <h3 style="margin-top: 0px;margin-bottom: 0px;color: #ffff;">About US</h3>
+                    </div>
+                    <div class="pull-right">
+                        <ol class="breadcrumb" start="background-color: transparent;">
+                            <li><router-link title="Home" :to="`/`" style="color: #ffc722;">Home</router-link></li>
+                            <li style="color: #ffff;">About US</li>
+                        </ol>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div><!-- PageBanner /- -->
       <!-- WhyChooseUs Section -->
       <div class="container whychooseus-section">
           <div class="section-padding"></div>
@@ -46,15 +53,29 @@
 <script>
     export default {
         name:"About-US",
+         data(){
+            return{
+                imageUrl:'',
+           }
+        },
         mounted() {
+            this.loadClient();
             this.loadOrganisation();
+            this.imageUrl = "/assets/organisation/img/background/background-1.jpg"
         },
         computed:{
+            Client(){
+                return this.$store.getters.Client
+            },
             Organisation(){
                return this.$store.getters.Organisation
             },
         },
         methods:{
+            loadClient(){
+
+                return this.$store.dispatch("client")
+            },
             loadOrganisation(){
                 return this.$store.dispatch( "organisation")
             },

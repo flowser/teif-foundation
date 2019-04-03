@@ -20,9 +20,9 @@ class CreateResultsTable extends Migration
             $table->unsignedInteger('course_id');
 
             $table->string('course_status')->nullable();
-            $table->string('certificte_status')->nullable();//pending, ready to be collected, Collected
+            $table->string('certificate_status')->nullable();//pending, ready to be collected, Collected
             $table->string('collection_date')->nullable();//client initiating collection date
-            $table->tinyInteger('collection_method')->default(0)->unsigned();//manual/byparcel           
+            $table->tinyInteger('collection_method')->nullable()->unsigned();//manual/byparcel
 
 
             $table->softDeletes();

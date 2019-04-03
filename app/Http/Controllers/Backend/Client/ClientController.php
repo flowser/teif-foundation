@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Client\Client;
 use App\Models\Standard\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
@@ -18,8 +19,32 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        if (auth()->check()) {
+            if(auth()->user()->hasRole('Client')) {
+                $user =Auth::user();
+                $client = Client::with('user','gender', 'country', 'county', 'constituency', 'ward','education')
+                    ->where('user_id', $user->id)
+                    ->first();
+                    return response()-> json([
+                    'client' =>$client,
+                ], 200);
+            }
+        }
     }
+
+    public function ClientList()
+    {
+        if (auth()->check()) {
+            if (auth()->user()->hasRole('Organisation Director')) {
+                $clients = Client::with('user')
+                       ->get();
+                    return response()-> json([
+                    'clients' =>$clients,
+                ], 200);
+            }
+        }
+    }
+
 
     /**
      * Show the form for creating a new resource.

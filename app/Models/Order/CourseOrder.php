@@ -7,8 +7,9 @@ use App\Models\Course\Course;
 use App\Models\Client\Standard\Result;
 use Illuminate\Database\Eloquent\Model;
 
-class Course_Order extends Model
+class CourseOrder extends Model
 {
+    protected $table = 'course_order';
     protected $fillable = [
         'order_id',
         'course_id',

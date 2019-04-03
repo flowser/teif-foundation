@@ -13,7 +13,7 @@ const actions = {
     availabilities(context){//permission.index route laravel
       axios.get('/availability/get')
       .then((response)=>{
-        console.log(response.data)
+        // console.log(response.data)
         context.commit('availabilities', response.data.availabilities);
       });
     },

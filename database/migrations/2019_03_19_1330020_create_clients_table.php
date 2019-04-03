@@ -20,6 +20,7 @@ class CreateClientsTable extends Migration
             $table->unsignedInteger('education_id')->nullable();
             $table->unsignedInteger('organisation_affiliate_id')->nullable();
             $table->string('photo')->nullable();
+            $table->string('background_image')->nullable();
             $table->tinyInteger('active')->default(1)->unsigned();
 
             $table->string('id_no', 120)->nullable();

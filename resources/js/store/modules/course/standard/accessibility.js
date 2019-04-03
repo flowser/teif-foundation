@@ -13,7 +13,7 @@ const actions = {
     accessibilities(context){//permission.index route laravel
       axios.get('/accessibility/get')
       .then((response)=>{
-        console.log(response.data)
+        // console.log(response.data)
         context.commit('accessibilities', response.data.accessibilities);
       });
     },

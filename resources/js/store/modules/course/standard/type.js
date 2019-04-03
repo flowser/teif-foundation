@@ -13,7 +13,7 @@ const actions = {
     types(context){//permission.index route laravel
       axios.get('/type/get')
       .then((response)=>{
-        console.log(response.data)
+        // console.log(response.data)
         context.commit('types', response.data.types);
       });
     },

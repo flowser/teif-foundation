@@ -51,7 +51,7 @@
 
 <body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
   <div id="app">
-        {{ Auth::check() }}
+        {{-- {{ Auth::check() }} --}}
     <home-main ></home-main>
   </div>
 </body>

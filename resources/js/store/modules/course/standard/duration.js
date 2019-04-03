@@ -13,7 +13,7 @@ const actions = {
     durations(context){//permission.index route laravel
       axios.get('/duration/get')
       .then((response)=>{
-        console.log(response.data)
+        // console.log(response.data)
         context.commit('durations', response.data.durations);
       });
     },

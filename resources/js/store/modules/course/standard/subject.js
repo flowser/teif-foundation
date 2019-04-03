@@ -13,7 +13,7 @@ const actions = {
     subjects(context){//permission.index route laravel
       axios.get('/subject/get')
       .then((response)=>{
-        console.log(response.data)
+        // console.log(response.data)
         context.commit('subjects', response.data.subjects);
       });
     },

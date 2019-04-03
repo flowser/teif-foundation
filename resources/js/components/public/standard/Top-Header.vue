@@ -1,14 +1,16 @@
 <template>
   <div id=top-header>
-      <div class="container">
+      <div class="container-fluid">
         <div class="topheader-left">
-            <a href="tel:+5198759822" title="5198759822"><i class="fa fa-mobile" aria-hidden="true"></i>(519) - 875 - 9822 </a>
-            <a href="mailto:Support@info.com" title="Support@info.com"><i class="fa fa-envelope-o" aria-hidden="true"></i>Emailus: Support@info.com</a>
+            <a href="tel:+5198759822" title="5198759822"><i class="fa fa-mobile" aria-hidden="true"></i>{{Organisation.phone}}</a>
+            <router-link title="home" :to="`/`">{{Organisation.name}}</router-link>
+            <router-link title="about" :to="`/about`">About</router-link>
+            <a href="" title=""><i class="fa fa-envelope-o" aria-hidden="true"></i>Emailus: {{Organisation.organisation_email}}</a>
         </div>
         <div class="topheader-right">
-            <a href="#" v-if="User == null" title="Login" @click.prevent="loginModal()"><i class="fa fa-sign-out" aria-hidden="true"></i>Login</a>
-            <a href="#" v-if="User == null" title="Register" @click.prevent="registerClientModal()">Register</a>
-            <a href="#" v-show="User != null" title="Logout" @click.prevent="logout">Logout</a>
+            <a href="#" v-show ="User == null" title="Login" @click.prevent="loginModal()"><i class="fa fa-sign-out" aria-hidden="true"></i>Login</a>
+            <a href="#" v-show ="User == null" title="Register" @click.prevent="registerClientModal()">Register</a>
+            <a href="#" v-show ="User != null" title="Logout" @click.prevent="logout">Logout</a>
         </div>
     </div>
   </div>
@@ -77,6 +79,7 @@
            }
         },
        mounted(){
+            this.loadOrganisation();
             this.loadCourses();
             this.loadCartItems();
             this.loadCountries();
@@ -88,6 +91,9 @@
             this.loadUser();
         },
         computed:{
+            Organisation(){
+               return this.$store.getters.Organisation
+            },
             User(){
                 return this.$store.getters.User
             },
@@ -116,7 +122,7 @@
                 return this.$store.getters.Total
             },
             Client(){
-                console.log(this.$store.getters.Client)
+                // console.log(this.$store.getters.Client)
                return this.$store.getters.Client//by logged in id
             },
             Genders(){
@@ -128,6 +134,9 @@
 
         },
         methods:{
+            loadOrganisation(){
+               return this.$store.dispatch( "organisation")
+            },
             loadUser(){
                 this.$store.commit('setAuthUser', window.logged_user);
             },
@@ -167,22 +176,22 @@
             },
                         //Client
             ClientInputPhone({ number, isValid, country }) {
-            console.log(number, isValid, country);
+            // console.log(number, isValid, country);
             this.clientform.phone = number;
             this.phone.isValid = isValid;
             this.phone.country = country && country.name;
             },
 
             ClientcountryCounties(country_id){
-                console.log(country_id);
+                // console.log(country_id);
                 this.$store.dispatch('countrycounties', country_id);
             },
             ClientcountyConstituencies(county_id){
-                console.log(county_id);
+                // console.log(county_id);
                 this.$store.dispatch('countyconstituencies', county_id);
             },
             ClientconstituencyWards(constituency_id){
-                console.log(constituency_id);
+                // console.log(constituency_id);
                 this.$store.dispatch('constituencywards', constituency_id); //send to store to the action with id
             },
             registerClientModal(){
@@ -325,7 +334,7 @@
 
             },
             editClientModal(id){
-                console.log(id)
+                // console.log(id)
                  this.editmodeClient = true;
                  this.clientform.reset()
                     this.$Progress.start();
@@ -336,7 +345,7 @@
                             type: 'success',
                             title: 'Fetched the Client data successfully'
                             })
-                            console.log(response.data)
+                            // console.log(response.data)
                             this.clientform.fill(response.data.client)
                             this.clientform.user_id = response.data.client.organisationclients[0].pivot.user_id
                             this.clientform.organisation_id = response.data.client.organisationclients[0].pivot.organisation_id
@@ -397,7 +406,7 @@
                     })
             },
             updateClient(id){
-                  console.log(id)
+                //   console.log(id)
                   this.$Progress.start();
                      this.clientform.patch('/client/update/'+id)
                         .then(()=>{
@@ -455,7 +464,7 @@
                 this.$Progress.start();
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
-                    console.log(response)
+                    // console.log(response)
                      toast({
                         type: 'success',
                         title: response.data.code,
@@ -467,7 +476,7 @@
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
-                    console.log(response)
+                    // console.log(response)
                     this.$Progress.fail()
                     toast({
                         type: 'error',
@@ -476,7 +485,7 @@
                 })
             },
             Remove(cartItem_id){
-                console.log(cartItem_id)
+                // console.log(cartItem_id)
                 this.$Progress.start();
                 axios.get('/cart/remove/'+cartItem_id)
                 .then((response)=>{
@@ -497,7 +506,7 @@
                 })
             },
             Clear(CartItems){
-                console.log(CartItems)
+                // console.log(CartItems)
                 this.$Progress.start();
                 axios.get('/cart/clear/'+CartItems)
                  .then((response)=>{
@@ -518,7 +527,7 @@
                 })
             },
             openCheckoutModal(CartItems){
-                console.log(CartItems)
+                // console.log(CartItems)
                 this.loadCourses()
                 this.loadCartItems()
                 this.transactionform.reset()
@@ -543,7 +552,7 @@
             },
             Checkout(CartItems){
                this.transactionform.cartItems= CartItems
-                console.log(this.transactionform)
+                // console.log(this.transactionform)
                 this.$Progress.start();
                 this.transactionform.patch('/order/checkout/'+CartItems)
                 .then((response)=>{

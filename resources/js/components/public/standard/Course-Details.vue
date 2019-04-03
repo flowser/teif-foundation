@@ -1,25 +1,27 @@
 <template>
   <div id="course-detail">
+      <div class="container-fluid no-padding " :style="{ background: `url(${imageUrl}) no-repeat center` }" style="height: 220px" >
+		<!-- background_image -->
+        <div class="container">
+			<div class="pagebanner-content" style="margin-top: 80px;">
+                <div class="">
+                    <div class="pull-left">
+                        <h3 style="margin-top: 0px;margin-bottom: 0px;color: #ffff;">Course Details</h3>
+                    </div>
+                    <div class="pull-right">
+                        <ol class="breadcrumb" start="background-color: transparent;">
+                            <li><router-link title="Home" :to="`/`" style="color: #ffc722;">Home</router-link></li>
+                            <li style="color: #ffff;">Course Details</li>
+                        </ol>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div><!-- PageBanner /- -->
 
     <!-- Courses Section -->
     <div class="container-fluid welcome-section">
       <div class="row">
-          <div class="container-fluid no-padding pagebanner">
-	      	<div class="container">
-	      		<div class="pagebanner-content">
-	      			<h3>{{Course.name}}</h3>
-	      			<ol class="breadcrumb">
-                        <li>
-                            <router-link :to="`/`" class="read-more" title="Home" style="color:white">Home</router-link>
-                        </li>
-	      				<li>Courses Details</li>
-	      			</ol>
-	      		</div>
-	      	</div>
-	      </div><!-- PageBanner /- -->
-      </div>
-      <div class="row">
-
           <!-- </div> -->
           <div class="col-md-12" style="padding-left: 1px; padding-right: 1px;">
 	            <div class="container-fluid coursesdetail-section">
@@ -49,15 +51,15 @@
                                             </li>
 	            							<li>Lessons :     <span style="color:#ffc722" v-if="Course.coursesyllabus">{{Course.coursesyllabus.lessons}}
                                               </span> Hours : <span style="color:#ffc722" v-if="Course.coursesyllabus"> {{Course.coursesyllabus.hours}} </span></li>
-	            							<li>Duration:     <span style="color:#ffc722">{{Course.duration.name}}          </span></li>
-	            							<li>Skill:        <span style="color:#ffc722">{{Course.skill.name}}             </span></li>
-	            							<li>School:       <span style="color:#ffc722">{{Course.school.name}}            </span></li>
-	            							<li>Type:         <span style="color:#ffc722">{{Course.type.name}}              </span></li>
-	            							<li>Subject:      <span style="color:#ffc722">{{Course.subject.name}}           </span></li>
-	            							<li>Sourses:      <span style="color:#ffc722">{{Course.feature.name}}           </span></li>
-	            							<li>Availability: <span style="color:#ffc722">{{Course.availability.name}}      </span></li>
-	            							<li>Accessibility:<span style="color:#ffc722">{{Course.accessibility.name}}     </span></li>
-	            							<li>Language:     <span style="color:#ffc722">{{Course.language.name}}          </span></li>
+	            							<li>Duration:     <span style="color:#ffc722" v-if="Course.duration">{{Course.duration.name}}          </span></li>
+	            							<li>Skill:        <span style="color:#ffc722" v-if="Course.skill">{{Course.skill.name}}             </span></li>
+	            							<li>School:       <span style="color:#ffc722" v-if="Course.school">{{Course.school.name}}            </span></li>
+	            							<li>Type:         <span style="color:#ffc722" v-if="Course.type">{{Course.type.name}}              </span></li>
+	            							<li>Subject:      <span style="color:#ffc722" v-if="Course.subject">{{Course.subject.name}}           </span></li>
+	            							<li>Sourses:      <span style="color:#ffc722" v-if="Course.feature">{{Course.feature.name}}           </span></li>
+	            							<li>Availability: <span style="color:#ffc722" v-if="Course.availability">{{Course.availability.name}}      </span></li>
+	            							<li>Accessibility:<span style="color:#ffc722" v-if="Course.accessibility">{{Course.accessibility.name}}     </span></li>
+	            							<li>Language:     <span style="color:#ffc722" v-if="Course.language">{{Course.language.name}}          </span></li>
 	            						</ul>
 	            					</div>
 	            					<div class="courses-review">
@@ -184,6 +186,7 @@ import LeftSideBar from "./LeftSidebar.vue";
         },
         data(){
             return{
+                imageUrl:'',
                 enrollform: new Form({
                         id:'',
                         name:'',
@@ -194,10 +197,15 @@ import LeftSideBar from "./LeftSidebar.vue";
            }
         },
        mounted(){
+            this.loadClient();
             this.singlecourse()
             this.loadCartItems();
+            this.imageUrl = "/assets/organisation/img/background/background-1.jpg"
         },
         computed:{
+            Client(){
+                return this.$store.getters.Client
+            },
             Course(){
                 return this.$store.getters.Course
             },
@@ -212,6 +220,10 @@ import LeftSideBar from "./LeftSidebar.vue";
             },
         },
         methods:{
+            loadClient(){
+
+                return this.$store.dispatch("client")
+            },
             loadCourses(){
                 return this.$store.dispatch("courses")
             },
@@ -219,7 +231,6 @@ import LeftSideBar from "./LeftSidebar.vue";
                 return this.$store.dispatch("cartItems")
             },
             singlecourse(){
-                console.log(this.$route.params.id, 'jjjjj')
                 this.$store.dispatch('CourseById', this.$route.params.id);
             },
             courseLoadImage(course_image){
@@ -290,7 +301,7 @@ import LeftSideBar from "./LeftSidebar.vue";
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
-                    // console.log(response.data)
+
                     this.$Progress.fail()
                     toast({
                         type: 'error',
@@ -307,7 +318,7 @@ import LeftSideBar from "./LeftSidebar.vue";
                 }
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
-                    console.log(response)
+                    // console.log(response)
                      toast({
                         type: 'success',
                         title: response.data.code,
@@ -319,7 +330,7 @@ import LeftSideBar from "./LeftSidebar.vue";
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
-                    console.log(response)
+                    // console.log(response)
                     this.$Progress.fail()
                     toast({
                         type: 'error',
@@ -328,7 +339,7 @@ import LeftSideBar from "./LeftSidebar.vue";
                 })
             },
             Remove(cartItem_id){
-                console.log(cartItem_id)
+                // console.log(cartItem_id)
                 axios.get('/cart/remove/'+cartItem_id)
                 .then((response)=>{
                      toast({
@@ -348,7 +359,7 @@ import LeftSideBar from "./LeftSidebar.vue";
                 })
             },
             Clear(CartItems){
-                console.log(CartItems)
+                // console.log(CartItems)
                 axios.get('/cart/clear/'+CartItems)
                  .then((response)=>{
                      toast({
@@ -368,7 +379,7 @@ import LeftSideBar from "./LeftSidebar.vue";
                 })
             },
             openCheckoutModal(CartItems){
-                console.log(CartItems)
+                // console.log(CartItems)
                 this.loadCourses()
                 this.loadCartItems()
                 this.transactionform.reset()
@@ -393,7 +404,6 @@ import LeftSideBar from "./LeftSidebar.vue";
             },
             Checkout(CartItems){
                this.transactionform.cartItems= CartItems
-                console.log(this.transactionform)
                 this.transactionform.patch('/order/checkout/'+CartItems)
                 .then((response)=>{
                      toast({

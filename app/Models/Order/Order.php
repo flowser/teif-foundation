@@ -4,6 +4,8 @@ namespace App\Models\Order;
 
 use App\Models\Client\Client;
 use App\Models\Course\Course;
+use App\Models\Order\CourseOrder;
+use App\Models\Client\Standard\Result;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -39,5 +41,9 @@ class Order extends Model
                         'fee'
                      )
                      ->withTimestamps();
+     }
+     public function results()
+     {
+         return $this->hasManyThrough(Result::class, CourseOrder::class);
      }
 }

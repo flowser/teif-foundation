@@ -12,7 +12,7 @@
                 <div class="searchcourses-block">
                     <h3 style="margin: 0px;">No Need to wait, be among the top with Our Short Courses</h3>
                 </div>
-                <div class="container-fluid" style="padding-bottom: 5px; margin-bottom: 0px;">
+                <!-- <div class="container-fluid" style="padding-bottom: 5px; margin-bottom: 0px;">
                     <div class="form-group col-xs-3 col-sm-3 col-md-3 col-md-3 col-lg-3" style="width: 100px; padding-left: 5px; padding-right: 0px;">
                          <label for="education">Age Limit</label>
                          <select class="form-control" >
@@ -60,7 +60,7 @@
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <p><i class="fa fa-user-md" aria-hidden="true"></i><span>More than 320 Instructors Available</span></p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -269,7 +269,7 @@ import EventSection from "./Event-Section.vue";
                 }
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
-                    console.log(response)
+                    // console.log(response)
                      toast({
                         type: 'success',
                         title: response.data.code,
@@ -281,7 +281,7 @@ import EventSection from "./Event-Section.vue";
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
-                    console.log(response)
+                    // console.log(response)
                     this.$Progress.fail()
                     toast({
                         type: 'error',
@@ -290,7 +290,7 @@ import EventSection from "./Event-Section.vue";
                 })
             },
             Remove(cartItem_id){
-                console.log(cartItem_id)
+                // console.log(cartItem_id)
                 axios.get('/cart/remove/'+cartItem_id)
                 .then((response)=>{
                      toast({
@@ -310,7 +310,7 @@ import EventSection from "./Event-Section.vue";
                 })
             },
             Clear(CartItems){
-                console.log(CartItems)
+                // console.log(CartItems)
                 axios.get('/cart/clear/'+CartItems)
                  .then((response)=>{
                      toast({
@@ -354,7 +354,7 @@ import EventSection from "./Event-Section.vue";
             },
             Checkout(CartItems){
                 this.transactionform.cartItems= CartItems
-                console.log(this.transactionform)
+                // console.log(this.transactionform)
                 this.transactionform.patch('/order/checkout/'+CartItems)
                 .then((response)=>{
                      toast({

@@ -46,7 +46,6 @@ Vue.component('footer-content', require('./components/public/standard/Footer.vue
 Vue.component('home', require('./components/public/standard/Home.vue').default);
 // Vue.component('about-us', require('./components/public/standard/About-Us.vue').default);
 // Vue.component('filter-header', require('./components/public/standard/Filter.vue').default);
-Vue.component('course-content', require('./components/public/standard/Course.vue').default);
 
 
 //Vue-progress bar
@@ -93,7 +92,7 @@ Vue.use(VueFormWizard);
 
 //vrouter
 const router = new VueRouter({
-    mode: 'history', //hash, history
+    mode: 'hash', //hash, history
     routes // short for `routes: routes`
   });
 const app = new Vue({

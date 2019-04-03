@@ -14,7 +14,7 @@
                         </button>
                          <router-link :to="`/`" title="Logo" class="navbar-brand"> <img src="main_theme/images/logo.png" alt="logo"/>TEIF<span>Education of Best</span></router-link>
                          <router-link :to="`/`" title="Logo" class="mobile-logo" ><h3>TEIF</h3> </router-link>
-                         <router-link :to="`/`" title="Logo" class="mobile-logo" ><h3> My Account</h3> </router-link>
+                         <router-link :to="`/`" title="Logo" v-show ="User != null" class="mobile-logo" ><h3> My Account</h3> </router-link>
                          <ul class="nav navbar-nav menubar mobile-logo">
                             <li class="dropdown mobile-logo">
                                 <a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Cart" >
@@ -76,9 +76,8 @@
                 <div class="col-md-9">
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav navbar-nav menubar">
-                            <li>
-                                 <router-link :to="`/`" title="Home">Home</router-link>
-                            </li>
+                            <li><router-link :to="`/`" title="Home">Home</router-link></li>
+                            <li><router-link :to="`/myaccount`" v-show ="User != null" title="MyAccount">My Account</router-link></li>
                             <li class="dropdown">
                                 <a href="" aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Courses" >Courses</a>
                                 <i class="ddl-switch fa fa-angle-down"></i>
@@ -145,7 +144,7 @@
                                 </ul>
                             </li>
                             <li><router-link title="Event" :to="`/events`">Events</router-link></li>
-                            <li><router-link title="Services" :to="`/services`">Services</router-link></li>
+                            <!-- <li><router-link title="Services" :to="`/services`">Services</router-link></li> -->
                             <!-- <li><router-link title="Team" :to="`/Team`">Team</router-link></li> -->
                             <li><router-link title="About" :to="`/about`">About</router-link></li>
                             <!-- <li><router-link title="Contact Us" :to="`/contact`">Contact</router-link></li> -->
@@ -190,10 +189,14 @@
            }
         },
         mounted(){
+            this.loadUser();
             this.loadCourses(); //from methods
             this.loadCartItems();
         },
         computed:{
+            User(){
+                return this.$store.getters.User
+            },
             Courses(){
                 return this.$store.getters.Courses
             },
@@ -211,6 +214,11 @@
             },
         },
         methods:{
+            //logged
+            loadUser(){
+                this.$store.commit('setAuthUser', window.logged_user);
+            },
+            //
             loadCourses(){
                 return this.$store.dispatch("courses")
             },
@@ -267,7 +275,6 @@
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
-                    console.log(response.code)
                     this.$Progress.fail()
                     toast({
                         type: 'error',
@@ -276,7 +283,6 @@
                 })
             },
             Remove(cartItem_id){
-                console.log(cartItem_id)
                 axios.get('/cart/remove/'+cartItem_id)
                 .then((response)=>{
                      toast({
@@ -290,7 +296,6 @@
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
-                    console.log(response.data)
                     this.$Progress.fail()
                     toast({
                         type: 'error',
@@ -300,7 +305,6 @@
                 })
             },
             Clear(CartItems){
-                console.log(CartItems)
                 axios.get('/cart/clear/'+CartItems)
                  .then((response)=>{
                      toast({
@@ -320,7 +324,6 @@
                 })
             },
             openCheckoutModal(CartItems){
-                console.log(CartItems)
                 this.loadCourses()
                 this.loadCartItems()
                 this.transactionform.reset()
@@ -328,7 +331,6 @@
             },
             Checkout(CartItems){
                 this.transactionform.cartItems= CartItems
-                console.log(CartItems, 'checkeke')
                 this.transactionform.patch('/order/checkout/'+CartItems)
                 .then((response)=>{
                      toast({

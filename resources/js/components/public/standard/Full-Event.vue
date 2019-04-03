@@ -1,14 +1,21 @@
 <template>
   <div id=menu-block>
       <!-- PageBanner -->
-	<div class="container-fluid no-padding pagebanner">
-		<div class="container">
-			<div class="pagebanner-content">
-				<h3>Events</h3>
-				<ol class="breadcrumb">
-                    <li><router-link title="Event" :to="`/`">Home</router-link></li>
-					<li>Events</li>
-				</ol>
+    <div class="container-fluid no-padding " :style="{ background: `url(${imageUrl}) no-repeat center` }" style="height: 220px" >
+		<!-- background_image -->
+        <div class="container">
+			<div class="pagebanner-content" style="margin-top: 80px;">
+                <div class="">
+                    <div class="pull-left">
+                        <h3 style="margin-top: 0px;margin-bottom: 0px;color: #ffff;">Events</h3>
+                    </div>
+                    <div class="pull-right">
+                        <ol class="breadcrumb" start="background-color: transparent;">
+                            <li><router-link title="Home" :to="`/`" style="color: #ffc722;">Home</router-link></li>
+                            <li style="color: #ffff;">Events</li>
+                        </ol>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div><!-- PageBanner /- -->
@@ -70,6 +77,7 @@
         name:"Full-Event",
         data(){
             return{
+                imageUrl:'',
                 enrollform: new Form({
                         id:'',
                         name:'',
@@ -85,12 +93,18 @@
            }
         },
         mounted(){
+            this.loadClient();
             this.loadCourses();
             this.loadCartItems();
+            this.imageUrl = "/assets/organisation/img/background/background-1.jpg"
         },
         computed:{
+             Client(){
+                return this.$store.getters.Client
+            },
             Courses(){
                 return this.$store.getters.Courses
+
             },
             CartItems(){
                 return this.$store.getters.CartItems
@@ -103,6 +117,10 @@
             },
         },
         methods:{
+            loadClient(){
+
+                return this.$store.dispatch("client")
+            },
             loadCourses(){
                 return this.$store.dispatch("courses")
             },
@@ -152,7 +170,7 @@
                 }
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
-                    console.log(response)
+                    // console.log(response)
                      toast({
                         type: 'success',
                         title: response.data.code,
@@ -164,7 +182,7 @@
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
-                    console.log(response)
+                    // console.log(response)
                     this.$Progress.fail()
                     toast({
                         type: 'error',
@@ -173,7 +191,7 @@
                 })
             },
             Remove(cartItem_id){
-                console.log(cartItem_id)
+                // console.log(cartItem_id)
                 axios.get('/cart/remove/'+cartItem_id)
                 .then((response)=>{
                      toast({
@@ -193,7 +211,7 @@
                 })
             },
             Clear(CartItems){
-                console.log(CartItems)
+                // console.log(CartItems)
                 axios.get('/cart/clear/'+CartItems)
                  .then((response)=>{
                      toast({
@@ -213,7 +231,7 @@
                 })
             },
             openCheckoutModal(CartItems){
-                console.log(CartItems)
+                // console.log(CartItems)
                 this.loadCourses()
                 this.loadCartItems()
                 this.transactionform.reset()
@@ -238,7 +256,7 @@
             },
             Checkout(CartItems){
                this.transactionform.cartItems= CartItems
-                console.log(this.transactionform)
+                // console.log(this.transactionform)
                 this.transactionform.patch('/order/checkout/'+CartItems)
                 .then((response)=>{
                      toast({

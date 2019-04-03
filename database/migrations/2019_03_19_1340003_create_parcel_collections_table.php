@@ -19,6 +19,9 @@ class CreateParcelCollectionsTable extends Migration
             $table->unsignedInteger('client_id');
             $table->unsignedInteger('user_id');//served by
 
+            $table->string('certificate_number')->nullable();
+            $table->string('certificate_image')->nullable();
+
             $table->string('company_name')->nullable();
             $table->string('parcel_number')->nullable();//pending, ready to be collected, Collected
             $table->float('parcel_fee', 8, 2)->nullable();

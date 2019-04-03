@@ -38,6 +38,7 @@ import AdminHome from './components/admins/AdminHome.vue';
         import Events from './components/public/standard/Full-Event.vue';
         import Services from './components/public/standard/Services.vue';
         import Team from './components/public/standard/Team.vue';
+        import MyAccount from './components/public/standard/MyAccount.vue';
 
         import CourseDetails from './components/public/standard/Course-Details.vue';
 
@@ -47,9 +48,6 @@ import PublicSingleService from './components/public/PublicSingleService.vue';
 import PublicSingleServiceModel from './components/public/PublicSingleServiceModel.vue';
 
 
-
-// front filter default by categories
-import GenderHousehelps from './components/public/standard/Course.vue';
 
 
 
@@ -148,6 +146,11 @@ export const routes = [
   {
     path:'/team', ///public
     component: Team
+  },
+  //logged in
+  {
+    path:'/myaccount', //change to pass user name /felixnyachio
+    component: MyAccount
   },
   {
     path:'/pservice/:id',

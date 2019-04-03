@@ -180,7 +180,7 @@
                 }
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
-                    console.log(response)
+                    // console.log(response)
                      toast({
                         type: 'success',
                         title: response.data.code,
@@ -192,7 +192,7 @@
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
-                    console.log(response)
+                    // console.log(response)
                     this.$Progress.fail()
                     toast({
                         type: 'error',
@@ -201,7 +201,7 @@
                 })
             },
             Remove(cartItem_id){
-                console.log(cartItem_id)
+                // console.log(cartItem_id)
                 axios.get('/cart/remove/'+cartItem_id)
                 .then((response)=>{
                      toast({
@@ -221,7 +221,7 @@
                 })
             },
             Clear(CartItems){
-                console.log(CartItems)
+                // console.log(CartItems)
                 axios.get('/cart/clear/'+CartItems)
                  .then((response)=>{
                      toast({
@@ -241,7 +241,7 @@
                 })
             },
             openCheckoutModal(CartItems){
-                console.log(CartItems)
+                // console.log(CartItems)
                 this.loadCourses()
                 this.loadCartItems()
                 this.transactionform.reset()
@@ -266,7 +266,7 @@
             },
             Checkout(CartItems){
                this.transactionform.cartItems= CartItems
-                console.log(this.transactionform)
+                // console.log(this.transactionform)
                 this.transactionform.patch('/order/checkout/'+CartItems)
                 .then((response)=>{
                      toast({

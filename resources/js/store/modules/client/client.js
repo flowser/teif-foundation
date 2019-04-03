@@ -14,17 +14,24 @@ const getters = {
     }
   };
 const actions = {
-    clients(context){//permission.index route laravel
+    client(context){//permission.index route laravel
       axios.get('/client/get')
       .then((response)=>{
-        console.log(response.data)
+        // console.log(response.data)
+        context.commit('client', response.data.client);
+      });
+    },
+    clients(context){//permission.index route laravel
+      axios.get('/client/get/list')
+      .then((response)=>{
+        // console.log(response.data)
         context.commit('clients', response.data.clients);
       });
     },
     ClientById(context, payload){
         axios.get('/client/show/'+payload)
               .then((response)=>{
-                  console.log(response.data);
+                //   console.log(response.data);
                   context.commit('client', response.data.client);
               });
     }

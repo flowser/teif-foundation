@@ -6,6 +6,7 @@ use App\Models\Client\Parcel;
 use App\Models\Standard\User;
 use App\Models\Standard\Ward;
 use App\Models\Standard\County;
+use App\Models\Standard\Gender;
 use App\Models\Standard\Country;
 use App\Models\Standard\Constituency;
 use App\Models\Client\Standard\Result;
@@ -22,6 +23,7 @@ class Client extends Model
         'gender_id',
         'education_id',
         'photo',
+        'background_image',
         'id_no',
         'id_photo_front',
         'id_photo_back',
@@ -50,6 +52,10 @@ class Client extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
     }
     public function education()
     {

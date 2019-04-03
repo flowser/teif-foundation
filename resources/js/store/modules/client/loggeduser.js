@@ -32,7 +32,7 @@ const actions = {
   }
 const mutations = {
     setAuthUser(state, data){
-        console.log('user', data)
+        // console.log('user', data)
       return state.user = data;
     }
   };

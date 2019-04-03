@@ -11,11 +11,11 @@
 /* ========================================================================== */
 /* ========================================================================== */
 
-/*	
+/*
 	## Global
 		- Padding/Margin
-		
-		
+
+
 	## Fonts Settings
 		-- Roboto
 		-- RobotoBlack
@@ -26,17 +26,17 @@
 
 	## Header
 		-- Top Header
-		
-		
+
+
 	## Footer
 		-- Footer Main
-		-- Footer Bottom 
+		-- Footer Bottom
 		-- Footer2
-	
+
 	## Page Banner
-	
+
 	## Section Header
-	
+
 	## Responsive
 		-- min-width: 1200
 		-- min-width: 992
@@ -562,7 +562,7 @@ a {
 }
 
 /* ## Header */
-/* -- Top Header */	
+/* -- Top Header */
 .top-header {
 	background-color: #333;
 	line-height: 50px;
@@ -594,14 +594,14 @@ a {
     font-size: 20px;
     position: absolute;
     right: 0;
-    top: 0;	
+    top: 0;
 }
 .topheader-left a:last-of-type::after{
 	content: "";
 }
 .topheader-left a i{
 	font-size: 21px;
-	margin-right: 10px;	
+	margin-right: 10px;
 	position: relative;
 	top: 2px;
 }
@@ -645,7 +645,7 @@ a {
     width: 1px;
 }
 .topheader-right a:last-of-type::after {
-	width: 0;	
+	width: 0;
 }
 /* -- Expanding Search */
 .menu-block .container {
@@ -709,7 +709,7 @@ a {
     cursor: pointer;
 }
 .menu-search .sb-search-submit {
-    background: transparent; 
+    background: transparent;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
     opacity: 1;
@@ -790,7 +790,7 @@ a {
 /* ## Footer */
 /* -- Footer Main */
 .footer-main {
-	background-color: #232323;	
+	background-color: #232323;
 }
 .footer-main .row {
 	padding-top: 88px;
@@ -847,7 +847,7 @@ a.footer-logo{
     transition: all 1s ease 0s;
 	-webkit-transition: all 1s ease 0s;
 	-moz-transition: all 1s ease 0s;
-	-o-transition: all 1s ease 0s;	
+	-o-transition: all 1s ease 0s;
 }
 .about_widget ul li a:hover{
 	color: #ffc722;
@@ -857,7 +857,7 @@ a.footer-logo{
 }
 .about_widget p {
 	color: #888;
-    display: inline-block;   
+    display: inline-block;
     font-size: 13px;
     font-weight: 300;
     line-height: 26px;
@@ -921,7 +921,7 @@ a.footer-logo{
 	min-height: 60px;
 	padding-left: 19px;
 	padding-right: 155px;
-	letter-spacing: 0.52px;	
+	letter-spacing: 0.52px;
 	transition: all 1s ease 0s;
 	-webkit-transition: all 1s ease 0s;
 	-moz-transition: all 1s ease 0s;
@@ -948,7 +948,7 @@ a.footer-logo{
 	-moz-transition: all 1s ease 0s;
 	-o-transition: all 1s ease 0s;
 	position: relative;
-	z-index: 1;	
+	z-index: 1;
 }
 .newsletter_widget .btn::before {
 	position: absolute;
@@ -1043,7 +1043,7 @@ a.footer-logo{
     text-align: center;
     text-shadow: none;
     width: 38px;
-    z-index: 999;  
+    z-index: 999;
 	font-size: 12px;
 	top: -80px;
 	transition: all 0.3s ease 0s;
@@ -1245,7 +1245,7 @@ a.footer-logo{
 	transition: all 1s ease 0s;
 	-webkit-transition: all 1s ease 0s;
 	-moz-transition: all 1s ease 0s;
-	-o-transition: all 1s ease 0s;	
+	-o-transition: all 1s ease 0s;
 }
 .footer2 .useful-llink ul li a:hover{
 	color: #ffc722;
@@ -1304,7 +1304,7 @@ a.footer-logo{
 .footer2 .newsletter_widget .btn{
 	min-height: 44px;
 	line-height: 30px;
-	padding: 5px 13px;	
+	padding: 5px 13px;
 	font-weight: 700;
 }
 .footer2 .newsletter_widget ul{
@@ -1338,7 +1338,7 @@ a.footer-logo{
 
 /* ## Page Banner */
 .pagebanner {
-	background: url("images/pagebanner-courses.jpg"); 
+	/* background: url("images/pagebanner-courses.jpg"); */
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-position: center center;
@@ -1424,17 +1424,17 @@ a.footer-logo{
 
 /* -- min-width: 992 to max-width: 1199 */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-	/* -- Footer Main */	
+	/* -- Footer Main */
 	/* -- Wiget:: About */
 	.about_widget ul li a{
 		margin-right: 5px;
 	}
-	
+
 	/* -- Wiget:: UpcomingEvent */
 	.upcoming-eventbox ul li{
 		margin-right: 10px;
 	}
-	
+
 	/* -- Footer2 */
 	.footer2 .about_widget.ftr-widget p{
 		padding-left: 35px;
@@ -1442,12 +1442,12 @@ a.footer-logo{
 	.footer2 .useful-llink{
 		padding-left: 40px;
 	}
-	
+
 }
 
 /* -- max-width: 991 */
 @media (max-width: 991px) {
-	/* -- Menu Block */		
+	/* -- Menu Block */
 	/* -- Menu Search */
 	.menu-block .menu-search{
 		right: 85px;
@@ -1466,24 +1466,24 @@ a.footer-logo{
 	.menu-block.navbar-fixed-top .menu-search .sb-search.sb-search-open .sb-search-input{
 		top: 40px;
 	}
-	
+
 	/* -- Footer Main */
 	.footer-main .col-md-6:nth-child(2n+1){
 		clear: both;
 	}
-	
+
 	/* -- Widget:: About */
 	.about_widget ul{
 		display: inline-block;
 		width: 100%;
 		text-align: center;
 	}
-	
+
 	/* -- Widget:: UpcomingEvent */
 	.upcoming-eventbox > a{
 		float: left;
 	}
-	
+
 	/* -- Footer Bottom */
 	.footer-bottom{
 		padding-top: 0;
@@ -1501,12 +1501,12 @@ a.footer-logo{
 	.footer-bottom .ow-navigation .nav.navbar-nav li > a{
 		margin: 0;
 	}
-	
+
 	.footer-bottom .ow-navigation .navbar-collapse > ul > li > a{
 		padding-top: 2px;
 		padding-bottom: 2px;
 	}
-	
+
 	/* -- Footer2 */
 	.footer2.footer-main .col-md-3:nth-child(2n+1){
 		clear: both;
@@ -1524,7 +1524,7 @@ a.footer-logo{
 }
 
 /* -- max-width: 767 */
-@media (max-width: 767px) {	
+@media (max-width: 767px) {
 	/* -- Top Header */
 	.topheader-left{
 		width: 60%;
@@ -1547,7 +1547,7 @@ a.footer-logo{
 		width: auto;
 		text-align: center;
 	}
-	
+
 	/* -- Widget:: UpcomingEvent */
 	.upcoming-eventbox > a{
 		float: right;
@@ -1588,12 +1588,12 @@ a.footer-logo{
 		margin-right: 5px;
 		padding-right: 5px;
 	}
-	
+
 	/* -- Widget:: UpcomingEvent */
 	.upcoming-eventbox ul li {
 		margin-right: 8px;
 	}
-	
+
 	/* -- PageBanner */
 	.pagebanner h3{
 		font-size: 20px;
@@ -1623,17 +1623,17 @@ a.footer-logo{
 	.topheader-right{
 		float: none;
 	}
-	
+
 	/* -- widget:: About */
 	.about_widget ul{
 		width: 100%;
 	}
-	
+
 	/* -- widget:: Newsletter */
 	.newsletter_widget .input-group{
 		padding: 4px 0;
 	}
-	
+
 	/* -- widget:: UpcomingEvent */
 	.upcomingevent_widget{
 		padding-right: 5px;
@@ -1641,13 +1641,13 @@ a.footer-logo{
 	.upcoming-eventbox > a{
 		float: left;
 	}
-	
+
 	/* -- Footer Bottom */
 	.footer-bottom span{
 		font-size: 10px;
 	}
-	
-	/* -- PageBanner */	
+
+	/* -- PageBanner */
 	.pagebanner-content{
 		margin-top: 130px;
 	}

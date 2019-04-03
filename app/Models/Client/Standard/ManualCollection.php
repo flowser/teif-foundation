@@ -7,20 +7,20 @@ use App\Models\Standard\User;
 use App\Models\Client\Standard\Result;
 use Illuminate\Database\Eloquent\Model;
 
-class Parcel_Collection extends Model
+class ManualCollection extends Model
 {
     protected $fillable = [
-        'result_id',
         'client_id',
         'user_id',
-        'company_name',
-        'parcel_number',
-        'parcel_fee',
-        'delivered'
+        'result_id',
+        'collection_date',
+        'collector_name',
+        'id_photo_front',
+        'id_photo_back',
+        'certificate_number',
+        'certificate_image',
     ];
-    protected $casts = [
-        'delivered' => 'boolean',
-    ];
+
     public function client()
     {
         return $this->belongsTo(Client::class);

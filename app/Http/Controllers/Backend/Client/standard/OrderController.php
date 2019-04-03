@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Backend\Client\standard;
 
-use App\Models\Order\Order;
 use Cart;
-use Intervention\Image\Facades\Image;
+use App\Models\Order\Order;
 use Illuminate\Http\Request;
+use App\Models\Order\CourseOrder;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use App\Models\Client\Standard\Result;
 
 class OrderController extends Controller
 {
@@ -18,10 +20,32 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('client', 'courses')->get();
-            return response()-> json([
-            'orders' =>$orders,
-        ], 200);
+        if (auth()->check()) {
+            if (auth()->user()->hasRole('Organisation Director')) {
+
+                $orders = Order::with('client', 'courses')
+                       ->get();
+                    return response()-> json([
+                    'orders' =>$orders,
+                ], 200);
+            }elseif (auth()->user()->hasRole('Client')) {
+
+                $user =Auth::user();
+                $client = $user->clients()->first();
+
+                $results = Result::with('client','course', 'courseorder','manualcollections','parcelcollections')
+                    ->where('client_id', $client->id)
+                    ->get();
+
+                $orders = Order::with('client', 'courses', 'results')
+                    ->where('client_id', $client->id)
+                    ->get();
+                    return response()-> json([
+                    'orders' =>$orders,
+                    'results' =>$results,
+                ], 200);
+            }
+        }
     }
 
     /**
@@ -62,7 +86,7 @@ class OrderController extends Controller
                 $transaction_image= $name;
 
                 $user =Auth::user();
-                $client = $user->client()->first();
+                $client = $user->clients()->first();
                 $Total = Cart::getTotal();
 
 
@@ -79,16 +103,30 @@ class OrderController extends Controller
                     if($cartItems){
                         foreach ($cartItems as $cartItem){
                             $order->courses()->attach($cartItem->id,[
-                                 'payment_confirmation'=>false,
-                                 'name'        => $cartItem->name,
-                                 'courseType'  => $cartItem->attributes->courseType,
-                                 'skill'       => $cartItem->attributes->skill,
-                                 'image'       => $cartItem->attributes->image,
-                                 'qty'         => $cartItem->quantity,
-                                 'fee'         => $cartItem->price
+                                    'payment_confirmation'=>false,
+                                    'name'        => $cartItem->name,
+                                    'courseType'  => $cartItem->attributes->courseType,
+                                    'skill'       => $cartItem->attributes->skill,
+                                    'image'       => $cartItem->attributes->image,
+                                    'qty'         => $cartItem->quantity,
+                                    'fee'         => $cartItem->price
                              ]);
-                         }
+                        }
                          Cart::clear();
+                    }
+
+                    $course_orders = CourseOrder::where('order_id', $order->id)
+                                    ->get();
+                    foreach($course_orders as $course_order){
+                        Result::create([
+                            'course_order_id'    => $course_order->id,
+                            'course_id'          => $course_order->course_id,
+                            'client_id'          => $client->id,
+                            'course_status'      => 'Registered',
+                            'certificate_status'  => null,
+                            'collection_date'    => null,
+                            'collection_method'  => null,
+                        ]);
                     }
                 }
 
