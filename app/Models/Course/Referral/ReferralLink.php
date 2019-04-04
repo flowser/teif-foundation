@@ -6,7 +6,7 @@ use Ramsey\Uuid\Uuid;
 use App\Models\Standard\User;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Course\Referral\ReferralCourse;
-use App\Models\Course\Referral\ReferralRelationship;
+use App\Models\Course\Referral\ReferralCommission;
 
 class ReferralLink extends Model
 {
@@ -30,7 +30,7 @@ class ReferralLink extends Model
 
     public static function getReferral($user, $course)
     {
-        return static::with('referralcourse','relationships')->firstOrCreate([
+        return static::with('referralcourse','commissions')->firstOrCreate([
             'user_id' => $user->id,
             'referral_course_id' => $course->id
         ]);
@@ -61,9 +61,9 @@ class ReferralLink extends Model
                     );
     }
 
-    public function relationships()
+    public function commissions()
     {
-        return $this->hasMany(ReferralRelationship::class);
+        return $this->hasMany(ReferralCommission::class);
     }
 }
 

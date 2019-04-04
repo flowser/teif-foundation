@@ -775,9 +775,11 @@
                         })
             },
             registerClient() {
+                console.log('ssss')
                 this.$Progress.start();
                 this.clientform.post('register')
                     .then((response)=>{
+                         window.location.replace('/home')
                         //  console.log(response.data)
                          toast({
                             type: 'success',

@@ -30,19 +30,19 @@
 				<div class="row">
                     <div class="profile">
                         <div class="col-md-4">
-                            <p class="text-justify">
+                            <p class="text-justify" v-if="Client.user">
                                 Name:{{Client.user.full_name}}
                             </p>
-                            <p class="text-justify">
+                            <p class="text-justify" v-if="Client.user">
                                 Email:{{Client.user.email}}
                             </p>
                             <p class="text-justify">
                                 Phone:{{Client.phone}}
                             </p>
-                            <p class="text-justify">
+                            <p class="text-justify" v-if="Client.gender">
                                 Gender:{{Client.gender.name}}
                             </p>
-                            <p class="text-justify">
+                            <p class="text-justify" v-if="Client.education">
                                 Education Level:{{Client.education.name}}
                             </p>
                         </div>
@@ -50,7 +50,7 @@
                             <div class="image">
                                  <img :src="clientLoadImage(Client.photo)" alt="" class="img-circle">
                             </div>
-                            <p class="text-justify">
+                            <p class="text-justify" v-if="Client.user">
                                 Name:{{Client.user.full_name}}
                             </p>
                         </div>

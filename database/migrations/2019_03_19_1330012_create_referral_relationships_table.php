@@ -17,6 +17,8 @@ class CreateReferralRelationshipsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('referral_link_id');
             $table->unsignedInteger('user_id');
+            $table->float('fee',8, 2)->nullable();
+            $table->float('commission',8, 2)->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

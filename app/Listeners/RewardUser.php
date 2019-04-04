@@ -6,7 +6,7 @@ use App\Events\UserReferred;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\Course\Referral\ReferralLink;
-use App\Models\Course\Referral\ReferralRelationship;
+use App\Models\Course\Referral\ReferralCommission;
 
 class RewardUser
 {
@@ -61,7 +61,7 @@ class RewardUser
         //         "id" => 8
         $referral = ReferralLink::find($event->referralId);
         if (!is_null($referral)) {
-            ReferralRelationship::create(['referral_link_id' => $referral->id, 'user_id' => $event->user->id]);
+            ReferralCommission::create(['referral_link_id' => $referral->id, 'user_id' => $event->user->id]);
 
             // $refferal  =
             // "id" => 1

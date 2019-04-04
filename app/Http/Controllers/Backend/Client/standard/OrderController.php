@@ -128,6 +128,23 @@ class OrderController extends Controller
                             'collection_method'  => null,
                         ]);
                     }
+
+                    $user =Auth::user();
+                    $client = $user->clients()->first();
+
+                    foreach($course_orders as $course_order){
+                        ReferralCommission::
+                             where('user_id', $user->id)
+                            ->update([
+                            'course_order_id'    => $course_order->id,
+                            'course_id'          => $course_order->course_id,
+                            'client_id'          => $client->id,
+                            'course_status'      => 'Registered',
+                            'certificate_status'  => null,
+                            'collection_date'    => null,
+                            'collection_method'  => null,
+                        ]);
+                    }
                 }
 
     }

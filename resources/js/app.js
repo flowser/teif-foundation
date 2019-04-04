@@ -96,7 +96,7 @@ Vue.use(VueFormWizard);
 
 //vrouter
 const router = new VueRouter({
-    mode: 'hash', //hash, history
+    mode: 'history', //hash, history
     routes // short for `routes: routes`
   });
 const app = new Vue({

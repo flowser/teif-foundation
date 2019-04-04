@@ -381,30 +381,35 @@
                             })
                         })
             },
-            registerClient() {
-                this.$Progress.start();
-                this.clientform.post('/register/')
-                    .then((response)=>{
-                        //  console.log(response.data)
-                         toast({
-                            type: 'success',
-                            title: 'Client Created successfully'
-                            })
-                            this.$store.dispatch('organisation');
-                            $('#ClientModal').modal('hide')
-                            this.$refs.wizard.reset()
-                              this.$Progress.finish()
-                    })
-                    .catch(()=>{
-                        this.$Progress.fail()
-                        //errors
-                            $('#ClientModal').modal('show');
-                            toast({
-                                type: 'error',
-                                title: 'There was something wrong.'
-                                })
-                    })
-            },
+            // registerClient() {
+            //     // console.log(this.$route.params.id, 'ssss')
+            //     console.log('ssss')
+            //     this.$Progress.start();
+            //     this.clientform.post('register')
+            //         .then((response)=>{
+            //              window.location.replace('/home')
+            //              this.$store.dispatch('client');
+            //              this.$store.commit('setAuthUser', window.logged_user);
+            //             //  console.log(response.data)
+            //              toast({
+            //                 type: 'success',
+            //                 title: 'Client Created successfully with me'
+            //                 })
+
+            //                 $('#ClientModal').modal('hide')
+            //                 this.clientform.reset()
+            //                   this.$Progress.finish()
+            //         })
+            //         .catch(()=>{
+            //             this.$Progress.fail()
+            //             //errors
+            //                 $('#ClientModal').modal('show');
+            //                 toast({
+            //                     type: 'error',
+            //                     title: 'There was something wrong me.'
+            //                     })
+            //         })
+            // },
             updateClient(id){
                 //   console.log(id)
                   this.$Progress.start();
@@ -580,7 +585,7 @@
                 this.$Progress.start();
                 this.loginform.post('login')
                 .then((response)=>{
-                     window.location.replace('home')
+                     window.location.replace('/home')
                         toast({
                             type: 'success',
                             title: 'You have been logged out successfully'

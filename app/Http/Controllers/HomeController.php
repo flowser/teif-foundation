@@ -47,7 +47,7 @@ class HomeController extends Controller
                                     'constituencies.name as constituency_name',
                                     'wards.name as ward_name',
                                     'positions.name as position_name'
-                            )->first(); 
+                            )->first();
                             // return Auth::user()->id;
                             // return $logged_user;
                 $organisation = Organisation::with('about','services', 'servicemodels', 'adverts', 'features',
@@ -112,8 +112,9 @@ class HomeController extends Controller
                 // return ['redirect' => route('public')];
                  return redirect('/');
             }
-        }else{
-            return redirect('/');
         }
+        // else{
+        //     return redirect('/');
+        // }
     }
 }

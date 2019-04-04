@@ -191,7 +191,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     Number of referred users: {{ $referral->relationships()->count() }}
                 </p>
             @empty
-                No referrals --}}
+                No referrals
      @endforelse
                 <admin-main></admin-main>
         </div>

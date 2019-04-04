@@ -46,7 +46,7 @@
 	<!--[if lt IE 9]>
 		<script src="{{asset('main_theme/js/html5/respond.min.js')}}"></script>
     <![endif]-->
- 
+
 </head>
 
 <body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
@@ -57,7 +57,8 @@
     <home-main ></home-main>
   </div>
 </body>
-@if(Auth::user())
+
+@if(Auth::check())
    <script>
            window.logged_user = {!! json_encode($logged_user); !!}
   </script>

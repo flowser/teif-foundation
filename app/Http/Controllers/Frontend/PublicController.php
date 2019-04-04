@@ -13,28 +13,25 @@ use App\Models\Standard\Webservices\ServiceModel;
 class PublicController extends Controller
 {
 
-    public function index(Request $request) 
+    public function index(Request $request)
     {
         if (auth()->check()) {
             if (auth()->user()->hasRole('Client')) {
                 $logged_user =Auth::user();
-                $organisation = Organisation::with('about','services', 'servicemodels', 'adverts', 
+                $organisation = Organisation::with('about','services', 'servicemodels', 'adverts',
                                'organisationdirectors', 'organisationadmins', 'organisationemployees')
                                ->first();
 
-                return view('layouts.homemaster')->with(
-                    'logged_user','organisation');
+                return view('layouts.homemaster', compact("organisation", "logged_user"));
             }
-        }else{
+        }
+        else{
             $organisation = Organisation::with('about','services', 'servicemodels', 'adverts')
                                ->first();
                 return view('layouts.homemaster', compact("organisation"));
         }
     }
-    public function routes()
-    {
-         return view('layouts.homemaster');
-    }
+
 
     /**
      * Show the form for creating a new resource.
