@@ -7,10 +7,16 @@ use App\Models\Standard\User;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Course\Referral\ReferralCourse;
 use App\Models\Course\Referral\ReferralCommission;
+use App\Models\Organisation\OrganisationAffiliate;
 
 class ReferralLink extends Model
 {
-    protected $fillable = ['user_id', 'referral_course_id'];
+    protected $fillable = [
+        'user_id',
+        'referral_course_id',
+        'organisation_affiliate_id',
+        'code'
+    ];
 
 
     protected static function boot()
@@ -46,6 +52,19 @@ class ReferralLink extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function organisation_affiliate()
+    {
+        return $this->belongsTo(OrganisationAffiliate::class)->with(
+            'country',
+            'county',
+            'constituency',
+            'ward',
+            'organisation',
+            'position',
+            'gender',
+            'user'
+        );
     }
 
     public function referralcourse()

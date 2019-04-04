@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use App\Models\Client\Standard\Result;
+use App\Models\Course\Referral\ReferralCommission;
+use App\Models\Course\Referral\ReferralCourse;
 
 class OrderController extends Controller
 {
@@ -128,25 +130,34 @@ class OrderController extends Controller
                             'collection_method'  => null,
                         ]);
                     }
+                        $referralCommission = ReferralCommission::with('refferal_link')->where('user_id', $user->id)->first();
+                        if($referralCommission){
+                            $user =Auth::user();
+                            $client = $user->clients()->first();
+                            $referral_course_id =  $referralCommission->refferal_link->course_id;
+                            $course_order = CourseOrder::where('order_id', $order->id)
+                                                       ->where('course_id', $referral_course_id)
+                                    ->first();
 
-                    $user =Auth::user();
-                    $client = $user->clients()->first();
+                                if($course_order){
+                                    $rate = '0.05'; //5% commision
+                                        ReferralCommission::
+                                            where('id', $referralCommission->id)
+                                            ->update([
+                                            'fee'                   =>$course_order->fee,
+                                            'commission'            =>$rate * $course_order->fee,
+                                            'courseType'            =>$course_order->courseType,
+                                            'skill'                 =>$course_order->skill,
+                                            'course_id'             =>$course_order->course_id,
+                                            'paid_at'               =>$course_order->created_at,
+                                            'image'                 =>$course_order->image,
+                                            'name'                  =>$course_order->name,
+                                            'payment_confirmation'  =>$course_order->payment_confirmation,
+                                        ]);
+                                }
 
-                    foreach($course_orders as $course_order){
-                        ReferralCommission::
-                             where('user_id', $user->id)
-                            ->update([
-                            'course_order_id'    => $course_order->id,
-                            'course_id'          => $course_order->course_id,
-                            'client_id'          => $client->id,
-                            'course_status'      => 'Registered',
-                            'certificate_status'  => null,
-                            'collection_date'    => null,
-                            'collection_method'  => null,
-                        ]);
-                    }
+                        }
                 }
-
     }
 
 

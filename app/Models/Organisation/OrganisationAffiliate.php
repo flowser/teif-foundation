@@ -3,20 +3,17 @@
 namespace App\Models\Organisation;
 
 
-use App\Models\Bureau\Bureau;
 use App\Models\Standard\User;
 use App\Models\Standard\Ward;
 use App\Models\Standard\County;
 use App\Models\Standard\Gender;
 use App\Models\Standard\Country;
 use App\Models\Standard\Position;
-use App\Models\Househelp\Househelp;
 use App\Models\Standard\Constituency;
 use App\Models\Organisation\Organisation;
-use App\Models\Organisation\OrganisationEmployee;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class OrganisationDirector extends Pivot
+class OrganisationAffiliate extends Pivot
 {
     protected $fillable = [
         'user_id',
@@ -41,12 +38,7 @@ class OrganisationDirector extends Pivot
         'active' => 'boolean',
     ];
 
-    //belongs to Pivot
-    public function position()
-    {
-        return $this->belongsTo(Position::class, 'position_id');
-    }
-
+    //belongs to
     public function country()
     {
         return $this->belongsTo(Country::class);
@@ -64,13 +56,15 @@ class OrganisationDirector extends Pivot
         return $this->belongsTo(Ward::class);
     }
 
-
     public function organisation()
     {
         return $this->belongsTo(Organisation::class);
     }
 
-
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
     public function gender()
     {
         return $this->belongsTo(Gender::class);
@@ -80,12 +74,6 @@ class OrganisationDirector extends Pivot
         return $this->belongsTo(User::class);
     }
 
-
-    //has many
-
-    public function organisationemployees()
-    {
-        return $this->hasManyThrough(OrganisationEmployee::class, Organisation::class);
-    }
-
 }
+
+

@@ -188,8 +188,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     {{ $referral->link }}
                 </code>
                 <p>
-                    Number of referred users: {{ $referral->relationships()->count() }}
+                    Number of referred users: {{ $referral->commissions()->count() }}
                 </p>
+                <p>{{ $referral->commissions}}</p>
+                @foreach($referral->commissions as $commission)
+                     <li>{{$commission->commission}}</li>
+            @endforeach
+
             @empty
                 No referrals
      @endforelse
