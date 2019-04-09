@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Darryldecode\Cart\CartServiceProvider::class,
+        // CleaniqueCoders\OpenPayroll\OpenPayrollServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -230,6 +231,7 @@ return [
         'Html' => Spatie\Html\Facades\Html::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        // 'OpenPayroll' => CleaniqueCoders\OpenPayroll\OpenPayrollFacade::class,
 
 
     ],

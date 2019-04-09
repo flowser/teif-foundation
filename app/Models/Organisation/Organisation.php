@@ -158,6 +158,41 @@ class Organisation extends Model
                     )
                     ->withTimestamps();
     }
+    public function organisationaffiliates()
+    {
+        return $this->belongsToMany(User::class,'organisation_affiliate')
+                    ->withPivot(
+                        'photo',
+                        'active',
+                        'id_no',
+                        'id_photo_front',
+                        'id_photo_back',
+                        'about_me',
+                        'phone',
+                        'address',
+                        'country_id',
+                        'county_id',
+                        'constituency_id',
+                        'ward_id',
+                        'position_id'
+                    )
+                    ->join('positions', 'organisation_affiliate.position_id', '=', 'positions.id')
+                    ->join('countries', 'organisation_affiliate.country_id', '=', 'countries.id')
+                    ->join('counties', 'organisation_affiliate.county_id', '=', 'counties.id')
+                    ->join('constituencies', 'organisation_affiliate.constituency_id', '=', 'constituencies.id')
+                    ->join('wards', 'organisation_affiliate.ward_id', '=', 'wards.id')
+                    ->select('users.*',
+                        'organisation_affiliate.*',
+                            'countries.name as country_name',
+                            'counties.name as county_name',
+                            'constituencies.name as constituency_name',
+                            'wards.name as ward_name',
+                            'positions.name as position_name'
+                    )
+                    ->withTimestamps();
+    }
+
+
 
 
 

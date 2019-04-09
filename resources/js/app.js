@@ -50,7 +50,8 @@ Vue.component('footer-content', require('./components/public/standard/Footer.vue
 Vue.component('home', require('./components/public/standard/Home.vue').default);
 // Vue.component('about-us', require('./components/public/standard/About-Us.vue').default);
 // Vue.component('filter-header', require('./components/public/standard/Filter.vue').default);
-
+//support pagination
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 //Vue-progress bar
 import VueProgressBar from 'vue-progressbar';
@@ -73,6 +74,9 @@ const toast = Swal.mixin({
 
 window.toast = toast;
 
+//support laravel spartie persissions
+import Roles from './components/spartiepermissions/Roles';
+Vue.mixin(Roles);
 
 //vform
 import { Form, HasError, AlertError } from 'vform'
@@ -96,7 +100,7 @@ Vue.use(VueFormWizard);
 
 //vrouter
 const router = new VueRouter({
-    mode: 'history', //hash, history
+    mode: 'hash', //hash, history
     routes // short for `routes: routes`
   });
 const app = new Vue({

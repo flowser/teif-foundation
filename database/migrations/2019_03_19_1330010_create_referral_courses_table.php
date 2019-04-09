@@ -17,7 +17,7 @@ class CreateReferralCoursesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('course_id');
             $table->string('uri');
-            $table->integer('lifetime_minutes')->default(7 * 24 * 60);//how long will cookie last
+            $table->integer('lifetime_days')->default(7);//how long will cookie last
             $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');

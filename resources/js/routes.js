@@ -38,7 +38,8 @@ import AdminHome from './components/admins/AdminHome.vue';
         import Events from './components/public/standard/Full-Event.vue';
         import Services from './components/public/standard/Services.vue';
         import Team from './components/public/standard/Team.vue';
-        import MyAccount from './components/public/standard/MyAccount.vue';
+        import MyAccount from './components/public/Auth/MyAccount.vue';
+        import MyAffiliateAccount from './components/public/Auth/MyAffiliateAccount.vue';
 
         import CourseDetails from './components/public/standard/Course-Details.vue';
 
@@ -151,6 +152,10 @@ export const routes = [
   {
     path:'/myaccount', //change to pass user name /felixnyachio
     component: MyAccount
+  },
+  {
+    path:'/myaffiliateaccount', //change to pass user name /felixnyachio
+    component: MyAffiliateAccount
   },
   {
     path:'/pservice/:id',

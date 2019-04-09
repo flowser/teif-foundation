@@ -64,7 +64,6 @@ class OrganisationDirector extends Pivot
         return $this->belongsTo(Ward::class);
     }
 
-
     public function organisation()
     {
         return $this->belongsTo(Organisation::class);
@@ -80,12 +79,5 @@ class OrganisationDirector extends Pivot
         return $this->belongsTo(User::class);
     }
 
-
-    //has many
-
-    public function organisationemployees()
-    {
-        return $this->hasManyThrough(OrganisationEmployee::class, Organisation::class);
-    }
 
 }

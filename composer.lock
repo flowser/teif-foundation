@@ -4,8 +4,365 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac6da06dac2715169d252162c2be048a",
+    "content-hash": "bbd1e259629c46ea07965aee7da51156",
     "packages": [
+        {
+            "name": "cleaniquecoders/blueprint-macro",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cleaniquecoders/blueprint-macro.git",
+                "reference": "afce83771503e31f9a1e74e86621240bda2b7d62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cleaniquecoders/blueprint-macro/zipball/afce83771503e31f9a1e74e86621240bda2b7d62",
+                "reference": "afce83771503e31f9a1e74e86621240bda2b7d62",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^2.7",
+                "illuminate/auth": "^5.5|^5.6|^5.7",
+                "illuminate/database": "^5.5|^5.6|^5.7",
+                "illuminate/support": "^5.5|^5.6|^5.7",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "3.5.*|3.6.*|3.7.*",
+                "phpunit/phpunit": "^6.5|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CleaniqueCoders\\Blueprint\\Macro\\BlueprintMacroServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CleaniqueCoders\\Blueprint\\Macro\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nasrul Hazim",
+                    "email": "nasrulhazim.m@gmail.com"
+                }
+            ],
+            "description": "Laravel Blueprint Macro",
+            "time": "2019-02-27T11:59:19+00:00"
+        },
+        {
+            "name": "cleaniquecoders/laravel-helper",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cleaniquecoders/laravel-helper.git",
+                "reference": "a10a16d07197668d3f5c097768172135c5645ddb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cleaniquecoders/laravel-helper/zipball/a10a16d07197668d3f5c097768172135c5645ddb",
+                "reference": "a10a16d07197668d3f5c097768172135c5645ddb",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.5|^5.6|^5.7|^5.8",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "3.5.*|3.6.*|3.7.*|3.8.*",
+                "phpunit/phpunit": "^6.5|^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CleaniqueCoders\\LaravelHelper\\LaravelHelperServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CleaniqueCoders\\LaravelHelper\\": "src/"
+                },
+                "files": [
+                    "src/Support/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nasrul Hazim",
+                    "email": "nasrulhazim.m@gmail.com"
+                }
+            ],
+            "description": "Built with Laravel Standalone Package Creator",
+            "keywords": [
+                "laravel",
+                "package"
+            ],
+            "time": "2019-02-27T11:59:24+00:00"
+        },
+        {
+            "name": "cleaniquecoders/laravel-observers",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cleaniquecoders/laravel-observers.git",
+                "reference": "ec6f9f0de7a1277a29c0956bd881f972f5a1847c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cleaniquecoders/laravel-observers/zipball/ec6f9f0de7a1277a29c0956bd881f972f5a1847c",
+                "reference": "ec6f9f0de7a1277a29c0956bd881f972f5a1847c",
+                "shasum": ""
+            },
+            "require": {
+                "cleaniquecoders/laravel-helper": "^1.0",
+                "hashids/hashids": "^3.0",
+                "illuminate/support": "^5.5|^5.6|^5.7|^5.8",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "3.5.*|3.6.*|3.7.*|3.8.*",
+                "phpunit/phpunit": "^6.5|^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CleaniqueCoders\\LaravelObservers\\LaravelObserversServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CleaniqueCoders\\LaravelObservers\\": "src/"
+                },
+                "files": [
+                    "src/Support/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nasrul Hazim",
+                    "email": "nasrulhazim.m@gmail.com"
+                }
+            ],
+            "description": "A collection of observer classes that can be use in your Laravel application.",
+            "keywords": [
+                "Reference",
+                "hashids",
+                "hashslug",
+                "laravel",
+                "observer",
+                "package"
+            ],
+            "time": "2019-02-27T11:59:29+00:00"
+        },
+        {
+            "name": "cleaniquecoders/money-wrapper",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cleaniquecoders/money-wrapper.git",
+                "reference": "91de90b86136e80b6d25fee683323b3603f30db2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cleaniquecoders/money-wrapper/zipball/91de90b86136e80b6d25fee683323b3603f30db2",
+                "reference": "91de90b86136e80b6d25fee683323b3603f30db2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.5|^5.6|^5.7|^5.8",
+                "moneyphp/money": "^3.1",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "3.5.*|3.6.*|3.7.*|3.8.*",
+                "phpunit/phpunit": "^6.5|^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CleaniqueCoders\\MoneyWrapper\\MoneyWrapperServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CleaniqueCoders\\MoneyWrapper\\": "src/"
+                },
+                "files": [
+                    "src/Support/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nasrul Hazim",
+                    "email": "nasrulhazim.m@gmail.com"
+                }
+            ],
+            "description": "MoneyPHP Wrapper",
+            "keywords": [
+                "laravel",
+                "money",
+                "package",
+                "php",
+                "wrapper"
+            ],
+            "time": "2019-02-27T11:59:35+00:00"
+        },
+        {
+            "name": "cleaniquecoders/open-payroll",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cleaniquecoders/open-payroll.git",
+                "reference": "b19bc82c8b2661c43faa3aed12728917389e6b46"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cleaniquecoders/open-payroll/zipball/b19bc82c8b2661c43faa3aed12728917389e6b46",
+                "reference": "b19bc82c8b2661c43faa3aed12728917389e6b46",
+                "shasum": ""
+            },
+            "require": {
+                "cleaniquecoders/blueprint-macro": "^2.2",
+                "cleaniquecoders/laravel-helper": "^1.1",
+                "cleaniquecoders/laravel-observers": "^1.1",
+                "cleaniquecoders/money-wrapper": "^1.1",
+                "cleaniquecoders/profile": "^1.2",
+                "illuminate/support": "^5.5|^5.6|^5.7",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "3.5.*|3.6.*|3.7.*",
+                "phpunit/phpunit": "^6.5|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CleaniqueCoders\\OpenPayroll\\OpenPayrollServiceProvider"
+                    ],
+                    "aliases": {
+                        "OpenPayroll": "CleaniqueCoders\\OpenPayroll\\OpenPayrollFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CleaniqueCoders\\OpenPayroll\\": "src/"
+                },
+                "classmap": [
+                    "database/seeds",
+                    "database/factories"
+                ],
+                "files": [
+                    "src/Support/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nasrul Hazim",
+                    "email": "nasrulhazim.m@gmail.com"
+                }
+            ],
+            "description": "Built with Laravel Standalone Package Creator",
+            "keywords": [
+                "laravel",
+                "package"
+            ],
+            "time": "2018-09-08T08:14:04+00:00"
+        },
+        {
+            "name": "cleaniquecoders/profile",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cleaniquecoders/profile.git",
+                "reference": "151ac3fa257a405c3144c11f7a209937ec112f1d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cleaniquecoders/profile/zipball/151ac3fa257a405c3144c11f7a209937ec112f1d",
+                "reference": "151ac3fa257a405c3144c11f7a209937ec112f1d",
+                "shasum": ""
+            },
+            "require": {
+                "cleaniquecoders/blueprint-macro": "^2.0",
+                "illuminate/auth": "^5.5|^5.6|^5.7|^5.8",
+                "illuminate/support": "^5.5|^5.6|^5.7|^5.8",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "3.5.*|3.6.*|3.7.*|3.8.*",
+                "phpunit/phpunit": "^6.5|^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CleaniqueCoders\\Profile\\ProfileServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CleaniqueCoders\\Profile\\": "src/"
+                },
+                "classmap": [
+                    "database/factories",
+                    "database/migrations",
+                    "database/seeds"
+                ],
+                "files": [
+                    "src/Support/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nasrul Hazim",
+                    "email": "nasrulhazim.m@gmail.com"
+                }
+            ],
+            "description": "Common Profile Information",
+            "time": "2019-02-27T11:59:40+00:00"
+        },
         {
             "name": "darryldecode/cart",
             "version": "4.0.4",
@@ -97,6 +454,237 @@
             ],
             "description": "implementation of xdg base directory specification for php",
             "time": "2014-10-24T07:27:01+00:00"
+        },
+        {
+            "name": "doctrine/cache",
+            "version": "v1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/cache.git",
+                "reference": "d768d58baee9a4862ca783840eca1b9add7a7f57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/d768d58baee9a4862ca783840eca1b9add7a7f57",
+                "reference": "d768d58baee9a4862ca783840eca1b9add7a7f57",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1"
+            },
+            "conflict": {
+                "doctrine/common": ">2.2,<2.4"
+            },
+            "require-dev": {
+                "alcaeus/mongo-php-adapter": "^1.1",
+                "doctrine/coding-standard": "^4.0",
+                "mongodb/mongodb": "^1.1",
+                "phpunit/phpunit": "^7.0",
+                "predis/predis": "~1.0"
+            },
+            "suggest": {
+                "alcaeus/mongo-php-adapter": "Required to use legacy MongoDB driver"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Caching library offering an object-oriented API for many cache backends",
+            "homepage": "https://www.doctrine-project.org",
+            "keywords": [
+                "cache",
+                "caching"
+            ],
+            "time": "2018-08-21T18:01:43+00:00"
+        },
+        {
+            "name": "doctrine/dbal",
+            "version": "v2.9.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/dbal.git",
+                "reference": "22800bd651c1d8d2a9719e2a3dc46d5108ebfcc9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/22800bd651c1d8d2a9719e2a3dc46d5108ebfcc9",
+                "reference": "22800bd651c1d8d2a9719e2a3dc46d5108ebfcc9",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/cache": "^1.0",
+                "doctrine/event-manager": "^1.0",
+                "ext-pdo": "*",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^5.0",
+                "jetbrains/phpstorm-stubs": "^2018.1.2",
+                "phpstan/phpstan": "^0.10.1",
+                "phpunit/phpunit": "^7.4",
+                "symfony/console": "^2.0.5|^3.0|^4.0",
+                "symfony/phpunit-bridge": "^3.4.5|^4.0.5"
+            },
+            "suggest": {
+                "symfony/console": "For helpful console commands such as SQL execution and import of files."
+            },
+            "bin": [
+                "bin/doctrine-dbal"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.9.x-dev",
+                    "dev-develop": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\DBAL\\": "lib/Doctrine/DBAL"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Powerful PHP database abstraction layer (DBAL) with many features for database schema introspection and management.",
+            "homepage": "https://www.doctrine-project.org/projects/dbal.html",
+            "keywords": [
+                "abstraction",
+                "database",
+                "dbal",
+                "mysql",
+                "persistence",
+                "pgsql",
+                "php",
+                "queryobject"
+            ],
+            "time": "2018-12-31T03:27:51+00:00"
+        },
+        {
+            "name": "doctrine/event-manager",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/event-manager.git",
+                "reference": "a520bc093a0170feeb6b14e9d83f3a14452e64b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/event-manager/zipball/a520bc093a0170feeb6b14e9d83f3a14452e64b3",
+                "reference": "a520bc093a0170feeb6b14e9d83f3a14452e64b3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "conflict": {
+                "doctrine/common": "<2.9@dev"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^4.0",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\": "lib/Doctrine/Common"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "Doctrine Event Manager component",
+            "homepage": "https://www.doctrine-project.org/projects/event-manager.html",
+            "keywords": [
+                "event",
+                "eventdispatcher",
+                "eventmanager"
+            ],
+            "time": "2018-06-11T11:59:03+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -724,6 +1312,72 @@
                 "url"
             ],
             "time": "2018-12-04T20:46:45+00:00"
+        },
+        {
+            "name": "hashids/hashids",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ivanakimov/hashids.php.git",
+                "reference": "b6c61142bfe36d43740a5419d11c351dddac0458"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ivanakimov/hashids.php/zipball/b6c61142bfe36d43740a5419d11c351dddac0458",
+                "reference": "b6c61142bfe36d43740a5419d11c351dddac0458",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "suggest": {
+                "ext-bcmath": "Required to use BC Math arbitrary precision mathematics (*).",
+                "ext-gmp": "Required to use GNU multiple precision mathematics (*)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hashids\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Akimov",
+                    "email": "ivan@barreleye.com",
+                    "homepage": "https://twitter.com/IvanAkimov"
+                },
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "hello@vinkla.com",
+                    "homepage": "https://vinkla.com"
+                }
+            ],
+            "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers",
+            "homepage": "http://hashids.org/php",
+            "keywords": [
+                "bitly",
+                "decode",
+                "encode",
+                "hash",
+                "hashid",
+                "hashids",
+                "ids",
+                "obfuscate",
+                "youtube"
+            ],
+            "time": "2018-03-12T16:30:09+00:00"
         },
         {
             "name": "intervention/image",
@@ -1401,6 +2055,88 @@
                 "library"
             ],
             "time": "2018-07-17T06:10:10+00:00"
+        },
+        {
+            "name": "moneyphp/money",
+            "version": "v3.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moneyphp/money.git",
+                "reference": "f6085de6c565e98d2f9a7311a605987b54e06d5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moneyphp/money/zipball/f6085de6c565e98d2f9a7311a605987b54e06d5e",
+                "reference": "f6085de6c565e98d2f9a7311a605987b54e06d5e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "cache/taggable-cache": "^0.4.0",
+                "doctrine/instantiator": "^1.0.5",
+                "ext-bcmath": "*",
+                "ext-gmp": "*",
+                "ext-intl": "*",
+                "florianv/exchanger": "^1.0",
+                "florianv/swap": "^3.0",
+                "leanphp/phpspec-code-coverage": "^3.0 || ^4.0",
+                "moneyphp/iso-currencies": "^3.0",
+                "php-http/message": "^1.4",
+                "php-http/mock-client": "^1.0.0",
+                "phpspec/phpspec": "^3.0",
+                "phpunit/phpunit": "^5.7 || ^6.4 || ^7.0",
+                "psr/cache": "^1.0",
+                "symfony/phpunit-bridge": "^4"
+            },
+            "suggest": {
+                "ext-bcmath": "Calculate without integer limits",
+                "ext-gmp": "Calculate without integer limits",
+                "ext-intl": "Format Money objects with intl",
+                "florianv/exchanger": "Exchange rates library for PHP",
+                "florianv/swap": "Exchange rates library for PHP",
+                "psr/cache-implementation": "Used for Currency caching"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Money\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                },
+                {
+                    "name": "Mathias Verraes",
+                    "email": "mathias@verraes.net",
+                    "homepage": "http://verraes.net"
+                },
+                {
+                    "name": "Frederik Bosch",
+                    "email": "f.bosch@genkgo.nl"
+                }
+            ],
+            "description": "PHP implementation of Fowler's Money pattern",
+            "homepage": "http://moneyphp.org",
+            "keywords": [
+                "Value Object",
+                "money",
+                "vo"
+            ],
+            "time": "2019-02-07T18:01:35+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5419,7 +6155,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "cleaniquecoders/open-payroll": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

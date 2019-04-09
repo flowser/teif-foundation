@@ -5,17 +5,20 @@ namespace App\Models\Standard;
 use App\Models\Bureau\Bureau;
 
 use App\Models\Client\Client;
+use Spatie\Permission\Models\Role;
 use App\Models\Househelp\Househelp;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Models\Permission;
 use App\Models\Organisation\Organisation;
 use App\Models\Standard\Webservices\About;
 use App\Models\Standard\Webservices\Advert;
+// use Pdazcom\Referrals\Models\ReferralProgram;
+// use Pdazcom\Referrals\Models\ReferralProgram;
 use App\Models\Course\Referral\ReferralLink;
 use App\Models\Standard\Webservices\Feature;
 use Illuminate\Database\Eloquent\SoftDeletes;
-// use Pdazcom\Referrals\Models\ReferralProgram;
-// use Pdazcom\Referrals\Models\ReferralProgram;
 use App\Models\Course\Referral\ReferralCourse;
 use App\Models\Organisation\OrganisationAdmin;
 use App\Models\Client\Standard\Manual_Collection;
@@ -94,6 +97,27 @@ class User extends Authenticatable
       public function getNameAttribute()
       {
           return $this->full_name;
+      }
+
+      //permisions & roles
+      public function getAllRolesAttribute() {
+        $roles = [];
+          foreach (Role::all() as $role) {
+            if (Auth::user()->hasRole($role->name)) {
+              $roles[] = $role->name;
+            }
+          }
+          return $roles;
+      }
+
+      public function getAllPermissionsAttribute() {
+        $permissions = [];
+          foreach (Permission::all() as $permission) {
+            if (Auth::user()->can($permission->name)) {
+              $permissions[] = $permission->name;
+            }
+          }
+          return $permissions;
       }
 
       public function getReferrals()
@@ -186,6 +210,44 @@ class User extends Authenticatable
                       )
                       ->withTimestamps();
       }
+      public function organisationaffiliates()
+      {
+          return $this->belongsToMany(Organisation::class,'organisation_affiliate')
+                      ->withPivot(
+                          'photo',
+                          'active',
+                          'id_no',
+                          'id_photo_front',
+                          'id_photo_back',
+                          'about_me',
+                          'phone',
+                          'address',
+                          'country_id',
+                          'county_id',
+                          'constituency_id',
+                          'ward_id',
+                          'position_id',
+                          'gender_id'
+                      )
+                      ->join('genders', 'organisation_affiliate.gender_id', '=', 'genders.id')
+                      ->join('positions', 'organisation_affiliate.position_id', '=', 'positions.id')
+                      ->join('countries', 'organisation_affiliate.country_id', '=', 'countries.id')
+                      ->join('counties', 'organisation_affiliate.county_id', '=', 'counties.id')
+                      ->join('constituencies', 'organisation_affiliate.constituency_id', '=', 'constituencies.id')
+                      ->join('wards', 'organisation_affiliate.ward_id', '=', 'wards.id')
+                      ->select('organisations.*',
+                          'organisation_affiliate.*',
+                              'countries.name as country_name',
+                              'counties.name as county_name',
+                              'constituencies.name as constituency_name',
+                              'wards.name as ward_name',
+                              'positions.name as position_name',
+                              'genders.name as gender_name'
+                      )
+                      ->withTimestamps();
+      }
+
+
       public function organisationemployees()
       {
           return $this->belongsToMany(Organisation::class,'organisation_employee')

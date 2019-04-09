@@ -16,7 +16,11 @@ class PublicController extends Controller
     public function index(Request $request)
     {
         if (auth()->check()) {
-            if (auth()->user()->hasRole('Client')) {
+            if (auth()->user()->hasAnyRole(['Director', 'Superadmin','Admin'])) {
+
+                    return redirect('/home');
+
+            }elseif (auth()->user()->hasAnyRole(['Client', 'Affiliate'])) {
                 $logged_user =Auth::user();
                 $organisation = Organisation::with('about','services', 'servicemodels', 'adverts',
                                'organisationdirectors', 'organisationadmins', 'organisationemployees')

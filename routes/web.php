@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\Standard\CountryController;
 use App\Http\Controllers\Backend\Organisation\RoleController;
 use App\Http\Controllers\Backend\Organisation\UserController;
 use App\Http\Controllers\Backend\Standard\PositionController;
+use App\Http\Controllers\Backend\Affiliate\AffiliateController;
 use App\Http\Controllers\Backend\Client\standard\CartController;
 use App\Http\Controllers\Backend\Course\Standard\TypeController;
 use App\Http\Controllers\Backend\Webpage\ServiceModelController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Backend\Client\standard\OrderController;
 use App\Http\Controllers\Backend\Course\Standard\SkillController;
 use App\Http\Controllers\Backend\Organisation\OrgAdminController;
 use App\Http\Controllers\Backend\Standard\ConstituencyController;
+use App\Http\Controllers\Backend\Affiliate\ReferralLinkController;
 use App\Http\Controllers\Backend\Course\Standard\SchoolController;
 use App\Http\Controllers\Backend\Course\Standard\SubjectController;
 use App\Http\Controllers\Backend\Organisation\PermissionController;
@@ -57,14 +59,14 @@ use App\Http\Controllers\Backend\Course\Standard\CourseFeatureController;
 */
 
 Route::get('/', [PublicController::class, 'index'])->name('public');
-// Route::get('/public', [PublicController::class, 'routes'])->name('public.index');
+// Route::get('/?reset=', [PublicController::class, 'index'])->name('public.index');
 
 
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/{anypath}', [PublicController::class, 'index'])->where('path','[\/\w\.-]*');
+// Route::get('/{anypath}', [PublicController::class, 'index'])->where('path','[\/\w\.-]*');
     //     /*
     //      * User CRUD
     //      */
@@ -529,3 +531,31 @@ Route::get('order/edit/{order}', [OrderController::class, 'edit'])->name('order.
 Route::patch('order/update/{order}', [OrderController::class, 'update'])->name('order.update');
 Route::get('order/delete/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
 
+//affiliate
+Route::get('affiliate/get', [AffiliateController::class, 'index'])->name('affiliate.index');
+Route::get('affiliate/get/list/{affiliate}', [AffiliateController::class, 'AffiliateList'])->name('affiliate.list-index');
+Route::patch('affiliate/checkout/{affiliate}', [AffiliateController::class, 'store'])->name('affiliate.checkout');
+
+Route::get('affiliate/show/{affiliate}', [AffiliateController::class, 'show'])->name('affiliate.show');
+Route::get('affiliate/edit/{affiliate}', [AffiliateController::class, 'edit'])->name('affiliate.edit');
+Route::patch('affiliate/update/{affiliate}', [AffiliateController::class, 'update'])->name('affiliate.update');
+Route::get('affiliate/delete/{affiliate}', [AffiliateController::class, 'destroy'])->name('affiliate.destroy');
+
+//refferal links
+Route::get('referralLink/get', [ReferralLinkController::class, 'index'])->name('referralLink.index');
+Route::get('referralLink/get/list/{referralLink}', [ReferralLinkController::class, 'ReferralLinkList'])->name('referralLink.list-index');
+Route::patch('referralLink/checkout/{referralLink}', [ReferralLinkController::class, 'store'])->name('referralLink.checkout');
+
+Route::get('referralLink/show/{referralLink}', [ReferralLinkController::class, 'show'])->name('referralLink.show');
+Route::get('referralLink/edit/{referralLink}', [ReferralLinkController::class, 'edit'])->name('referralLink.edit');
+Route::patch('referralLink/update/{referralLink}', [ReferralLinkController::class, 'update'])->name('referralLink.update');
+Route::get('referralLink/delete/{referralLink}', [ReferralLinkController::class, 'destroy'])->name('referralLink.destroy');
+
+
+/*
+|--------------------------------------------------------------------------
+| Open Payroll Web Routes
+|--------------------------------------------------------------------------
+*/
+
+// \CleaniqueCoders\OpenPayroll\OpenPayroll::routes();

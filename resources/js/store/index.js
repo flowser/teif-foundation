@@ -45,6 +45,10 @@ import loggeduser from './modules/client/loggeduser';
 import cart from './modules/order/standard/cart';
 import order from './modules/order/order';
 
+//Affiliate
+import affiliate from './modules/affiliate/affiliate';
+import referralLink from './modules/affiliate/referralLinks';
+
 
         export default {
           modules: {
@@ -95,6 +99,10 @@ import order from './modules/order/order';
                 //Order
                 order,
                 cart,
+
+                //affiliate
+                affiliate,
+                referralLink,
           },
         };
 

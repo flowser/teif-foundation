@@ -19,7 +19,8 @@ class ReferralCommission extends Model
         'paid_at',
         'image',
         'name',
-        'payment_confirmation'
+        'payment_confirmation',
+        'payment_status'
     ];
     public function user()
     {

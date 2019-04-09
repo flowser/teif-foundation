@@ -43,7 +43,6 @@ class ReferralLink extends Model
     }
 
 
-
     public function getLinkAttribute()
     {
         return url($this->referralcourse->uri) . '?ref=' . $this->code;

@@ -2,7 +2,7 @@
 //bureaucourse module
 
 const state = {
-    courses:[],
+    courses:{},
     course:[],
   };
 const getters = {
@@ -22,13 +22,13 @@ const actions = {
       });
     },
     CoursesByPage(context, payload){//permission.index route laravel
-      axios.get('/courses/get?page=' + payload)
+      axios.get('/courses/get/?page=' + payload)
       .then((response)=>{
         console.log(response.data, 'page')
         context.commit('courses', response.data.courses);
       });
     },
-    
+
     CoursesByFilter(context, payload){//permission.index route laravel
         console.log(payload)
       axios.post('/coursefilter/get', payload)

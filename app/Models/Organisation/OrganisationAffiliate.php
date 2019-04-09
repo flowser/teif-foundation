@@ -10,6 +10,7 @@ use App\Models\Standard\Gender;
 use App\Models\Standard\Country;
 use App\Models\Standard\Position;
 use App\Models\Standard\Constituency;
+use App\Models\Client\Standard\Education;
 use App\Models\Organisation\Organisation;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
@@ -19,6 +20,7 @@ class OrganisationAffiliate extends Pivot
         'user_id',
         'organisation_id',
         'position_id',
+        'education_id',
         'photo',
         'active',
         'id_no',
@@ -26,7 +28,6 @@ class OrganisationAffiliate extends Pivot
         'id_photo_back',
         'about_me',
         'phone',
-        'landline',
         'address',
         'country_id',
         'county_id',
@@ -64,6 +65,10 @@ class OrganisationAffiliate extends Pivot
     public function position()
     {
         return $this->belongsTo(Position::class);
+    }
+    public function education()
+    {
+        return $this->belongsTo(Education::class);
     }
     public function gender()
     {

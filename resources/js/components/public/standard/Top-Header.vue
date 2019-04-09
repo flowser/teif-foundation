@@ -10,6 +10,7 @@
         <div class="topheader-right">
             <a href="#" v-show ="User == null" title="Login" @click.prevent="loginModal()"><i class="fa fa-sign-out" aria-hidden="true"></i>Login</a>
             <a href="#" v-show ="User == null" title="Register" @click.prevent="registerClientModal()">Register</a>
+            <a href="#" v-show ="User == null" title="Register as an Affiliate" @click.prevent="registerAffiliateModal()">Register as an Affiliate</a>
             <a href="#" v-show ="User != null" title="Logout" @click.prevent="logout">Logout</a>
         </div>
     </div>
@@ -26,6 +27,15 @@
                         email:'',
                         password:'',
                         remember:'',
+                }),
+                emaillinkform: new Form({
+                        email:'',
+                }),
+                resetpasswordform: new Form({
+                        email:'',
+                        password:'',
+                        password_confirmation:'',
+                        token:'',
                 }),
                 enrollform: new Form({
                         id:'',
@@ -67,7 +77,36 @@
                         constituency_id:'',
                         ward_id:'',
                 }),
-                //client
+                editmodeAffiliate: false,
+                affiliateform: new Form({
+                        id:'',
+                        first_name:'',
+                        last_name:'',
+                        email:'',
+                        password:'',
+                        password_confirm:'',
+                        user_type:'',
+                        permissions:[],
+                        roles:[],
+                        user_id:'',
+                        position_id:'',
+                        gender_id:'',
+                        education_id:'',
+                        photo:'',
+                        active:'',
+                        id_no:'',
+                        id_photo_front:'',
+                        id_photo_back:'',
+                        about_me:'',
+                        phone:'',
+                        landline:'',
+                        address:'',
+                        country_id:'',
+                        county_id:'',
+                        constituency_id:'',
+                        ward_id:'',
+                }),
+                //client oraffiliate
                 phone:{
                         isValid: false,
                         country: undefined,
@@ -131,10 +170,12 @@
             Educations(){
                return this.$store.getters.Educations
             },
-
         },
         methods:{
             loadOrganisation(){
+                this.Url = window.location.href;
+                console.log(this.Url,'document.location dddd');
+                this.resetPasswordModal()
                return this.$store.dispatch( "organisation")
             },
             loadUser(){
@@ -200,9 +241,52 @@
                  this.clientform.organisation_id;
                      $('#ClientModal').modal('show')
             },
+            registerAffiliateModal(){
+                 this.editmodeAffiliate= false;
+                 this.affiliateform.reset()
+                     $('#AffiliateModal').modal('show')
+            },
             loginModal(){
                  this.loginform.reset()
                      $('#LoginModal').modal('show')
+                     $('#ResetModal').modal('hide')
+            },
+            emailresetLinkModal(){
+                 this.loginform.reset()
+                 this.emaillinkform.reset()
+                     $('#LoginModal').modal('hide')
+                     $('#EmailResetLinkModal').modal('show')
+            },
+            resetPasswordModal(){
+                 this.loginform.reset()
+                 this.emaillinkform.reset()
+                 this.resetpasswordform.reset()
+
+                var url = new URL(this.Url);
+                console.log(url)
+                var token = url.searchParams.get("token");
+                if(token !=null){
+                    axios.get('/password/reset/'+token)
+                     .then((response)=>{
+                       this.resetpasswordform.token = response.data.token
+                       this.resetpasswordform.email = response.data.email
+                        $('#LoginModal').modal('hide')
+                        $('#EmailResetLinkModal').modal('hide')
+                        $('#ResetPasswordModal').modal('show')
+                        toast({
+                            type: 'success',
+                            title: 'You have successfully fetched your email to windup your passwod reset'
+                        })
+                        this.$Progress.finish()
+                    })
+                    .catch((response)=>{
+                        this.$Progress.fail()
+                        toast({
+                            type: 'error',
+                            title: 'Sorry there seems to be an issue check it your Email and try again.'
+                        })
+                    })
+                }
             },
             //organisation client passposrt image
             clientLoadPassPhoto(clientpivot_photo){
@@ -437,7 +521,6 @@
                  if(this.enrollform.courseType == "Regular"){
                     this.enrollform.parttime_fee = null;
                 }
-                this.$Progress.start();
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
                      toast({
@@ -446,8 +529,16 @@
                         title: response.data.message,
                         })
 
-                        this.loadCourses()
-                        this.loadCartItems()
+                        this.loadOrders();
+                        this.loadClient();
+                        this.loadCourses();
+                        this.loadCartItems();
+                        this.loadCountries();
+                        this.loadCounties();
+                        this.loadConstituencies();
+                        this.loadWards();
+                        this.loadEducations();
+                        this.loadGenders();
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
@@ -466,22 +557,29 @@
                 if(this.enrollform.courseType == "Parttime"){
                     this.enrollform.regular_fee = null;
                 }
-                this.$Progress.start();
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
-                    // console.log(response)
+                    console.log(response)
                      toast({
                         type: 'success',
                         title: response.data.code,
                         title: response.data.message,
                         })
 
-                        this.loadCourses()
-                        this.loadCartItems()
+                        this.loadOrders();
+                        this.loadClient();
+                        this.loadCourses();
+                        this.loadCartItems();
+                        this.loadCountries();
+                        this.loadCounties();
+                        this.loadConstituencies();
+                        this.loadWards();
+                        this.loadEducations();
+                        this.loadGenders();
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
-                    // console.log(response)
+                    console.log(response)
                     this.$Progress.fail()
                     toast({
                         type: 'error',
@@ -490,16 +588,23 @@
                 })
             },
             Remove(cartItem_id){
-                // console.log(cartItem_id)
-                this.$Progress.start();
+                console.log(cartItem_id)
                 axios.get('/cart/remove/'+cartItem_id)
                 .then((response)=>{
                      toast({
                         type: 'success',
                         title: 'Course Removed successful'
                         })
-                        this.loadCourses()
-                        this.loadCartItems()
+                        this.loadOrders();
+                        this.loadClient();
+                        this.loadCourses();
+                        this.loadCartItems();
+                        this.loadCountries();
+                        this.loadCounties();
+                        this.loadConstituencies();
+                        this.loadWards();
+                        this.loadEducations();
+                        this.loadGenders();
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
@@ -511,16 +616,23 @@
                 })
             },
             Clear(CartItems){
-                // console.log(CartItems)
-                this.$Progress.start();
+                console.log(CartItems)
                 axios.get('/cart/clear/'+CartItems)
                  .then((response)=>{
                      toast({
                         type: 'success',
                         title: 'Course Cart was Cleared successful'
                         })
-                        this.loadCourses()
-                        this.loadCartItems()
+                        this.loadOrders();
+                        this.loadClient();
+                        this.loadCourses();
+                        this.loadCartItems();
+                        this.loadCountries();
+                        this.loadCounties();
+                        this.loadConstituencies();
+                        this.loadWards();
+                        this.loadEducations();
+                        this.loadGenders();
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
@@ -532,7 +644,7 @@
                 })
             },
             openCheckoutModal(CartItems){
-                // console.log(CartItems)
+                console.log(CartItems)
                 this.loadCourses()
                 this.loadCartItems()
                 this.transactionform.reset()
@@ -557,16 +669,22 @@
             },
             Checkout(CartItems){
                this.transactionform.cartItems= CartItems
-                // console.log(this.transactionform)
-                this.$Progress.start();
+                console.log(this.transactionform)
                 this.transactionform.patch('/order/checkout/'+CartItems)
                 .then((response)=>{
                      toast({
                         type: 'success',
                         title: 'Payment was successful, wait, for verification'
                         })
-                        this.loadCourses()
                         this.loadCartItems()
+                        this.loadCourses();
+                        this.loadCartItems();
+                        this.loadCountries();
+                        this.loadCounties();
+                        this.loadConstituencies();
+                        this.loadWards();
+                        this.loadEducations();
+                        this.loadGenders();
                         $('#CheckoutModal').modal('hide')
                         this.transactionform.reset()
                           this.$Progress.finish()

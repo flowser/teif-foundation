@@ -67,7 +67,7 @@
               <!-- </div> -->
               <div class="row">
                   <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left: 5px;padding-right: 5px;" v-for="course in Courses" :key="course.id">
-                  <div class="welcome-box">
+                    <div class="welcome-box">
                       <img :src="courseLoadImage(course.image)" alt="welcome1" style="width:100%; height:360px"/>
                       <div class="welcome-title" style="width: 100%;bottom: 0px;">
                           <h3>{{course.name}}</h3>
@@ -119,10 +119,11 @@
                           </ul>
                       </div>
                   </div>
+                 </div>
+
+                <pagination :data="courses" @pagination-change-page="getResults"></pagination>
               </div>
 
-              </div>
-              
 
           </div>
        </div>
@@ -151,6 +152,7 @@ import EventSection from "./Event-Section.vue";
         },
         data(){
             return{
+                courses:{},
                 enrollform: new Form({
                         id:'',
                         name:'',
@@ -187,29 +189,14 @@ import EventSection from "./Event-Section.vue";
             },
         },
         methods:{
-            loadCourses(){
-            // loadCourses(page){
-
-                // if(typeof page === 'undefined'){
-                //     page = 1;
-                //     this.$store.dispatch("CoursesByPage", page)
-
-                // }else{
-
-                //      this.$store.dispatch("CoursesByPage", page)
-                // }
-                // if (typeof page === 'undefined') {
-                //     page = 1;
-                // }
-      
-                // this.$http.get('/courses/get/?page=' + page)
+            getResults(page = 1) {
+                this.$store.commit('CoursesByPage', page);
+                // axios.get('courses/?page=' + page)
                 //     .then(response => {
-                //         return response.json();
-                //     }).then(data => {
-                //         console.log(response.data)
-                //         // this.laravelData = data;
-                //     });
-                
+                //         this.laravelData = response.data;
+				// });
+		   },
+            loadCourses(){
                 return this.$store.dispatch("courses")
             },
             loadCartItems(){

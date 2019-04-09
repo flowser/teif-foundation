@@ -27,7 +27,7 @@ class UserTableSeeder extends Seeder
                 'email'             => 'felixnyachio@teifinnovate.foundation',
                 'password'          => Hash::make('flx4life'),
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
-                'user_type'        => 'Organisation Superadmin',
+                'user_type'        => 'Superadmin',
                 'confirmed'         => true,
 
         ]);//2
@@ -39,7 +39,7 @@ class UserTableSeeder extends Seeder
                 ->insert([
                     'user_id'          => $user1->id,
                     'organisation_id'  => 1,
-                    'position_id'      => 5,
+                    'position_id'      => 4,
                     'gender_id'        => 1,
                     'active'           => 1
                 ]);

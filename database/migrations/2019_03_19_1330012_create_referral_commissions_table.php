@@ -26,6 +26,7 @@ class CreateReferralCommissionsTable extends Migration
             $table->tinyInteger('payment_confirmation')->default(0)->unsigned();
             $table->float('fee',8, 2)->nullable();
             $table->float('commission',8, 2)->nullable();
+            $table->tinyInteger('payment_status')->default(0)->unsigned();
             $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');

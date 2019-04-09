@@ -17,10 +17,8 @@ class CreateCourseTutorTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('course_id');
             $table->unsignedInteger('organisation_tutor_id')->nullable();
-
             $table->tinyInteger('active')->default(1)->unsigned();
 
-            $table->string('id_no', 120)->nullable();
 
             $table->softDeletes();
             $table->timestamps();

@@ -41,7 +41,7 @@ class CourseController extends Controller
     // detailed filtration
     public function filter(Request $request)
     {
-        
+
         $courses = Course::with(
                 'coursesyllabus',
                 // 'reviews',

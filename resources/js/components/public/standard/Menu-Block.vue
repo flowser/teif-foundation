@@ -15,11 +15,11 @@
                          <router-link :to="`/`"  class="navbar-brand">
                             <img :src="organisationLoadImage(Organisation.logo)" alt="logo" style="width: 17%;top: -12px;"/>
                             <!-- <img src="main_theme/images/logo.png" alt="logo"/> -->
-                            <h3 style="padding-left: 21px;font-weight: 600;margin-top: 0px;margin-bottom: 0px;">
-                                {{Organisation.name}}
-                                </h3>
+                            <h3  style="padding-left: 21px;font-weight: 600;margin-top: 0px;margin-bottom: 0px;">
+                              {{Organisation.name}}
+                            </h3>
                             <h5 v-if="Organisation.about" style="padding-left: 21px;font-weight: 600;margin-top: 0px;margin-bottom: 0px;">
-                                {{Organisation.about.subtitle}}
+                              {{Organisation.about.subtitle}}
                             </h5>
                           </router-link>
                          <router-link :to="`/`" class="mobile-logo" ><h3>{{Organisation.name}}</h3> </router-link>
@@ -86,7 +86,11 @@
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav navbar-nav menubar">
                             <li><router-link :to="`/`" title="Home">Home</router-link></li>
-                            <li><router-link :to="`/myaccount`" v-show ="User != null" title="MyAccount">My Account</router-link></li>
+                            <li><router-link :to="`/myaccount`" v-if="$hasrole('Client')" v-show ="User != null" title="MyAccount">My Account</router-link></li>
+                            <li><router-link :to="`/myaffiliateaccount`" v-if="$hasrole('Affiliate')" v-show ="User != null"
+                                              title="MyAffiliatAccount">Affiliate Account
+                                </router-link>
+                            </li>
                             <li class="dropdown">
                                 <a  aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Courses" >Courses</a>
                                 <i class="ddl-switch fa fa-angle-down"></i>
@@ -202,6 +206,7 @@
             this.loadUser();
             this.loadCourses(); //from methods
             this.loadCartItems();
+            this.loadOrders();
         },
         computed:{
             Organisation(){
@@ -248,6 +253,9 @@
             loadCartItems(){
                 return this.$store.dispatch("cartItems")
             },
+            loadOrders(){
+                return this.$store.dispatch("orders")
+            },
             courseLoadImage(course_image){
                 if(course_image){
                     return "/assets/organisation/img/courses/"+course_image;
@@ -264,18 +272,30 @@
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
                      toast({
-                         title: response.data.code,
+                        type: 'success',
+                        title: response.data.code,
                         title: response.data.message,
                         })
-                        this.loadCourses()
-                        this.loadCartItems()
+
+                        this.loadOrders();
+                        this.loadClient();
+                        this.loadCourses();
+                        this.loadCartItems();
+                        this.loadCountries();
+                        this.loadCounties();
+                        this.loadConstituencies();
+                        this.loadWards();
+                        this.loadEducations();
+                        this.loadGenders();
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
+                    // console.log(response.data)
                     this.$Progress.fail()
                     toast({
                         type: 'error',
-                        title: 'Course Alreday exist in your cart'
+                        type: 'error',
+                        title: 'Course Alreaday exist in your cart'
                     })
                 })
             },
@@ -287,17 +307,27 @@
                 }
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
+                    console.log(response)
                      toast({
                         type: 'success',
                         title: response.data.code,
                         title: response.data.message,
                         })
 
-                        this.loadCourses()
-                        this.loadCartItems()
+                        this.loadOrders();
+                        this.loadClient();
+                        this.loadCourses();
+                        this.loadCartItems();
+                        this.loadCountries();
+                        this.loadCounties();
+                        this.loadConstituencies();
+                        this.loadWards();
+                        this.loadEducations();
+                        this.loadGenders();
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
+                    console.log(response)
                     this.$Progress.fail()
                     toast({
                         type: 'error',
@@ -306,36 +336,51 @@
                 })
             },
             Remove(cartItem_id){
+                console.log(cartItem_id)
                 axios.get('/cart/remove/'+cartItem_id)
                 .then((response)=>{
                      toast({
                         type: 'success',
-                        // title: response.data.code,
-                        // title: response.data.message,
+                        title: 'Course Removed successful'
                         })
-
-                        this.loadCourses()
-                        this.loadCartItems()
+                        this.loadOrders();
+                        this.loadClient();
+                        this.loadCourses();
+                        this.loadCartItems();
+                        this.loadCountries();
+                        this.loadCounties();
+                        this.loadConstituencies();
+                        this.loadWards();
+                        this.loadEducations();
+                        this.loadGenders();
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
                     this.$Progress.fail()
                     toast({
                         type: 'error',
-                        // title: response.data.code,
-                        // title: response.data.message,
+                        title: 'Course Removal not successful.'
                     })
                 })
             },
             Clear(CartItems){
+                console.log(CartItems)
                 axios.get('/cart/clear/'+CartItems)
                  .then((response)=>{
                      toast({
                         type: 'success',
                         title: 'Course Cart was Cleared successful'
                         })
-                        this.loadCourses()
-                        this.loadCartItems()
+                        this.loadOrders();
+                        this.loadClient();
+                        this.loadCourses();
+                        this.loadCartItems();
+                        this.loadCountries();
+                        this.loadCounties();
+                        this.loadConstituencies();
+                        this.loadWards();
+                        this.loadEducations();
+                        this.loadGenders();
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
@@ -347,24 +392,50 @@
                 })
             },
             openCheckoutModal(CartItems){
+                console.log(CartItems)
                 this.loadCourses()
                 this.loadCartItems()
                 this.transactionform.reset()
                  $('#CheckoutModal').modal('show')
             },
+            transactionChangeImage($event){
+                 let file = event.target.files[0];
+                if(file.size>1048576){
+                    Swal.fire({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: 'The File you are uploading is larger than 2mbs!',
+                            // footer: '<a href>Why do I have this issue? Reduce the Logo Size</a>'
+                        })
+                }else{
+                    let reader = new FileReader();
+                        reader.onload = event=> {
+                            this.transactionform.image =event.target.result
+                            };
+                        reader.readAsDataURL(file);
+                }
+            },
             Checkout(CartItems){
-                this.transactionform.cartItems= CartItems
+               this.transactionform.cartItems= CartItems
+                console.log(this.transactionform)
                 this.transactionform.patch('/order/checkout/'+CartItems)
                 .then((response)=>{
                      toast({
                         type: 'success',
                         title: 'Payment was successful, wait, for verification'
                         })
-                        this.loadCourses()
                         this.loadCartItems()
+                        this.loadCourses();
+                        this.loadCartItems();
+                        this.loadCountries();
+                        this.loadCounties();
+                        this.loadConstituencies();
+                        this.loadWards();
+                        this.loadEducations();
+                        this.loadGenders();
                         $('#CheckoutModal').modal('hide')
                         this.transactionform.reset()
-                        this.$Progress.finish()
+                          this.$Progress.finish()
                 })
                 .catch((response)=>{
                      $('#CheckoutModal').modal('show')

@@ -15,7 +15,7 @@ class OrganisationAdminTableSeeder extends Seeder
         OrganisationAdmin::create([
             'user_id'  => '1',
             'organisation_id'  => '1',
-            'position_id'  => '5',//super admin
+            'position_id'  => '4',//super admin
             'gender_id'  => '1',
             'country_id'     => '1',
             'county_id'      => '47',

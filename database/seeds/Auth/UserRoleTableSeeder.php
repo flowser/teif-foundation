@@ -21,7 +21,7 @@ class UserRoleTableSeeder extends Seeder
     {
         $this->disableForeignKeys();
 
-       User::find(1)->assignRole('Organisation Superadmin');
+       User::find(1)->assignRole('Superadmin','Affiliate');
 
        User::find(1)->givePermissionTo('View Backend');
 

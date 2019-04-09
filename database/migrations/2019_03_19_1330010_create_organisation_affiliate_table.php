@@ -17,9 +17,12 @@ class CreateOrganisationAffiliateTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('organisation_id');
-            $table->unsignedInteger('position_id');
+            $table->unsignedInteger('organisation_tutor_id')->nullable();
+            $table->unsignedInteger('education_id')->nullable();
+            $table->unsignedInteger('position_id')->nullable();
             $table->unsignedInteger('gender_id')->nullable();
             $table->string('photo')->nullable();
+            $table->string('background_image')->nullable();
             $table->tinyInteger('active')->default(1)->unsigned();
 
             $table->string('id_no', 120)->nullable();
@@ -43,7 +46,9 @@ class CreateOrganisationAffiliateTable extends Migration
             $table->foreign('ward_id')->references('id')->on('wards')->onDelete('cascade');
 
             $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade');
+            $table->foreign('organisation_tutor_id')->references('id')->on('organisation_tutor')->onDelete('cascade');
             $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
+            $table->foreign('education_id')->references('id')->on('educations')->onDelete('cascade');
             $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

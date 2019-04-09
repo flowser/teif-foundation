@@ -49,8 +49,8 @@
                                                     Part time: <span style="color:#ffc722">{{Course.parttime_duration}} Days</span>
                                                 </span>
                                             </li>
-	            							<li>Lessons :     <span style="color:#ffc722" v-if="Course.coursesyllabus">{{Course.coursesyllabus.lessons}}
-                                              </span> Hours : <span style="color:#ffc722" v-if="Course.coursesyllabus"> {{Course.coursesyllabus.hours}} </span></li>
+	            							<!-- <li>Lessons :     <span style="color:#ffc722" v-if="Course.coursesyllabus">{{Course.coursesyllabus.lessons}}
+                                              </span> Hours : <span style="color:#ffc722" v-if="Course.coursesyllabus"> {{Course.coursesyllabus.hours}} </span></li> -->
 	            							<li>Duration:     <span style="color:#ffc722" v-if="Course.duration">{{Course.duration.name}}          </span></li>
 	            							<li>Skill:        <span style="color:#ffc722" v-if="Course.skill">{{Course.skill.name}}             </span></li>
 	            							<li>School:       <span style="color:#ffc722" v-if="Course.school">{{Course.school.name}}            </span></li>
@@ -129,7 +129,7 @@
                                     </div>
 
 	            					<div class="featuresbox"><img :src="courseLessonsImage('cup-ic.png')" alt="cup-ic" width="24" height="23"/>
-                                         <h3>Lectures : </h3><span style="color:#ffc722"> {{Course.coursesyllabus.lessons}}</span>
+                                         <h3>Lectures : </h3><span style="color:#ffc722" v-if="Course.coursesyllabus"> {{Course.coursesyllabus.lessons}}</span>
                                     </div>
 	            					<div class="featuresbox"><img :src="courseCourseStudentsImage('user-ic.png')" alt="user-ic" width="22" height="22"/>
                                          <h3>Hours : </h3><span style="color:#ffc722" v-if="Course.coursesyllabus">{{Course.coursesyllabus.hours}}</span>

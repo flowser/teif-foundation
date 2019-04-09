@@ -31,7 +31,7 @@ class HomeController extends Controller
         // Organisation
 
         if (auth()->check()) {
-            if (auth()->user()->hasRole('Organisation Director')) {
+            if (auth()->user()->hasAnyRole(['Director', 'Superadmin','Admin'])){
                 $logged_user =User::
                             leftJoin('organisation_director', 'organisation_director.user_id', '=', 'users.id')
                             ->leftJoin('positions', 'organisation_director.position_id', '=', 'positions.id')
@@ -48,73 +48,16 @@ class HomeController extends Controller
                                     'wards.name as ward_name',
                                     'positions.name as position_name'
                             )->first();
-                            // return Auth::user()->id;
-                            // return $logged_user;
+
                 $organisation = Organisation::with('about','services', 'servicemodels', 'adverts', 'features',
                                'organisationdirectors', 'organisationadmins', 'organisationemployees')
                                ->first();
 
                   return view('admin.adminmaster', compact("logged_user", "organisation"));
 
-            }elseif (auth()->user()->hasRole('Organisation Superadmin')) {
-                $logged_user =User::
-                            leftJoin('organisation_admin', 'organisation_admin.user_id', '=', 'users.id')
-                            ->leftJoin('positions', 'organisation_admin.position_id', '=', 'positions.id')
-                            ->leftJoin('countries', 'organisation_admin.country_id', '=', 'countries.id')
-                            ->leftJoin('counties', 'organisation_admin.county_id', '=', 'counties.id')
-                            ->leftJoin('constituencies', 'organisation_admin.constituency_id', '=', 'constituencies.id')
-                            ->leftJoin('wards', 'organisation_admin.ward_id', '=', 'wards.id')
-                            ->where('users.id', Auth::user()->id)
-                            ->select('users.*',
-                                'organisation_admin.*',
-                                    'countries.name as country_name',
-                                    'counties.name as county_name',
-                                    'constituencies.name as constituency_name',
-                                    'wards.name as ward_name',
-                                    'positions.name as position_name'
-                            )->first();
-                            // return Auth::user()->id;
-                            // return $logged_user;
-                    $organisation = Organisation::with('about','services', 'servicemodels', 'adverts', 'features',
-                               'organisationdirectors', 'organisationadmins', 'organisationemployees')
-                               ->first();
-
-                    return view('admin.adminmaster', compact("logged_user", "organisation"));
-
-            } elseif (auth()->user()->hasRole('Organisation Admin')) {
-                $logged_user =User::
-                            leftJoin('organisation_admin', 'organisation_admin.user_id', '=', 'users.id')
-                            ->leftJoin('positions', 'organisation_admin.position_id', '=', 'positions.id')
-                            ->leftJoin('countries', 'organisation_admin.country_id', '=', 'countries.id')
-                            ->leftJoin('counties', 'organisation_admin.county_id', '=', 'counties.id')
-                            ->leftJoin('constituencies', 'organisation_admin.constituency_id', '=', 'constituencies.id')
-                            ->leftJoin('wards', 'organisation_admin.ward_id', '=', 'wards.id')
-                            ->where('users.id', Auth::user()->id)
-                            ->select('users.*',
-                                'organisation_admin.*',
-                                    'countries.name as country_name',
-                                    'counties.name as county_name',
-                                    'constituencies.name as constituency_name',
-                                    'wards.name as ward_name',
-                                    'positions.name as position_name'
-                            )->first();
-                            // return Auth::user()->id;
-                            // return $logged_user;
-                 $organisation = Organisation::with('about','services', 'servicemodels', 'adverts', 'features',
-                               'organisationdirectors', 'organisationadmins', 'organisationemployees')
-                               ->first();
-
-                 return view('admin.adminmaster', compact("logged_user", "organisation"));
-
-            }
-            elseif (auth()->user()->hasRole('Client')) {
-
-                // return ['redirect' => route('public')];
+            }elseif (auth()->user()->hasAnyRole(['Client', 'Affiliate'])) {
                  return redirect('/');
             }
         }
-        // else{
-        //     return redirect('/');
-        // }
     }
 }

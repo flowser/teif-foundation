@@ -88,24 +88,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    @role('Organisation Director')
+                    @role('Director')
                         @if($logged_user->photo != null)
                             <img src="assets/organisation/img/directors/passports/{{$logged_user->photo}}" class="img-circle elevation-2" alt="User Image">
                         @else
                             <img src="assets/organisation/img/website/empty.png" class="img-circle elevation-2" alt="User Image">
                         @endif
                     @endrole
-                    {{--  @role('Organisation Superadmin')
+                    {{--  @role('Superadmin')
                         <img src="assets/organisation/img/admins/passports/{{$logged_user->photo}}" class="img-circle elevation-2" alt="User Image">
                     @endrole  --}}
-                    @role('Organisation Admin')
+                    @role('Admin')
                          @if($logged_user->photo != null)
                             <img src="assets/organisation/img/admins/passports/{{$logged_user->photo}}" class="img-circle elevation-2" alt="User Image">
                         @else
                             <img src="assets/organisation/img/website/empty.png" class="img-circle elevation-2" alt="User Image">
                         @endif
                     @endrole
-                    @role('Organisation Employee')
+                    @role('Employee')
                         @if($logged_user->photo != null)
                             <img src="assets/organisation/img/emloyees/passports/{{$logged_user->photo}}" class="img-circle elevation-2" alt="User Image">
                         @else
@@ -127,7 +127,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
 
-                @role('Organisation Superadmin')
+                @role('Superadmin')
                    <li class="nav-item">
                         <router-link to="/courses" class="nav-link">
                             <i class="fa fa-users purple  nav-icon"></i>
@@ -142,7 +142,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                          {{--  @role('Organisation Admin')  --}}
+                          {{--  @role('Admin')  --}}
                             <li class="nav-item">
                                 <router-link to="/users" class="nav-link">
                                     <i class="fa fa-users blue  nav-icon"></i>
@@ -190,7 +190,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <p>
                     Number of referred users: {{ $referral->commissions()->count() }}
                 </p>
-                <p>{{ $referral->commissions}}</p>
+                {{-- <p>{{ $referral->commissions}}</p> --}}
                 @foreach($referral->commissions as $commission)
                      <li>{{$commission->commission}}</li>
             @endforeach

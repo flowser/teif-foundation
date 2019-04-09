@@ -51,10 +51,12 @@
 
 <body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
   <div id="app">
+      {{-- {{ Auth::user()->getReferrals()}} --}}
 				{{-- {{ Auth::check() }} --}}
 				{{--  {{$organisation}}
 				llllll  --}}
     <home-main ></home-main>
+    emamba
   </div>
 </body>
 
@@ -62,8 +64,22 @@
    <script>
            window.logged_user = {!! json_encode($logged_user); !!}
   </script>
-   {{-- <script>var window.logged_user = {{ Auth::check() }};</script> --}}
 @endif
+
+  <script type="text/javascript">
+    var APP_URL = {!! json_encode(url('')) !!}
+    </script>
+
+    <script>
+        @auth
+            window.Roles = {!! json_encode(Auth::user()->allRoles, true) !!};
+            window.Permissions = {!! json_encode(Auth::user()->allPermissions, true) !!};
+        @else
+            window.Roles = [];
+            window.Permissions = [];
+        @endauth
+    </script>
+
 <script src="{{asset("js/app.js")}}"></script>
 <!-- JQuery v1.11.3 -->
 <script src="{{asset('main_theme/js/jquery.min.js')}}"></script>
