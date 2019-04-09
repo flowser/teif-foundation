@@ -109,12 +109,12 @@
                                     <td style="width: 140px;">
                                         <div class="clearfix" style="font-weight:bold;font-size:0.7em;">
                                             <span style="color:#9a009a;">
-                                                <!-- <div v-if="referralCourse.lifetime_days | PassedDaystoExpiry(referralCourse.created_at) == referralCourse.lifetime_days"> -->
-                                                    <!-- <a type="button" class="btn btn-success btn-sm"> This Course Refferal has Expired</a> -->
-                                                <!-- </div> -->
-                                                <!-- <div v-else-if="referralCourse.lifetime_days | PassedDaystoExpiry(referralCourse.created_at) != referralCourse.lifetime_days"> -->
-                                                    <a type="button" class="btn btn-danger btn-sm"> Create Link</a>
-                                                <!-- </div> -->
+                                                <div v-if="referralCourse.refferallinks.length<1">
+                                                    <a type="button" href="" @click.prevent="CreateLink(referralCourse.id)" class="btn btn-danger btn-sm"> Create Link</a>
+                                                </div>
+                                                <div v-else-if="referralCourse.refferallinks.length>0">
+                                                     <a type="button" class="btn btn-success btn-sm"> Course Link already Created</a>
+                                                </div>
                                             </span>
                                         </div>
                                     </td>
@@ -123,24 +123,83 @@
                                         <thead>
                                             <tr>
                                                 <th>S1</th>
-                                                <th>Referal Code</th>
-                                                <th>Action</th>
+                                                <th>Referal Link</th>
+                                                <th>Share your Link with The Respective Social Platform</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr v-for="(refferallink, index) in referralCourse.refferallinks" :key="refferallink.id" >
                                                 <td style="width:1px">{{index+1}}</td>
-                                                <td style="width:240px;padding:2px;color: blue;font-size: smaller;">
-                                                    {{refferallink.code}}
+                                                <td style="width: 250px;padding:2px;font-size: smaller;">
+                                                    <span style="color: rgb(255, 199, 34);">
+                                                        <span>{{URL}}</span><span>{{referralCourse.uri}}</span>?ref=<span>{{refferallink.code}}</span>
+                                                    </span>
                                                 </td>
                                                 <td>
-                                                    <div class="clearfix" style="font-weight:bold;font-size:0.7em;">
-                                                        <span style="color:#9a009a;">
-                                                            <div>
-                                                                <a type="button" class="btn btn-danger btn-sm"> Share</a>
-                                                            </div>
-                                                        </span>
-                                                    </div>
+                                                   <social-sharing
+                                                        @open="Link(refferallink.id)"
+                                                         v-bind:url="URL+ referralCourse.uri +'?ref='+ refferallink.code"
+                                                         v-bind:title="'Welcome to' + Organisation.name + ', learn and experience master our technical short courses. Like, follow, share our page'"
+                                                         v-bind:description="'Welcome to' + Organisation.name + ', learn and experience master our technical short courses. Like, follow, share our page.'"
+                                                         v-bind:quote="'Welcome to' + Organisation.name + ', learn and experience master our technical short courses. Like, follow, share our page.'"
+                                                          hashtags="teiffoundation"
+                                                          twitter-user="TeifFoundation"
+                                                          inline-template>
+                                                   <div>
+                                                       <div class="col-md-6">
+                                                           <div class="row" style="margin-top: 3px;margin-bottom: 2px;">
+                                                               <div class="btn btn-md btn-primary" style="">
+                                                                   <network network="facebook">
+                                                                       <i class="fa fa-facebook" ></i> Facebook
+                                                                   </network>
+                                                               </div>
+                                                               <div class="btn btn-md btn-info" style="">
+                                                                   <network network="twitter">
+                                                                       <i class="fa fa-twitter"></i> Twitter
+                                                                   </network>
+                                                               </div>
+                                                           </div>
+                                                           <div class="row" style="margin-top: 3px;margin-bottom: 2px;">
+                                                               <div class="btn btn-md btn-primary">
+                                                                   <network network="linkedin">
+                                                                       <i class="fa fa-linkedin"></i> LinkedIn
+                                                                   </network>
+                                                               </div>
+                                                               <div class="btn btn-md btn-primary">
+                                                                   <network network="skype">
+                                                                       <i class="fa fa-skype"></i> Skype
+                                                                   </network>
+                                                               </div>
+                                                           </div>
+                                                       </div>
+                                                       <div class="col-md-6">
+                                                           <div class="row" style="margin-top: 3px;margin-bottom: 2px;">
+                                                               <div class="btn btn-md btn-success" style="">
+                                                                   <network network="whatsapp">
+                                                                       <i class="fa fa-whatsapp"></i> Whatsapp
+                                                                   </network>
+                                                               </div>
+                                                               <div class="btn btn-md btn-warning" style="">
+                                                                   <network network="email">
+                                                                       <i class="fa fa-envelope"></i> Email
+                                                                   </network>
+                                                               </div>
+                                                           </div>
+                                                           <div class="row" style="margin-top: 3px;margin-bottom: 2px;">
+                                                                <div class="btn btn-md btn-info" style="">
+                                                                   <network network="telegram">
+                                                                       <i class="fa fa-telegram"></i> Telegram
+                                                                   </network>
+                                                               </div>
+                                                                <div class="btn btn-md btn-danger" style="">
+                                                                   <network network="sms">
+                                                                       <i class="fa fa-commenting-o"></i> SMS
+                                                                   </network>
+                                                               </div>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                   </social-sharing>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -153,27 +212,23 @@
                 </div>
                 <div class="row" style="padding-top:22px" >
                     <div class="col-md-12">
-
                         <table id="example2" class="table table-bordered table-hover" style="margin-bottom: 0px;">
                             <thead>
                                 <tr>
                                     <th>S1</th>
                                     <th>Course</th>
                                     <th>Link</th>
-                                    <th>Share</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(referrallink, index) in ReferralLinks" :key="referrallink.id">
                                     <td >{{index+1}}</td>
-                                    <!-- {{referrallink}} -->
                                     <td style="width: 140px;" v-if="referrallink.referralcourse">{{referrallink.referralcourse.name}} </td>
                                     <td style="width: 250px;padding:2px;font-size: smaller;">
                                         <span style="color: rgb(255, 199, 34);">
                                             <span>{{URL}}</span><span>{{referrallink.referralcourse.uri}}</span>?ref=<span>{{referrallink.code}}</span>
                                         </span>
                                     </td>
-                                    <td style="width: 140px;">share</td>
                                     <td>
                                       <table id="example2" class="table table-bordered table-hover" style="margin-bottom: 0px;">
                                         <thead>
@@ -362,6 +417,14 @@
         name:"Full-Event",
         data(){
             return{
+                linkform:new Form({
+                referralCourse_id:'',
+                }),
+                shareform:new Form({
+                refferallink_id:'',
+                url:'',
+                network:'',
+                }),
                 imageUrl:'',
                 enrollform: new Form({
                         id:'',
@@ -378,6 +441,8 @@
            }
         },
         mounted(){
+            this.$root.$on('social_shares_open', (network, url) =>this.Share(network, url));
+            this.loadOrganisation();
             this.loadUser();
             this.loadURL();
             this.loadAffiliate();
@@ -387,6 +452,9 @@
             this.loadCartItems();
         },
         computed:{
+            Organisation(){
+                return this.$store.getters.Organisation
+            },
             User(){
                 return this.$store.getters.User
             },
@@ -425,9 +493,82 @@
             },
         },
         methods:{
+
+            Link(refferallink_id){
+                this.shareform.refferallink_id = refferallink_id;
+            },
+            Share(network, url){
+                    this.shareform.url = url;
+                    this.shareform.network = network;
+                     this.$nextTick(function () {
+                             this.$Progress.start()
+                             this.shareform.patch('sharelink')
+                              .then((response)=>{
+                                    toast({
+                                        type: 'success',
+                                        title: 'You have successfully shared your link'
+                                    })
+
+                                    this.loadOrganisation();
+                                    this.loadUser();
+                                    this.loadURL();
+                                    this.loadAffiliate();
+                                    this.loadReferralLinks();
+                                    this.loadOrders();
+                                    this.loadCourses();
+                                    this.loadCartItems();
+                                    this.shareform.reset();
+                                    this.$Progress.finish();
+                            })
+                            .catch((response)=>{
+                                this.$Progress.fail()
+                                toast({
+                                    type: 'error',
+                                    title: 'Sorry there seems to be an issue check it link first and try again.'
+                                })
+                            })
+
+                     })
+            },
+            CreateLink(referralCourse_id){
+                this.linkform.referralCourse_id = referralCourse_id;
+                     this.$nextTick(function () {
+                        this.$Progress.start()
+                        this.linkform.patch('referralLink')
+                              .then((response)=>{
+                                    toast({
+                                        type: 'success',
+                                        title: 'You have successfully created your share link'
+                                    })
+
+                                    this.loadOrganisation();
+                                    this.loadUser();
+                                    this.loadURL();
+                                    this.loadAffiliate();
+                                    this.loadReferralLinks();
+                                    this.loadOrders();
+                                    this.loadCourses();
+                                    this.loadCartItems();
+                                    this.linkform.reset();
+                                    this.$Progress.finish();
+                            })
+                            .catch((response)=>{
+                                this.$Progress.fail()
+                                toast({
+                                    type: 'error',
+                                    title: 'Sorry there seems to be an issue check it link first and try again.'
+                                })
+                            })
+
+                     })
+
+            },
             //logged in individuals
             loadUser(){
                 this.$store.commit('setAuthUser', window.logged_user);
+            },
+            loadOrganisation(){
+                return this.$store.dispatch( "organisation")//get a
             },
             loadURL(){
                 this.$store.commit('setBasicURL', APP_URL);
@@ -488,6 +629,7 @@
                  if(this.enrollform.courseType == "Regular"){
                     this.enrollform.parttime_fee = null;
                 }
+                this.$Progress.start()
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
                      toast({

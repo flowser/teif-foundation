@@ -743,8 +743,6 @@
             },
             loadOrganisation(){
                 this.Url = window.location.href;
-                console.log(this.Url,'document.location dddd');
-                this.resetPasswordModal()
                 return this.$store.dispatch( "organisation")//get all from organisation. organisation linked to user
             },
             loadGenders(){

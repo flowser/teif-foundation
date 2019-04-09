@@ -61,6 +61,9 @@ Vue.use(VueProgressBar, {
   height: '4px',
 })
 
+//support linkk sharing
+var SocialSharing = require('vue-social-sharing');
+Vue.use(SocialSharing);
 //sweet alert 2
 import Swal from 'sweetalert2';
 window.Swal = Swal;

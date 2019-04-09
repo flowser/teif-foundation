@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Backend\Affiliate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Course\Referral\ReferralLink;
-use App\Models\Course\Referral\ReferralCourse;
+use App\Models\Course\Referral\Share;
 
-class ReferralLinkController extends Controller
+class SharelinkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,22 +16,7 @@ class ReferralLinkController extends Controller
      */
     public function index()
     {
-        if (auth()->check()) {
-            if (auth()->user()->hasRole('Affiliate')) {
-
-                $referralLinks = Auth::user()->getReferrals();
-
-                $referralCourses = ReferralCourse::with('refferallinks', 'course')//only where loged in user is related with
-                        ->get();
-
-               return response()-> json([
-                    'referralLinks'   =>$referralLinks,
-                    'referralCourses' =>$referralCourses,
-                ], 200);
-            }
-        }
-
-
+        //
     }
 
     /**
@@ -53,17 +37,15 @@ class ReferralLinkController extends Controller
      */
     public function store(Request $request)
     {
-        // 'user_id',
-        // 'referral_course_id',
-        // 'organisation_affiliate_id',
-        // 'code'
-            ReferralLink::create([
-            'first_name'        => $request->first_name,
-            'user_id'           => Auth::user()->id,
-            'referral_course_id' => $request->referralCourse_id,
-        ]);
+                $share = new Share();
+                $share->user_id            = Auth::user()->id;
+                $share->referral_link_id   = $request->referral_link_id;
+                $share->network            = $request->network;
+                $share->save();
 
-
+                return response()-> json([
+                    'code'      =>  200,
+                ], 200);
     }
 
     /**

@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\Organisation\RoleController;
 use App\Http\Controllers\Backend\Organisation\UserController;
 use App\Http\Controllers\Backend\Standard\PositionController;
 use App\Http\Controllers\Backend\Affiliate\AffiliateController;
+use App\Http\Controllers\Backend\Affiliate\SharelinkController;
 use App\Http\Controllers\Backend\Client\standard\CartController;
 use App\Http\Controllers\Backend\Course\Standard\TypeController;
 use App\Http\Controllers\Backend\Webpage\ServiceModelController;
@@ -544,12 +545,22 @@ Route::get('affiliate/delete/{affiliate}', [AffiliateController::class, 'destroy
 //refferal links
 Route::get('referralLink/get', [ReferralLinkController::class, 'index'])->name('referralLink.index');
 Route::get('referralLink/get/list/{referralLink}', [ReferralLinkController::class, 'ReferralLinkList'])->name('referralLink.list-index');
-Route::patch('referralLink/checkout/{referralLink}', [ReferralLinkController::class, 'store'])->name('referralLink.checkout');
+Route::patch('referralLink/', [ReferralLinkController::class, 'store'])->name('referralLink.store');
 
 Route::get('referralLink/show/{referralLink}', [ReferralLinkController::class, 'show'])->name('referralLink.show');
 Route::get('referralLink/edit/{referralLink}', [ReferralLinkController::class, 'edit'])->name('referralLink.edit');
 Route::patch('referralLink/update/{referralLink}', [ReferralLinkController::class, 'update'])->name('referralLink.update');
 Route::get('referralLink/delete/{referralLink}', [ReferralLinkController::class, 'destroy'])->name('referralLink.destroy');
+
+//sharelinks
+Route::get('sharelink/get', [SharelinkController::class, 'index'])->name('sharelink.index');
+Route::get('sharelink/get/list/{sharelink}', [SharelinkController::class, 'SharelinkList'])->name('sharelink.list-index');
+Route::patch('sharelink', [SharelinkController::class, 'store'])->name('sharelink.store');
+
+Route::get('sharelink/show/{sharelink}', [SharelinkController::class, 'show'])->name('sharelink.show');
+Route::get('sharelink/edit/{sharelink}', [SharelinkController::class, 'edit'])->name('sharelink.edit');
+Route::patch('sharelink/update/{sharelink}', [SharelinkController::class, 'update'])->name('sharelink.update');
+Route::get('sharelink/delete/{sharelink}', [SharelinkController::class, 'destroy'])->name('sharelink.destroy');
 
 
 /*
