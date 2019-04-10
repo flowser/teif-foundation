@@ -36,12 +36,12 @@
       <div class="row" style="padding-top: 10px;">
            <!--sidebar filter  -->
           <!-- <div class="col-md-3" style="padding-left: 23px; "> -->
-            <div class="col-md-2 " >
+            <div class="col-md-2 col-sm-12 col-xs-12" >
 				<LeftSideBar/>
 			</div>
 
           <!-- </div> -->
-          <div class="col-md-10" >
+          <div class="col-md-10 col-sm-12 col-xs-12" >
 
               <!-- <div class="row" style="height: 63px; padding-top: 6px;"> -->
                   <!-- <el-tag
@@ -65,8 +65,8 @@
                 </el-input> -->
                 <!-- <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button> -->
               <!-- </div> -->
-              <div class="row">
-                  <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left: 5px;padding-right: 5px;" v-for="course in Courses" :key="course.id">
+              <div class="row ">
+                  <div class="col-md-4 col-sm-6 col-xs-6" style="padding-left: 5px;padding-right: 5px;" v-for="course in Courses" :key="course.id">
                     <div class="welcome-box">
                       <img :src="courseLoadImage(course.image)" alt="welcome1" style="width:100%; height:360px"/>
                       <div class="welcome-title" style="width: 100%;bottom: 0px;">
@@ -215,8 +215,13 @@ import EventSection from "./Event-Section.vue";
                  if(this.enrollform.courseType == "Regular"){
                     this.enrollform.parttime_fee = null;
                 }
+                 this.$Progress.start()
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
+                     let User = window.logged_user
+                    if(User == undefined){
+                         $('#LoginModal').modal('show')
+                    };
                      toast({
                         type: 'success',
                         title: response.data.code,
@@ -243,6 +248,7 @@ import EventSection from "./Event-Section.vue";
                 if(this.enrollform.courseType == "Parttime"){
                     this.enrollform.regular_fee = null;
                 }
+                 this.$Progress.start()
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
                     // console.log(response)
@@ -267,6 +273,7 @@ import EventSection from "./Event-Section.vue";
             },
             Remove(cartItem_id){
                 // console.log(cartItem_id)
+                 this.$Progress.start()
                 axios.get('/cart/remove/'+cartItem_id)
                 .then((response)=>{
                      toast({
@@ -287,6 +294,7 @@ import EventSection from "./Event-Section.vue";
             },
             Clear(CartItems){
                 // console.log(CartItems)
+                 this.$Progress.start()
                 axios.get('/cart/clear/'+CartItems)
                  .then((response)=>{
                      toast({
@@ -331,6 +339,7 @@ import EventSection from "./Event-Section.vue";
             Checkout(CartItems){
                 this.transactionform.cartItems= CartItems
                 // console.log(this.transactionform)
+                 this.$Progress.start()
                 this.transactionform.patch('/order/checkout/'+CartItems)
                 .then((response)=>{
                      toast({

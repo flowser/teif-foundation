@@ -29,53 +29,56 @@
 			<div class="event-box">
 				<div class="row">
                     <div class="profile">
-                        <div class="col-md-4">
-                            <p class="text-justify" v-if="Client.user">
-                                Name:{{Client.user.full_name}}
-                            </p>
-                            <p class="text-justify" v-if="Client.user">
-                                Email:{{Client.user.email}}
-                            </p>
-                            <p class="text-justify">
-                                Phone:{{Client.phone}}
-                            </p>
-                            <p class="text-justify" v-if="Client.gender">
-                                Gender:{{Client.gender.name}}
-                            </p>
-                            <p class="text-justify" v-if="Client.education">
-                                Education Level:{{Client.education.name}}
-                            </p>
+                        <div class="col-md-4 col-xs-12 col-sm-12">
+                            <h5 class="text-justify" v-if="Client.user">
+                                Name: <span style="color:#2700ff;"></span>{{Client.user.full_name}}</span>
+                            </h5>
+                            <h5 class="text-justify" v-if="Client.user">
+                                Email: <span style="color:#2700ff;">{{Client.user.email}}</span>
+                            </h5>
+                            <h5 class="text-justify">
+                                Phone: <span style="color:#2700ff;">{{Client.phone}}</span>
+                            </h5>
+                            <h5 class="text-justify" v-if="Client.gender">
+                                Gender: <span style="color:#2700ff;">{{Client.gender.name}}</span>
+                            </h5>
+                            <h5 class="text-justify" v-if="Client.education">
+                                Education Level: <span style="color:#2700ff;">{{Client.education.name}}</span>
+                            </h5>
                         </div>
                         <div class="col-md-4">
                             <div class="image">
                                  <img :src="clientLoadImage(Client.photo)" alt="" class="img-circle">
                             </div>
-                            <p class="text-justify" v-if="Client.user">
-                                Name:{{Client.user.full_name}}
-                            </p>
+                            <h5 class="text-justify" v-if="Client.user">
+                                Name: <span style="color:#2700ff;">{{Client.user.full_name}}</span>
+                            </h5>
                         </div>
                         <div class="col-md-4">
-                             <p class="text-justify">
-                                ID No.:{{Client.id_no}}
-                            </p>
-                            <p class="text-justify">
-                                About Me:{{Client.about_me}}
-                            </p>
+                             <h5 class="text-justify">
+                                ID No.: <span style="color:#2700ff;">{{Client.id_no}}</span>
+                            </h5>
+                            <h5 class="text-justify">
+                                About Me: <span style="color:#2700ff;">{{Client.about_me}}</span>
+                            </h5>
                             <div class="text-justify">
                                 Address:
-                                <h5 class="widget-user-desc" style="margin-bottom:0">P.O. Box {{Client.address}},</h5>
-                                <h5 class="widget-user-desc" style="margin-bottom:0" v-if="Client.ward">{{Client.ward.name}} Ward,
-                                    <span v-if="Client.constituency">{{Client.constituency.name}} Constituency,</span>
+                                <h5 class="widget-user-desc" style="margin-bottom:0">P.O. Box
+                                    <span style="color:#2700ff;">{{Client.address}}</span>,</h5>
+                                <h5 class="widget-user-desc" style="margin-bottom:0" v-if="Client.ward">
+                                    <span style="color:#2700ff;">{{Client.ward.name}}</span> Ward,
+                                    <span style="color:#2700ff;" v-if="Client.constituency">{{Client.constituency.name}}</span> Constituency,
                                 </h5>
-                                <h5 class="widget-user-desc" style="margin-bottom:0" v-if="Client.county">{{Client.county.name}} County,
-                                    <span v-if="Client.country"> {{Client.country.name}}</span>
+                                <h5 class="widget-user-desc" style="margin-bottom:0" v-if="Client.county">
+                                    <span style="color:#2700ff;">{{Client.county.name}}</span> County,
+                                    <span style="color:#2700ff;" v-if="Client.country"> {{Client.country.name}}</span>
                                 </h5>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row" style="padding-top:22px" >
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-xs-12 col-sm-12" style="overflow-x:auto;">
                         <table id="example2" class="table table-bordered table-hover" style="margin-bottom: 0px;">
                             <thead>
                                 <tr>
@@ -140,7 +143,7 @@
                     </div>
                 </div>
                 <div class="row" style="padding-top:22px" >
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-xs-12 col-sm-12" style="overflow-x:auto;">
                         <table id="example2" class="table table-bordered table-hover" style="margin-bottom: 0px;">
                             <thead>
                                 <tr>

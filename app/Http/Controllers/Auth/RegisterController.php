@@ -189,8 +189,7 @@ class RegisterController extends Controller
                 if($user){
                     event(new \App\Events\UserReferred(request()->cookie('ref'), $user));
 
-                    $user->assignRole('Affiliate');
-                    // $user->assignRole('Client');
+                    $user->assignRole('Affiliate', 'Client');
                     $user ->givePermissionTo('View Frontend');
 
                         $passport = $data['photo'];
@@ -236,6 +235,74 @@ class RegisterController extends Controller
                              //end processing
                             $id_photo_back = $bs_id_name;
                         }
+                        //register as client too,can enroll well
+                        //client Front side id image
+                         $newclient = "newclient";
+                         if($newclient){
+
+                            $passport = $data['photo'];
+                            if($passport){
+                                //processing passport name
+                                $client_ps_strpos = strpos($passport, ';'); //positionof image name semicolon
+                                $client_ps_sub = substr($passport, 0, $client_ps_strpos);
+                                $client_ps_ex = explode('/', $client_ps_sub)[1];
+                                $client_ps_name = time().".".$client_ps_ex;
+
+                                $client_ps_Path = public_path()."/assets/organisation/img/clients/passports";
+                                    $client_ps_img = Image::make($passport);
+                                    $client_ps_img ->save($client_ps_Path.'/'.$client_ps_name);
+                                //end processing
+                                $client_photo= $client_ps_name;
+                            }
+                            //client Front side id image
+                            $frontside_id = $data['id_photo_front'];
+                            if($frontside_id){
+                                //processing front side id imagee
+                                $client_fr_id_strpos = strpos($frontside_id, ';');
+                                $client_fr_id_sub = substr($frontside_id, 0, $client_fr_id_strpos);
+                                $client_fr_id_ex = explode('/', $client_fr_id_sub)[1];
+                                $client_fr_id_name = time().".".$client_fr_id_ex;
+
+                                $client_fr_id_Path = public_path()."/assets/organisation/img/clients/IDs/front";
+                                    $client_fr_id_img = Image::make($frontside_id);
+                                    $client_fr_id_img ->save($client_fr_id_Path.'/'.$client_fr_id_name);
+                                //end processing
+                                $client_id_photo_front = $client_fr_id_name;
+                            }
+                            $backside_id = $data['id_photo_back'];
+                            if($backside_id){
+                                //processing front side id imagee
+                                $client_bs_id_strpos = strpos($backside_id, ';');
+                                $client_bs_id_sub = substr($backside_id, 0, $client_bs_id_strpos);
+                                $client_bs_id_ex = explode('/', $client_bs_id_sub)[1];
+                                $client_bs_id_name = time().".".$client_bs_id_ex;
+
+                                $client_bs_id_Path = public_path()."/assets/organisation/img/clients/IDs/back";
+                                    $client_bs_id_img = Image::make($backside_id);
+                                    $client_bs_id_img ->save($client_bs_id_Path.'/'.$client_bs_id_name);
+                                //end processing
+                                $client_id_photo_back = $client_bs_id_name;
+                            }
+
+                            $client = new Client();
+                            $client ->user_id          = $user->id;
+                            $client ->gender_id        = $data['gender_id'];
+                            $client ->education_id     = $data['education_id'];
+                            $client ->active           = true;
+                            $client ->id_no            = $data['id_no'];
+                            $client ->photo            = $client_photo;
+                            $client ->id_photo_front   = $client_id_photo_front;
+                            $client ->id_photo_back    = $client_id_photo_back;
+                            $client ->about_me         = $data['about_me'];
+                            $client ->phone            = $data['phone'];
+                            $client ->landline         = $data['landline'];
+                            $client ->address          = $data['address'];
+                            $client ->country_id       = $data['country_id'];
+                            $client ->county_id        = $data['county_id'];
+                            $client ->constituency_id  = $data['constituency_id'];
+                            $client ->ward_id          = $data['ward_id'];
+                            $client->save();
+                         }
 
                         if($user){
                             $organisation->organisationaffiliates()->save($user, [
@@ -258,7 +325,7 @@ class RegisterController extends Controller
                             ]);
                         }
                 }
-                    return $user;
+                return $user;
             }
         }
 

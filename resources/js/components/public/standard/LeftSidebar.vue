@@ -3,182 +3,169 @@
      <div class="left-sidebar">
         <h2>Categoriess</h2>
             <aside class="widget widget_categories" style="padding-left: 5px; padding-top: 1px; padding-right: 5px;margin-bottom: 5px;">
-                <label>Duration </label>
-                <el-select
-                       v-model="filterform.duration_id"
-                        multiple
-                        filterable
+                <div class="col-md-12 col-xs-6 col-sm-6" style="padding-right: 5px;padding-left: 5px;">
+                    <label>Duration </label><br>
+                    <el-select
+                        v-model="filterform.duration_id"
+                            multiple
+                            filterable
 
-                        placeholder="Select Duration"
-                        @change="remoteMethod"
-                        :loading="loading">
-                    <el-option
+                            placeholder="Select Duration"
+                            @change="remoteMethod"
+                            :loading="loading">
+                        <el-option
 
-                    v-for="duration in Durations" :key="duration.id"
-                    v-show="duration.courses.length"
-                    :label="duration.name"
-                    :value="duration.id"> {{duration.name}} ({{duration.courses.length}})
-                    </el-option>
-                </el-select>
+                        v-for="duration in Durations" :key="duration.id"
+                        v-show="duration.courses.length"
+                        :label="duration.name"
+                        :value="duration.id"> {{duration.name}} ({{duration.courses.length}})
+                        </el-option>
+                    </el-select>
+                </div>
+                <div class="col-md-12 col-xs-6 col-sm-6" style="padding-right: 5px;padding-left: 5px;">
+                    <label>Skill </label><br>
+                    <el-select
+                        v-model="filterform.skill_id"
+                            multiple
+                            filterable
+                            placeholder="Select Skill"
+                            @change="remoteMethod"
+                            :loading="loading">
+                        <el-option
+                        v-for="skill in Skills" :key="skill.id"
+                        v-show="skill.courses.length"
+                        :label="skill.name"
+                        :value="skill.id">{{skill.name}} ({{skill.courses.length}})
+                        </el-option>
+                    </el-select>
+                </div>
+                <div class="col-md-12 col-xs-6 col-sm-6" style="padding-right: 5px;padding-left: 5px;">
+                    <label>School </label><br>
+                    <el-select
+                        v-model="filterform.school_id"
+                            multiple
+                            filterable
 
-                <label>Skill </label>
-                <el-select
-                       v-model="filterform.skill_id"
-                        multiple
-                        filterable
+                            placeholder="Select School"
+                            @change="remoteMethod"
+                            :loading="loading">
+                        <el-option
+                        v-for="school in Schools" :key="school.id"
+                        v-show="school.courses.length"
+                        :label="school.name"
+                        :value="school.id">{{school.name}} ({{school.courses.length}})
+                        </el-option>
+                    </el-select>
+                </div>
+                <div class="col-md-12 col-xs-6 col-sm-6" style="padding-right: 5px;padding-left: 5px;">
+                    <label>Type </label><br>
+                    <el-select
+                        v-model="filterform.type_id"
+                            multiple
+                            filterable
 
-                        placeholder="Select Skill"
-                        @change="remoteMethod"
-                        :loading="loading">
-                    <el-option
-                    v-for="skill in Skills" :key="skill.id"
-                    v-show="skill.courses.length"
-                    :label="skill.name"
-                    :value="skill.id">{{skill.name}} ({{skill.courses.length}})
-                    </el-option>
-                </el-select>
+                            placeholder="Select Type"
+                            @change="remoteMethod"
+                            :loading="loading">
+                        <el-option
+                        v-for="Type in Types" :key="Type.id"
+                        v-show="Type.courses.length"
+                        :label="Type.name"
+                        :value="Type.id">{{Type.name}} ({{Type.courses.length}})
+                        </el-option>
+                    </el-select>
+                </div>
+                <div class="col-md-12 col-xs-6 col-sm-6" style="padding-right: 5px;padding-left: 5px;">
+                    <label>Subject </label><br>
+                    <el-select
+                        v-model="filterform.subject_id"
+                            multiple
+                            filterable
 
-                <label>School </label>
-                <el-select
-                       v-model="filterform.school_id"
-                        multiple
-                        filterable
+                            placeholder="Select Subject"
+                            @change="remoteMethod"
+                            :loading="loading">
+                        <el-option
+                        v-for="subject in Subjects" :key="subject.id"
+                        v-show="subject.courses.length"
+                        :label="subject.name"
+                        :value="subject.id">{{subject.name}} ({{subject.courses.length}})
+                        </el-option>
+                    </el-select>
+                </div>
+                <div class="col-md-12 col-xs-6 col-sm-6" style="padding-right: 5px;padding-left: 5px;">
+                    <label>Feature </label><br>
+                    <el-select
+                        v-model="filterform.feature_id"
+                            multiple
+                            filterable
 
-                        placeholder="Select School"
-                        @change="remoteMethod"
-                        :loading="loading">
-                    <el-option
-                    v-for="school in Schools" :key="school.id"
-                    v-show="school.courses.length"
-                    :label="school.name"
-                    :value="school.id">{{school.name}} ({{school.courses.length}})
-                    </el-option>
-                </el-select>
+                            placeholder="Select Feature"
+                            @change="remoteMethod"
+                            :loading="loading">
+                        <el-option
+                        v-for="feature in Features" :key="feature.id"
+                        v-show="feature.courses.length"
+                        :label="feature.name"
+                        :value="feature.id">{{feature.name}} ({{feature.courses.length}})
+                        </el-option>
+                    </el-select>
+                </div>
+                <div class="col-md-12 col-xs-6 col-sm-6" style="padding-right: 5px;padding-left: 5px;">
+                    <label>Availability </label><br>
+                    <el-select
+                        v-model="filterform.availability_id"
+                            multiple
+                            filterable
 
-                <label>Type </label>
-                <el-select
-                       v-model="filterform.type_id"
-                        multiple
-                        filterable
+                            placeholder="Select Availability"
+                            @change="remoteMethod"
+                            :loading="loading">
+                        <el-option
+                        v-for="availability in Availabilities" :key="availability.id"
+                        v-show="availability.courses.length"
+                        :label="availability.name"
+                        :value="availability.id">{{availability.name}} ({{availability.courses.length}})
+                        </el-option>
+                    </el-select>
+                </div>
+                <div class="col-md-12 col-xs-6 col-sm-6" style="padding-right: 5px;padding-left: 5px;">
+                    <label>Accessibility </label><br>
+                    <el-select
+                        v-model="filterform.accessibility_id"
+                            multiple
+                            filterable
 
-                        placeholder="Select Type"
-                        @change="remoteMethod"
-                        :loading="loading">
-                    <el-option
-                    v-for="type in Types" :key="type.id"
-                    v-show="type.courses.length"
-                    :label="type.name"
-                    :value="type.id">{{type.name}} ({{type.courses.length}})
-                    </el-option>
-                </el-select>
+                            placeholder="Select Accessibility"
+                            @change="remoteMethod"
+                            :loading="loading">
+                        <el-option
+                        v-for="accessibility in Accessibilities" :key="accessibility.id"
+                        v-show="accessibility.courses.length"
+                        :label="accessibility.name"
+                        :value="accessibility.id">{{accessibility.name}} ({{accessibility.courses.length}})
+                        </el-option>
+                    </el-select>
+                </div>
+                <div class="col-md-12 col-xs-6 col-sm-6" style="padding-right: 5px;padding-left: 5px;">
+                    <label>Language </label><br>
+                    <el-select
+                        v-model="filterform.language_id"
+                            multiple
+                            filterable
 
-                <label>Subject </label>
-                <el-select
-                       v-model="filterform.subject_id"
-                        multiple
-                        filterable
-
-                        placeholder="Select Subject"
-                        @change="remoteMethod"
-                        :loading="loading">
-                    <el-option
-                    v-for="subject in Subjects" :key="subject.id"
-                    v-show="subject.courses.length"
-                    :label="subject.name"
-                    :value="subject.id">{{subject.name}} ({{subject.courses.length}})
-                    </el-option>
-                </el-select>
-
-                <label>Feature </label>
-                <el-select
-                       v-model="filterform.feature_id"
-                        multiple
-                        filterable
-
-                        placeholder="Select Feature"
-                        @change="remoteMethod"
-                        :loading="loading">
-                    <el-option
-                    v-for="feature in Features" :key="feature.id"
-                    v-show="feature.courses.length"
-                    :label="feature.name"
-                    :value="feature.id">{{feature.name}} ({{feature.courses.length}})
-                    </el-option>
-                </el-select>
-
-                <label>Availability </label>
-                <el-select
-                       v-model="filterform.availability_id"
-                        multiple
-                        filterable
-
-                        placeholder="Select Availability"
-                        @change="remoteMethod"
-                        :loading="loading">
-                    <el-option
-                    v-for="availability in Availabilities" :key="availability.id"
-                    v-show="availability.courses.length"
-                    :label="availability.name"
-                    :value="availability.id">{{availability.name}} ({{availability.courses.length}})
-                    </el-option>
-                </el-select>
-
-
-
-               <label>Accessibility </label>
-                <el-select
-                       v-model="filterform.accessibility_id"
-                        multiple
-                        filterable
-
-                        placeholder="Select Accessibility"
-                        @change="remoteMethod"
-                        :loading="loading">
-                    <el-option
-                    v-for="accessibility in Accessibilities" :key="accessibility.id"
-                    v-show="accessibility.courses.length"
-                    :label="accessibility.name"
-                    :value="accessibility.id">{{accessibility.name}} ({{accessibility.courses.length}})
-                    </el-option>
-                </el-select>
-
-                <label>Language </label>
-                <el-select
-                       v-model="filterform.language_id"
-                        multiple
-                        filterable
-
-                        placeholder="Select Language"
-                        @change="remoteMethod"
-                        :loading="loading">
-                    <el-option
-                    v-for="language in Languages" :key="language.id"
-                    v-show="language.courses.length"
-                    :label="language.name"
-                    :value="language.id">{{language.name}} ({{language.courses.length}})
-                    </el-option>
-                </el-select>
-
-                   <!-- <el-select placeholder="Select"
-                   v-model="filterform.duration_id"
-                        multiple
-                        filterable
-                        remote
-
-                        @change="remoteMethod"
-                        :loading="loading" style="    width: 100%;">
-                    <el-option-group
-                    v-for="group in options3"
-                    :key="group.label"
-                    :label="group.label" >
-                    <el-option
-                        v-for="item in group.options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                    </el-option>
-                    </el-option-group>
-                </el-select> -->
+                            placeholder="Select Language"
+                            @change="remoteMethod"
+                            :loading="loading">
+                        <el-option
+                        v-for="language in Languages" :key="language.id"
+                        v-show="language.courses.length"
+                        :label="language.name"
+                        :value="language.id">{{language.name}} ({{language.courses.length}})
+                        </el-option>
+                    </el-select>
+                </div>
+                <hr class="col-md-12 col-xs-12 col-sm-12" style="padding-right: 0px;padding-left: 0px;">
 			</aside>
 
     </div>
@@ -310,6 +297,7 @@
             },
             remoteMethod(query) {
                 // console.log(this.filterform)
+                 this.$Progress.start()
                 this.$store.dispatch("CoursesByFilter", this.filterform)
                 .then((response)=>{
                      toast({

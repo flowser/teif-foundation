@@ -29,53 +29,56 @@
             <div class="event-box">
                 <div class="row">
                     <div class="profile">
-                        <div class="col-md-4">
-                            <p class="text-justify" v-if="Affiliate.user">
-                                Name:{{Affiliate.user.full_name}}
-                            </p>
-                            <p class="text-justify" v-if="Affiliate.user">
-                                Email:{{Affiliate.user.email}}
-                            </p>
-                            <p class="text-justify">
-                                Phone:{{Affiliate.phone}}
-                            </p>
-                            <p class="text-justify" v-if="Affiliate.gender">
-                                Gender:{{Affiliate.gender.name}}
-                            </p>
-                            <p class="text-justify" v-if="Affiliate.education">
-                                Education Level:{{Affiliate.education.name}}
-                            </p>
+                        <div class="col-md-4 col-xs-12 col-sm-12">
+                            <h5 class="text-justify" v-if="Affiliate.user">
+                                Name: <span style="color:#2700ff;">{{Affiliate.user.full_name}}</span>
+                            </h5>
+                            <h5 class="text-justify" v-if="Affiliate.user">
+                                Email: <span style="color:#2700ff;">{{Affiliate.user.email}}</span>
+                            </h5>
+                            <h5 class="text-justify">
+                                Phone: <span style="color:#2700ff;">{{Affiliate.phone}}</span>
+                            </h5>
+                            <h5 class="text-justify" v-if="Affiliate.gender">
+                                Gender: <span style="color:#2700ff;">{{Affiliate.gender.name}}</span>
+                            </h5>
+                            <h5 class="text-justify" v-if="Affiliate.education">
+                                Education Level: <span style="color:#2700ff;">{{Affiliate.education.name}}</span>
+                            </h5>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-xs-12 col-sm-12">
                             <div class="image">
                                  <img :src="affiliateLoadImage(Affiliate.photo)" alt="" class="img-circle">
                             </div>
-                            <p class="text-justify" v-if="Affiliate.user">
-                                Name:{{Affiliate.user.full_name}}
-                            </p>
+                            <h5 class="text-justify" v-if="Affiliate.user">
+                                Name: <span style="color:#2700ff;">{{Affiliate.user.full_name}}</span>
+                            </h5>
                         </div>
-                        <div class="col-md-4">
-                             <p class="text-justify">
-                                ID No.:{{Affiliate.id_no}}
-                            </p>
-                            <p class="text-justify">
-                                About Me:{{Affiliate.about_me}}
-                            </p>
+                        <div class="col-md-4 col-xs-12 col-sm-12">
+                             <h5 class="text-justify">
+                                ID No.: <span style="color:#2700ff;">{{Affiliate.id_no}}</span>
+                            </h5>
+                            <h5 class="text-justify">
+                                About Me: <span style="color:#2700ff;">{{Affiliate.about_me}}</span>
+                            </h5>
                             <div class="text-justify">
                                 Address:
-                                <h5 class="widget-user-desc" style="margin-bottom:0">P.O. Box {{Affiliate.address}},</h5>
-                                <h5 class="widget-user-desc" style="margin-bottom:0" v-if="Affiliate.ward">{{Affiliate.ward.name}} Ward,
-                                    <span v-if="Affiliate.constituency">{{Affiliate.constituency.name}} Constituency,</span>
+                                <h5 class="widget-user-desc" style="margin-bottom:0;">P.O. Box
+                                     <span style="color:#2700ff;">{{Affiliate.address}}</span>,</h5>
+                                <h5 class="widget-user-desc" style="margin-bottom:0;" v-if="Affiliate.ward">
+                                    <span style="color:#2700ff;">{{Affiliate.ward.name}}</span> Ward,
+                                    <span style="color:#2700ff" v-if="Affiliate.constituency">{{Affiliate.constituency.name}}</span> Constituency,
                                 </h5>
-                                <h5 class="widget-user-desc" style="margin-bottom:0" v-if="Affiliate.county">{{Affiliate.county.name}} County,
-                                    <span v-if="Affiliate.country"> {{Affiliate.country.name}}</span>
+                                <h5 class="widget-user-desc" style="margin-bottom:0;" v-if="Affiliate.county">
+                                    <span style="color:#2700ff;">{{Affiliate.county.name}}</span> County,
+                                    <span style="color:#2700ff" v-if="Affiliate.country"> {{Affiliate.country.name}}</span>
                                 </h5>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row" style="padding-top:22px" >
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-xs-12 col-sm-12" style="overflow-x:auto;">
                         <h3>Courses that You can Create  Link And do Affiliate Makerting by Refferals</h3>
                         <table id="example2" class="table table-bordered table-hover" style="margin-bottom: 0px;">
                             <thead>
@@ -145,53 +148,53 @@
                                                           hashtags="teiffoundation"
                                                           twitter-user="TeifFoundation"
                                                           inline-template>
-                                                   <div>
-                                                       <div class="col-md-6">
-                                                           <div class="row" style="margin-top: 3px;margin-bottom: 2px;">
-                                                               <div class="btn btn-md btn-primary" style="">
+                                                   <div >
+                                                       <div class="col-md-6 col-xs-6 col-sm-6">
+                                                           <div class="row" style="padding-top: 3px;padding-bottom: 2px;">
+                                                               <div class="btn btn-md btn-primary" style="width:48%;">
                                                                    <network network="facebook">
                                                                        <i class="fa fa-facebook" ></i> Facebook
                                                                    </network>
                                                                </div>
-                                                               <div class="btn btn-md btn-info" style="">
+                                                               <div class="btn btn-md btn-info" style="width:48%;">
                                                                    <network network="twitter">
                                                                        <i class="fa fa-twitter"></i> Twitter
                                                                    </network>
                                                                </div>
                                                            </div>
-                                                           <div class="row" style="margin-top: 3px;margin-bottom: 2px;">
-                                                               <div class="btn btn-md btn-primary">
+                                                           <div class="row" style="padding-top: 3px;padding-bottom: 2px;">
+                                                               <div class="btn btn-md btn-primary" style="width:48%;">
                                                                    <network network="linkedin">
                                                                        <i class="fa fa-linkedin"></i> LinkedIn
                                                                    </network>
                                                                </div>
-                                                               <div class="btn btn-md btn-primary">
+                                                               <div class="btn btn-md btn-primary" style="width:48%;">
                                                                    <network network="skype">
                                                                        <i class="fa fa-skype"></i> Skype
                                                                    </network>
                                                                </div>
                                                            </div>
                                                        </div>
-                                                       <div class="col-md-6">
-                                                           <div class="row" style="margin-top: 3px;margin-bottom: 2px;">
-                                                               <div class="btn btn-md btn-success" style="">
+                                                       <div class="col-md-6 col-xs-6 col-sm-6">
+                                                           <div class="row" style="padding-top: 3px;padding-bottom: 2px;">
+                                                               <div class="btn btn-md btn-success" style="width:48%;">
                                                                    <network network="whatsapp">
                                                                        <i class="fa fa-whatsapp"></i> Whatsapp
                                                                    </network>
                                                                </div>
-                                                               <div class="btn btn-md btn-warning" style="">
+                                                               <div class="btn btn-md btn-warning" style="width:48%;">
                                                                    <network network="email">
                                                                        <i class="fa fa-envelope"></i> Email
                                                                    </network>
                                                                </div>
                                                            </div>
-                                                           <div class="row" style="margin-top: 3px;margin-bottom: 2px;">
-                                                                <div class="btn btn-md btn-info" style="">
+                                                           <div class="row" style="padding-top: 3px;padding-bottom: 2px;">
+                                                                <div class="btn btn-md btn-info" style="width:48%;">
                                                                    <network network="telegram">
                                                                        <i class="fa fa-telegram"></i> Telegram
                                                                    </network>
                                                                </div>
-                                                                <div class="btn btn-md btn-danger" style="">
+                                                                <div class="btn btn-md btn-danger" style="width:48%;">
                                                                    <network network="sms">
                                                                        <i class="fa fa-commenting-o"></i> SMS
                                                                    </network>
@@ -211,7 +214,7 @@
                     </div>
                 </div>
                 <div class="row" style="padding-top:22px" >
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-xs-12 col-sm-12" style="overflow-x:auto;">
                         <table id="example2" class="table table-bordered table-hover" style="margin-bottom: 0px;">
                             <thead>
                                 <tr>
@@ -285,7 +288,7 @@
                     </div>
                 </div>
                 <div class="row" style="padding-top:22px" >
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-xs-12 col-sm-12" style="overflow-x:auto;">
                         <table id="example2" class="table table-bordered table-hover" style="margin-bottom: 0px;">
                             <thead>
                                 <tr>
@@ -508,15 +511,9 @@
                                         type: 'success',
                                         title: 'You have successfully shared your link'
                                     })
-
-                                    this.loadOrganisation();
-                                    this.loadUser();
                                     this.loadURL();
                                     this.loadAffiliate();
                                     this.loadReferralLinks();
-                                    this.loadOrders();
-                                    this.loadCourses();
-                                    this.loadCartItems();
                                     this.shareform.reset();
                                     this.$Progress.finish();
                             })
@@ -540,15 +537,8 @@
                                         type: 'success',
                                         title: 'You have successfully created your share link'
                                     })
-
-                                    this.loadOrganisation();
-                                    this.loadUser();
-                                    this.loadURL();
                                     this.loadAffiliate();
                                     this.loadReferralLinks();
-                                    this.loadOrders();
-                                    this.loadCourses();
-                                    this.loadCartItems();
                                     this.linkform.reset();
                                     this.$Progress.finish();
                             })

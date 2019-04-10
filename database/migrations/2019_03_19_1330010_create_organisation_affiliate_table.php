@@ -48,7 +48,7 @@ class CreateOrganisationAffiliateTable extends Migration
             $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade');
             $table->foreign('organisation_tutor_id')->references('id')->on('organisation_tutor')->onDelete('cascade');
             $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
-            $table->foreign('education_id')->references('id')->on('educations')->onDelete('cascade');
+            $table->foreign('education_id')->references('id')->on('education')->onDelete('cascade');
             $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

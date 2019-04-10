@@ -789,6 +789,7 @@
                 var url = new URL(this.Url);
                 var token = url.searchParams.get("token");
                 if(token !=null){
+                    this.$Progress.start()
                     axios.get('/password/reset/'+token)
                      .then((response)=>{
                        this.resetpasswordform.token = response.data.token
@@ -816,13 +817,10 @@
                     this.emaillinkform.post('password/email')
 
                    .then((response)=>{
-                       console.log(response, 'rest')
                         toast({
                             type: 'success',
                             title: 'You have successfully Sent a password Reset email, check your mail to complete your Requeas'
                         })
-                        this.loadCourses()
-                        this.loadCartItems()
                         $('#LoginModal').modal('hide')
                         $('#EmailResetLinkModal').modal('hide')
                         this.$Progress.finish()
@@ -837,7 +835,6 @@
             },
             resetPassord(){
                 this.$Progress.start();
-                console.log(this.resetpasswordform, 'loooo')
                     this.resetpasswordform.post('password/reset')
                    .then((response)=>{
                        window.location.replace('home')
@@ -1192,7 +1189,6 @@
                         })
             },
             registerClient() {
-                console.log('ssss')
                 this.$Progress.start();
                 this.clientform.user_type = "Client"
                 this.clientform.post('register')
@@ -1220,7 +1216,6 @@
                     })
             },
             updateClient(id){
-                  console.log(id)
                   this.$Progress.start();
                      this.clientform.patch('/client/update/'+id)
                         .then(()=>{
@@ -1378,25 +1373,20 @@
                  if(this.enrollform.courseType == "Regular"){
                     this.enrollform.parttime_fee = null;
                 }
+                //  this.$Progress.start()
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
+                    let User = window.logged_user
+                    if(User == undefined){
+                        $('#LoginModal').modal('show')
+                    };
                      toast({
                         type: 'success',
                         title: response.data.code,
                         title: response.data.message,
                         })
-
-                        this.loadOrders();
-                        this.loadClient();
-                        this.loadCourses();
                         this.loadCartItems();
-                        this.loadCountries();
-                        this.loadCounties();
-                        this.loadConstituencies();
-                        this.loadWards();
-                        this.loadEducations();
-                        this.loadGenders();
-                          this.$Progress.finish()
+                        this.$Progress.finish()
                 })
                 .catch((response)=>{
                     // console.log(response.data)
@@ -1414,6 +1404,7 @@
                 if(this.enrollform.courseType == "Parttime"){
                     this.enrollform.regular_fee = null;
                 }
+                 this.$Progress.start()
                 this.enrollform.patch('/cart/')
                 .then((response)=>{
                     console.log(response)
@@ -1422,18 +1413,8 @@
                         title: response.data.code,
                         title: response.data.message,
                         })
-
-                        this.loadOrders();
-                        this.loadClient();
-                        this.loadCourses();
                         this.loadCartItems();
-                        this.loadCountries();
-                        this.loadCounties();
-                        this.loadConstituencies();
-                        this.loadWards();
-                        this.loadEducations();
-                        this.loadGenders();
-                          this.$Progress.finish()
+                        this.$Progress.finish()
                 })
                 .catch((response)=>{
                     console.log(response)
@@ -1445,24 +1426,15 @@
                 })
             },
             Remove(cartItem_id){
-                console.log(cartItem_id)
+                 this.$Progress.start()
                 axios.get('/cart/remove/'+cartItem_id)
                 .then((response)=>{
                      toast({
                         type: 'success',
                         title: 'Course Removed successful'
                         })
-                        this.loadOrders();
-                        this.loadClient();
-                        this.loadCourses();
                         this.loadCartItems();
-                        this.loadCountries();
-                        this.loadCounties();
-                        this.loadConstituencies();
-                        this.loadWards();
-                        this.loadEducations();
-                        this.loadGenders();
-                          this.$Progress.finish()
+                        this.$Progress.finish()
                 })
                 .catch((response)=>{
                     this.$Progress.fail()
@@ -1473,23 +1445,14 @@
                 })
             },
             Clear(CartItems){
-                console.log(CartItems)
+                 this.$Progress.start()
                 axios.get('/cart/clear/'+CartItems)
                  .then((response)=>{
                      toast({
                         type: 'success',
                         title: 'Course Cart was Cleared successful'
                         })
-                        this.loadOrders();
-                        this.loadClient();
-                        this.loadCourses();
                         this.loadCartItems();
-                        this.loadCountries();
-                        this.loadCounties();
-                        this.loadConstituencies();
-                        this.loadWards();
-                        this.loadEducations();
-                        this.loadGenders();
                           this.$Progress.finish()
                 })
                 .catch((response)=>{
@@ -1501,7 +1464,6 @@
                 })
             },
             openCheckoutModal(CartItems){
-                console.log(CartItems)
                 this.loadCourses()
                 this.loadCartItems()
                 this.transactionform.reset()
@@ -1526,7 +1488,7 @@
             },
             Checkout(CartItems){
                this.transactionform.cartItems= CartItems
-                console.log(this.transactionform)
+               this.$Progress.start()
                 this.transactionform.patch('/order/checkout/'+CartItems)
                 .then((response)=>{
                      toast({
@@ -1534,14 +1496,6 @@
                         title: 'Payment was successful, wait, for verification'
                         })
                         this.loadCartItems()
-                        this.loadCourses();
-                        this.loadCartItems();
-                        this.loadCountries();
-                        this.loadCounties();
-                        this.loadConstituencies();
-                        this.loadWards();
-                        this.loadEducations();
-                        this.loadGenders();
                         $('#CheckoutModal').modal('hide')
                         this.transactionform.reset()
                           this.$Progress.finish()
