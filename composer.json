@@ -18,7 +18,8 @@
         "pdazcom/laravel-referrals": "^0.2.1",
         "propaganistas/laravel-phone": "^4.1",
         "ramsey/uuid": "^3.8",
-        "spatie/laravel-permission": "^2.29"
+        "spatie/laravel-permission": "^2.29",
+        "tymon/jwt-auth": "dev-develop"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

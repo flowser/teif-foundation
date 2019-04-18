@@ -9,11 +9,66 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <!-- COMMON TAGS -->
+    <meta charset="utf-8">
+    <title>{{$organisation->name}}</title>
     <meta name="csrf-token" content="{{csrf_token()}}" />
-	<title>Teif Foundation - @yield('title')</title>
-	{{--  <title>Home -Knowledge</title>  --}}
+
+
+    <!-- Search Engine -->
+    {{-- <meta name="description" content="{{$organisation->about->who_we_are}}">
+    <meta name="image" content="{{asset('assets/organisation/img/website/frontimage')}}/{{$organisation->about->front_image}}"> --}}
+
+    <!-- Schema.org for Google -->
+
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{$organisation->name}}">
+    <meta name="twitter:description" content="{{$organisation->about->who_we_are}}">
+    <meta name="twitter:site" content="@TeifFoundation">
+    <meta name="twitter:creator" content="@TeifFoundation">
+    <meta name="twitter:image:src" content="{{asset('assets/organisation/img/website/frontimage')}}/{{$organisation->about->front_image}}">
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+
+    <meta property="og:url"         content="{{url('')}}" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="{{$organisation->name}}" />
+    <meta property="og:description" content="{{$organisation->about->who_we_are}}" />
+    <meta property="og:image" content="{{asset('assets/organisation/img/logo')}}/{{$organisation->logo}}" />
+    <meta property="og:image:type"  content="image/jpeg" />
+    <meta property="og:image:width" content="50" />
+    <meta property="og:image:height"content="20" />
+    <meta property="fb:app_id"      content="828111440888989" />
+    {{-- <meta property="fb:pages" content="{PAGE_ID}">
+    <meta property="ia:markup_url" content="{URL}"> --}}
+
+    {{-- teif pixel tracking facebook --}}
+
+    <!-- Facebook Pixel Code -->
+        <script>
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '306290463376372');
+            fbq('track', 'PageView');
+        </script>
+        <noscript>
+            <img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=306290463376372&ev=PageView&noscript=1"/>
+        </noscript>
+    <!-- End Facebook Pixel Code -->
+
+
+  </head>
+
+
+
 	<!-- Standard Favicon -->
 	<link rel="icon" type="image/x-icon" href="{{asset('assets/organisation/img/logo')}}/{{$organisation->logo}}"/>
 
@@ -50,15 +105,37 @@
 </head>
 
 <body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
+
   <div id="app">
+        <div id="fb-root"></div>
+
+
+        {{-- <div class="fb-share-button"
+          data-href="{{url('')}}"
+          data-layout="button_count">
+        </div> --}}
+
+
+
+        {{--  {{$organisation}},  --}}
+      {{--  {{$organisation->about}}  --}}
       {{-- {{ Auth::user()->getReferrals()}} --}}
 				{{-- {{ Auth::check() }} --}}
 				{{--  {{$organisation}}
-				llllll  --}}
-    <home-main ></home-main>
-    emamba
+                llllll  --}}
+
+    <frontend></frontend>
+
   </div>
 </body>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 
 @if(Auth::check())
    <script>

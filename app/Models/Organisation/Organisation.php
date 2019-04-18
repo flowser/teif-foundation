@@ -12,6 +12,7 @@ use App\Models\Standard\Webservices\About;
 use App\Models\Standard\Webservices\Advert;
 use App\Models\Standard\Webservices\Feature;
 use App\Models\Standard\Webservices\Service;
+use App\Models\Organisation\OrganisationDirector;
 use App\Models\Standard\Webservices\ServiceModel;
 
 
@@ -37,6 +38,7 @@ class Organisation extends Model
     ];
 
     //belongs to
+
     public function country()
     {
         return $this->belongsTo(Country::class);

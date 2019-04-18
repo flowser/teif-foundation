@@ -25,8 +25,10 @@ use App\Models\Client\Standard\Manual_Collection;
 use App\Models\Client\Standard\Parcel_Collection;
 use App\Models\Standard\Webservices\ServiceModel;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+// class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasRoles,
         Notifiable,
@@ -84,6 +86,15 @@ class User extends Authenticatable
         'confirmed' => 'boolean',
     ];
 
+        public function getJWTIdentifier()
+        {
+            return $this->getKey();
+        }
+
+        public function getJWTCustomClaims()
+        {
+            return [];
+        }
 
       public function getFullNameAttribute()
       {

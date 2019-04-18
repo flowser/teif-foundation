@@ -40,14 +40,8 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('admin-main', require('./components/admins/AdminMaster.vue').default);
-Vue.component('home-main', require('./components/public/HomeMaster.vue').default);
-Vue.component('top-header', require('./components/public/standard/Top-Header.vue').default);
-Vue.component('photo-slider', require('./components/public/standard/Photo-Slider.vue').default);
-Vue.component('menu-block', require('./components/public/standard/Menu-Block.vue').default);
-Vue.component('latest-blog', require('./components/public/standard/Latest-Blog.vue').default);
-Vue.component('footer-content', require('./components/public/standard/Footer.vue').default);
-Vue.component('home', require('./components/public/standard/Home.vue').default);
+Vue.component('backend', require('./components/BackendMaster.vue').default);
+Vue.component('frontend', require('./components/FrontendMaster.vue').default);
 // Vue.component('about-us', require('./components/public/standard/About-Us.vue').default);
 // Vue.component('filter-header', require('./components/public/standard/Filter.vue').default);
 //support pagination
@@ -103,7 +97,7 @@ Vue.use(VueFormWizard);
 
 //vrouter
 const router = new VueRouter({
-    mode: 'hash', //hash, history
+    mode: 'history', //hash, history
     routes // short for `routes: routes`
   });
 const app = new Vue({

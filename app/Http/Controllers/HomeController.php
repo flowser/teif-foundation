@@ -53,7 +53,7 @@ class HomeController extends Controller
                                'organisationdirectors', 'organisationadmins', 'organisationemployees')
                                ->first();
 
-                  return view('admin.adminmaster', compact("logged_user", "organisation"));
+                  return view('layouts.adminmaster', compact("logged_user", "organisation"));
 
             }elseif (auth()->user()->hasAnyRole(['Client', 'Affiliate'])) {
                  return redirect('/');

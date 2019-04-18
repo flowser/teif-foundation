@@ -1,52 +1,72 @@
-import AdminHome from './components/admins/AdminHome.vue';
+// import AdminHome from './components/admins/AdminHome.vue';
 
 //Organisation
     //org superadmin
         //org Directors
-        import DirectorList from './components/admins/organisation/superadmin/directors/Directors.vue';
-        //org Admins
-        import AdminList from './components/admins/organisation/superadmin/admins/Admins.vue';
+        import DirectorList from './pages/backend/users/Directors.vue';
+        // //org Admins
+        import AdminList from './pages/backend/users/Admins.vue';
         //org Employees
-        import EmployeeList from './components/admins/organisation/superadmin/Employees/Employees.vue';
+        import EmployeeList from './pages/backend/users/Employees.vue';
 
         //Permission
-        import PermissionList from './components/admins/organisation/superadmin/permission/List.vue';
-        //role
-        import RoleList from './components/admins/organisation/superadmin/role/List.vue';
+        import PermissionList from './pages/backend/settings/Permissions.vue';
         //user
-        import UserList from './components/admins/organisation/superadmin/user/List.vue';
+        import UserList from './pages/backend/users/Users.vue';
         //Organisation settings
-        import Orgsetting from './components/admins/organisation/Organisation.vue';
+        import Orgsetting from './pages/backend/settings/Organisation.vue';
 
         //single about image full more
-        import SingleAboutImage from './components/admins/organisation/SingleAboutPic.vue';
+        import SingleAboutImage from './pages/backend/standard/about.vue';
 
         //Single Advert read more
-        import SingleAdvert from './components/admins/organisation/SingleAdvert.vue';
+        import SingleAdvert from './pages/backend/standard/adverts/Adverts.vue';
 
         //Single Service read more
-        import SingleService from './components/admins/organisation/SingleService.vue';
+        import SingleService from './pages/backend/standard/services/SingleService.vue';
 
 
         // course
 
-        import CourseList from './components/admins/organisation/admin/Course.vue';
-        import SingleCourse from './components/admins/organisation/admin/SingleCourse.vue';
+        import CourseList from './pages/backend/courses/Courses.vue';
+        import SingleCourse from './pages/backend/courses/SingleCourse.vue';
         //public
-        import FrontHome from './components/public/standard/Home.vue';
-        import About from './components/public/standard/About-Us.vue';
-        import Events from './components/public/standard/Full-Event.vue';
-        import Services from './components/public/standard/Services.vue';
-        import Team from './components/public/standard/Team.vue';
-        import MyAccount from './components/public/Auth/MyAccount.vue';
-        import MyAffiliateAccount from './components/public/Auth/MyAffiliateAccount.vue';
+        // import Home from './components/public/standard/Home.vue';
 
-        import CourseDetails from './components/public/standard/Course-Details.vue';
+        //frontend pages
+        import Home from './pages/Home.vue';
+        import CourseDetails from './pages/frontend/Course-Details.vue';
+        import Events from './pages/frontend/Full-Event.vue';
+        import About from './pages/frontend/About-Us.vue';
+        import Team from './pages/frontend/Team.vue';
+        import Services from './pages/frontend/Services.vue';
+        //backend pages
+        // import Courses  from
+        // import Course_Details  from
+        // import Employee  from
+        // import Directors  from
+        // import Admins  from
+        // import Tutors  from
+        // import Affiliates  from
+        // import Users  from
+        // import Roles  from
+        // import Settings  from
+        // import About  from
+        // import Services  from
+        // import Adverts  from
+        // import UserPolicy  from
 
-//frontend public view
-import Public from './components/public/About.vue';
-import PublicSingleService from './components/public/PublicSingleService.vue';
-import PublicSingleServiceModel from './components/public/PublicSingleServiceModel.vue';
+                //logged in user
+        import SuperadminDashboard from './pages/user/admin/superadmin/Dashboard.vue';
+        import DirectorDashboard from  './pages/user/admin/director/Dashboard.vue';
+        import AdministratorDashboard from   './pages/user/admin/administrator/Dashboard.vue';
+        import AccountantDashboard from './pages/user/admin/accountant/Dashboard.vue';
+        import TutorDashboard from  './pages/user/tutor/Dashboard.vue';
+        import AffiliateDashboard from  './pages/user/afilliate/Dashboard.vue';
+        import ClientDashboard from './pages/user/client/Dashboard.vue';
+
+
+
 
 
 
@@ -56,10 +76,10 @@ import PublicSingleServiceModel from './components/public/PublicSingleServiceMod
 
 
 export const routes = [
-    {
-      path: '/home',
-      component: AdminHome
-    },
+    // {
+    //   path: '/home',
+    //   component: AdminHome
+    // },
     //organisation
             //directors
             {
@@ -84,10 +104,10 @@ export const routes = [
             },
 
             //Roles
-            {
-            path: '/roles',
-            component: RoleList
-            },
+            // {
+            // path: '/roles',
+            // component: RoleList
+            // },
 
             //Users
             {
@@ -129,55 +149,115 @@ export const routes = [
 // //Front End
 
   {
-    path:'/', ///public
-    component: FrontHome
+    path:'/', //with courses
+    name:'home',
+    component: Home,
+    // meta:{
+    //     auth:undefined
+    // }
+  },
+  // USER ROUTES
+
+  //superadmin
+  {
+    path: '/superadmin',
+    name: 'superadmin.dashboard',
+    component: SuperadminDashboard,
+  },
+  //director
+  {
+    path: '/director',
+    name: 'director.dashboard',
+    component: DirectorDashboard,
+  },
+  //adminstrator
+  {
+    path: '/administrator',
+    name: 'administrator.dashboard',
+    component: AdministratorDashboard,
+  },
+  //account
+  {
+    path: '/accountant',
+    name: 'account.dashboard',
+    component: AccountantDashboard,
+  },
+  //tutor
+  {
+    path: '/tutor',
+    name: 'tutor.dashboard',
+    component: TutorDashboard,
+  },
+  //affiliate
+  {
+    path: '/affiliate',
+    name: 'affiliate.dashboard',
+    component: AffiliateDashboard,
+  },
+  //client
+  {
+    path: '/client',
+    name: 'client.dashboard',
+    component: ClientDashboard,
+
   },
   {
-    path:'/about', ///public
-    component: About
+    path:'/coursedetails/:id',
+    name: 'details',
+    component: CourseDetails,
+    // meta:{
+    //     auth:undefined
+    // }
+  },
+  {
+    path:'/about',
+    name:'about',
+    component: About ,
+    // meta:{
+    //     auth:undefined
+    // }
   },
   {
     path:'/events', ///public
+    name:'events',
     component: Events
+    // meta:{
+    //     auth:undefined
+    // }
   },
   {
     path:'/services', ///public
-    component: Services
+    name: 'services',
+    component: Services,
+    // meta:{
+    //     auth:undefined
+    // }
   },
   {
     path:'/team', ///public
+    name: 'team',
     component: Team
+    // meta:{
+    //     auth:undefined
+    // }
   },
   //logged in
-  {
-    path:'/myaccount', //change to pass user name /felixnyachio
-    component: MyAccount
-  },
-  {
-    path:'/myaffiliateaccount', //change to pass user name /felixnyachio
-    component: MyAffiliateAccount
-  },
-  {
-    path:'/pservice/:id',
-    component: PublicSingleService
-  },
-  {
-    path:'/pservicemodel/:id', ////public
-    component: PublicSingleServiceModel
-  },
-  {
-    path:'/pservices/:id',
-    component: PublicSingleService
-  },
-
-  //course
-  {
-    path:'/coursedetails/:id',
-    component: CourseDetails
-  },
-
-
-
+//   {
+//     path:'/myaccount', //change to pass user name /felixnyachio
+//     name: 'myaccount',
+//     component: MyAccount,
+//     // meta:{
+//     //     auth:undefined
+//     // }
+//   },
+//   {
+//     path:'/myaffiliateaccount', //change to pass user name /felixnyachio
+//     name: 'myAffiliateAccount',
+//     component: MyAffiliateAccount,
+//     // meta:{
+//     //     auth:undefined
+//     // }
+//   },
 ];
 
 

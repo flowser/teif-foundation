@@ -71,14 +71,14 @@ class RewardUser
             // "code" => "0bddef3c-5217-11e9-b574-208984f39f26"
 
             // Example...
-            if ($referral->referral_course_id === '1') {
-                // User who was sharing link
-                $provider = $referral->user;
-                $provider->addCredits(15);
-                // User who used the link
-                $user = $event->user;
-                $user->addCredits(20);
-            }
+            // if ($referral->referral_course_id === '1') {
+            //     // User who was sharing link
+            //     $provider = $referral->user;
+            //     $provider->addCredits(15);
+            //     // User who used the link
+            //     $user = $event->user;
+            //     $user->addCredits(20);
+            // }
 
         }
     }
