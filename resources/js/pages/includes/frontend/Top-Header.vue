@@ -1,7 +1,5 @@
 <template>
-  <div id=top-header>
-      <div class="container-fluid">
-        <div class="topheader-left">
+  <div class="topheader-left">
             <a href="tel:+5198759822" title="5198759822"><i class="fa fa-mobile" aria-hidden="true"></i>{{Organisation.phone}}</a>
             <router-link title="home" :to="`/`">{{Organisation.name}}</router-link>
             <router-link title="about" :to="`/about`">About</router-link>

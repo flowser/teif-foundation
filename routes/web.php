@@ -61,11 +61,8 @@ use App\Http\Controllers\Backend\Course\Standard\CourseFeatureController;
 
 Route::get('/', [PublicController::class, 'index'])->name('public');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-// Route::get('/?reset=', [PublicController::class, 'index'])->name('public.index');
 
-// Route::get('/', function (){
-//     return view('layouts.adminmaster');});
-    Auth::routes();
+Auth::routes();
 
 
 

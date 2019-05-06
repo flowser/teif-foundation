@@ -164,7 +164,7 @@
                                                            <div class="row" style="padding-top: 3px;padding-bottom: 2px;">
                                                                 <div class="btn btn-md btn-info" style="width:48%;">
                                                                    <network network="telegram">
-                                                                       <i class="fa fa-telegram"></i>
+                                                                       <i class="fa fa-telegram">Teleg</i>
                                                                    </network>
                                                                </div>
                                                                 <div class="btn btn-md btn-danger" style="width:48%;">
@@ -212,8 +212,8 @@
                                                 <!-- <th>Skill</th> -->
                                                 <!-- <th>Fee</th>
                                                 <th>Payment Date</th> -->
-                                                <th>Commission</th>
-                                                <th>Fee confirmation</th>
+                                                <th>Com</th>
+                                                <th>confirm</th>
                                                 <!-- <th>Payment Release</th> -->
                                             </tr>
                                         </thead>

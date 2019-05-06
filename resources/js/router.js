@@ -64,9 +64,6 @@ export const routes = [
         path:'/', //with courses
         name:'home',
         component: Home,
-        meta:{
-            auth:undefined
-        }
       },
 
   // 1.2. dashboards front
@@ -75,27 +72,18 @@ export const routes = [
             path: '/tutor',
             name: 'tutor.dashboard',
             component: TutorDashboard,
-            meta: {
-                auth: {roles: 'Tutor', redirect: {name: 'login'}, forbiddenRedirect: '/403'}
-            }
           },
      // 1.2.2 affiliate
           {
             path: '/affiliate',
             name: 'affiliate.dashboard',
             component: AffiliateDashboard,
-            meta: {
-                auth: {roles: 'Affiliate', redirect: {name: 'login'}, forbiddenRedirect: '/403'}
-            }
           },
      //1.2.3 client
           {
             path: '/client',
             name: 'client.dashboard',
             component: ClientDashboard,
-            meta: {
-                auth: {roles: 'Client', redirect: {name: 'login'}, forbiddenRedirect: '/403'}
-            }
           },
   // 1.3 pages
      //1.3.1 Couse Details
@@ -103,45 +91,30 @@ export const routes = [
             path:'/coursedetails/:id',
             name: 'details',
             component: CourseDetails,
-            meta:{
-                auth:undefined
-            }
           },
      //1.3.2 Couse Details
           {
             path:'/about',
             name:'about',
             component: About ,
-            meta:{
-                auth:undefined
-            }
           },
      //1.3.4 Events
           {
             path:'/events',
             name:'events',
             component: Events,
-            meta:{
-                auth:undefined
-            }
           },
      //1.3.5 Sevices
           {
             path:'/services',
             name: 'services',
             component: Services,
-            meta:{
-                auth:undefined
-            }
           },
      //1.3.3 Team
           {
             path:'/team',
             name: 'team',
             component: Team,
-            meta:{
-                auth:undefined
-            }
           },
 
 // 2. Backend view
@@ -151,37 +124,24 @@ export const routes = [
             path: '/superadmin',
             name: 'superadmin.dashboard',
             component: SuperadminDashboard,
-            meta: {
-                // auth: {roles: 'Superadmin', redirect: {name: 'login'}, forbiddenRedirect: '/403'}
-                auth:undefined
-            }
           },
     //2.1.1 director
           {
             path: '/director',
             name: 'director.dashboard',
             component: DirectorDashboard,
-            meta: {
-                auth: {roles: 'Director', redirect: {name: 'login'}, forbiddenRedirect: '/403'}
-            }
           },
     //2.1.1 adminstrator
           {
             path: '/administrator',
             name: 'administrator.dashboard',
             component: AdministratorDashboard,
-            meta: {
-                auth: {roles: 'Admin', redirect: {name: 'login'}, forbiddenRedirect: '/403'}
-            }
           },
     //2.1.1 account
           {
             path: '/account',
             name: 'account.dashboard',
             component: AccountantDashboard,
-            meta: {
-                auth: {roles: 'Accountant', redirect: {name: 'login'}, forbiddenRedirect: '/403'}
-            }
           },
 
     //2.2 Pages
@@ -191,54 +151,38 @@ export const routes = [
             path: '/directors',
             name: 'dashboard.directors',
             component: Directors,
-            meta:{
-                auth:undefined
-            }
           },
        //2.2.1.2 admins
           {
             path: '/admins',
             name: 'dashboard.admins',
             component:Admins,
-            meta:{
-                auth:undefined
-            }
           },
        //2.2.1.3 employees
           {
             path: '/employees',
             name: 'dashboard.employees',
             component:Employees,
-            meta:{
-                auth:undefined
-            }
           },
        //2.2.1.4 Tutors
           {
             path: '/tutors',
             name: 'dashboard.tutors',
             component:Tutors,
-            meta:{
-                auth:undefined
-            }
           },
        //2.2.1.5 affiliates
           {
             path: '/affiliates',
             name: 'dashboard.affiliates',
             component:Affiliates,
-            meta:{
-                auth:undefined
-            }
+
           },
        //2.2.1.5 users
           {
             path: '/users',
             name: 'dashboard.users',
             component:Users,
-            meta:{
-                auth:undefined
-            }
+
           },
     // 2.2.2 Courses
        //2.2.2.1 all courses
@@ -246,63 +190,48 @@ export const routes = [
             path: '/courses',
             name: 'dashboard.courses', //all courses
             component: Courses,
-            meta:{
-                auth:undefined
-            }
+
           },
        //2.2.2.2 Single course with details
           {
               path: '/course/:id',
               name: 'dashboard.course',//view single course with all details
               component: SingleCourse,
-              meta:{
-                  auth:undefined
-              }
+
           },
        //2.2.2.3 all courses timetable
           {
               path: '/timetable',
               name: 'dashboard.timetable', //timetable with all courses
               component: Timetable,
-              meta:{
-                  auth:undefined
-              }
+
           },
        //2.2.2.4 single course timetable
           {
               path: '/timetable/course/:id',
               name: 'timetable.course',//view single course timetable with all details
               component: SingleCourseTimetable,
-              meta:{
-                  auth:undefined
-              }
+
          },
        //2.2.2.5 single tutor timetable
           {
               path: '/timetable/tutor/:id',
               name: 'timetable.tutor',//view single tutor timetable with all details
               component: SingleTutorTimetable,
-              meta:{
-                  auth:undefined
-              }
+
          },
       //2.2.2.6 Syllabi Backend
         {
             path: '/syllabi',
             name: 'dashboard.syllabi', //all syllabi
             component: Syllabi,
-            meta:{
-                auth:undefined
-            }
         },
       //2.2.2.7 Single Syllabi Backend
         {
             path: '/syllabus/:id',
             name: 'dashboard.syllabus.id',//view single syllabus with all details
             component: SingleSyllabus,
-            meta:{
-                auth:undefined
-            }
+
         },
     // 2.2.2 Settings
        //2.2.2.1 Roles & permissions
@@ -310,18 +239,14 @@ export const routes = [
               path: '/permissions',
               name: 'dashboard.permissions',
               component: Permissions,
-              meta:{
-                  auth:undefined
-              }
+
           },
        //2.2.2.2 settings
           {
               path: '/settings',
               name: 'dashboard.settings',
               component:Settings,
-              meta:{
-                  auth:undefined
-              }
+
           },
     // 2.2.3 Standard
        //2.2.3.1 About backend
@@ -329,9 +254,7 @@ export const routes = [
               path: '/backend/about',
               name: 'dashboard.about',
               component:AboutBackend,
-              meta:{
-                  auth:undefined
-              }
+
           },
     // 2.2.4 Service backend
        //2.2.4.1 Service backend
@@ -339,18 +262,14 @@ export const routes = [
               path: '/backend/services',
               name: 'dashboard.services',
               component:ServicesBackend,
-              meta:{
-                  auth:undefined
-              }
+
           },
        //2.2.4.2 Single Service backend
           {
               path: '/service/:id',
               name: 'dashboard.service.id',
               component:SingleServiceBackend,
-              meta:{
-                  auth:undefined
-              }
+
           },
     // 2.2.4 Advert backend
        //2.2.4.1 Advert backend
@@ -358,18 +277,14 @@ export const routes = [
               path: '/backend/adverts',
               name: 'dashboard.adverts',
               component:AdvertsBackend,
-              meta:{
-                  auth:undefined
-              }
+
           },
        //2.2.4.2 Single Advert backend
           {
               path: '/advert/:id',
               name: 'dashboard.advert.id',
               component:SingleAdvertBackend,
-              meta:{
-                  auth:undefined
-              }
+
           },
     // 2.2.4 Policies backend
        //2.2.4.1 Policies backend
@@ -377,41 +292,16 @@ export const routes = [
               path: '/backend/policies',
               name: 'dashboard.policies',
               component:PoliciesBackend,
-              meta:{
-                  auth:undefined
-              }
+
           },
        //2.2.4.2 Single Policy backend
           {
               path: '/policy/:id',
               name: 'dashboard.policy.id',
               component:SinglePolicyBackend,
-              meta:{
-                  auth:undefined
-              }
+
           },
 
-
-
-
-
-  // //logged in
-  // {
-  //   path:'/myaccount', //change to pass user name /felixnyachio
-  //   name: 'myaccount',
-  //   component: MyAccount,
-  //   // meta:{
-  //   //     auth:undefined
-  //   // }
-  // },
-  // {
-  //   path:'/myaffiliateaccount', //change to pass user name /felixnyachio
-  //   name: 'myAffiliateAccount',
-  //   component: MyAffiliateAccount,
-  //   // meta:{
-  //   //     auth:undefined
-  //   // }
-  // },
 ];
 
 const router = new VueRouter({

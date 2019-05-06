@@ -3,33 +3,12 @@
 //Organisation
     //org superadmin
         //org Directors
-        import DirectorList from './pages/backend/users/Directors.vue';
-        // //org Admins
-        import AdminList from './pages/backend/users/Admins.vue';
-        //org Employees
-        import EmployeeList from './pages/backend/users/Employees.vue';
-
-        //Permission
-        import PermissionList from './pages/backend/settings/Permissions.vue';
-        //user
-        import UserList from './pages/backend/users/Users.vue';
-        //Organisation settings
-        import Orgsetting from './pages/backend/settings/Organisation.vue';
-
-        //single about image full more
-        import SingleAboutImage from './pages/backend/standard/about.vue';
-
-        //Single Advert read more
-        import SingleAdvert from './pages/backend/standard/adverts/Adverts.vue';
-
-        //Single Service read more
-        import SingleService from './pages/backend/standard/services/SingleService.vue';
 
 
         // course
 
-        import CourseList from './pages/backend/courses/Courses.vue';
-        import SingleCourse from './pages/backend/courses/SingleCourse.vue';
+        // import CourseList from './pages/backend/courses/Courses.vue';
+        // import SingleCourse from './pages/backend/courses/SingleCourse.vue';
         //public
         // import Home from './components/public/standard/Home.vue';
 

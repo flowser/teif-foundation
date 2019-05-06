@@ -35,9 +35,9 @@
     <div class="container-fluid welcome-section">
       <div class="row" style="padding-top: 10px;">
            <!--sidebar filter  -->
-            <div class="col-md-2 col-sm-12 col-xs-12" >
-				<LeftSideBar/>
-			</div>
+          <div class="col-md-2 col-sm-12 col-xs-12" >
+			<LeftSideBar/>
+		  </div>
           <div class="col-md-10 col-sm-12 col-xs-12" >
               <div class="row ">
                   <div class="col-md-4 col-sm-6 col-xs-6" style="padding-left: 5px;padding-right: 5px;" v-for="course in Courses" :key="course.id">

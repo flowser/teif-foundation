@@ -1,178 +1,1421 @@
-
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 3 | Dashboard</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{URL::asset('adminlte3/plugins/font-awesome/css/font-awesome.min.css')}}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{URL::asset('adminlte3/dist/css/adminlte.min.css')}}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{URL::asset('adminlte3/plugins/iCheck/flat/blue.css')}}">
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="{{URL::asset('adminlte3/plugins/morris/morris.css')}}">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="{{URL::asset('adminlte3/plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="{{URL::asset('adminlte3/plugins/datepicker/datepicker3.css')}}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{{URL::asset('adminlte3/plugins/daterangepicker/daterangepicker-bs3.css')}}">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="{{URL::asset('adminlte3/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="{{URL::asset('css/app.css')}}">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
 
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="index3.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
 
-    <!--====== TITLE TAG ======-->
-      {{-- <title>{{$organisation->name}}</title> --}}
+    <!-- SEARCH FORM -->
+    <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
 
-      <!--====== FAVICON ICON =======-->
-      {{-- @if($organisation->logo != null)
-          <link rel="shortcut icon" type="image/ico" href="{{URL::asset('assets/organisation/img/logo/')}}/{{$organisation->logo}}" />
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fa fa-comments-o"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="{{URL::asset('adminlte3/dist/img/user1-128x128.jpg')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="{{URL::asset('adminlte3/dist/img/user8-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fa fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="{{URL::asset('adminlte3/dist/img/user3-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fa fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fa fa-bell-o"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
+            class="fa fa-th-large"></i></a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+     @if($organisation->logo != null)
+        <img src="{{URL::asset('assets/organisation/img/logo/')}}/{{$organisation->logo}}" alt="{{$organisation->name}}"
+              class="brand-image img-circle elevation-3" style="opacity: .8">
         @else
           <link rel="shortcut icon" type="image/ico" href="{{URL::asset('assets/organisation/img/website/empty.png')}}"/>
-     @endif --}}
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="stylesheet" href="{{URL::asset('css/app.css')}}">
+     @endif
+      <span class="brand-text font-weight-light">{{$organisation->name}}</span>
+    </a>
 
-    </head>
-    <body class="hold-transition sidebar-mini">
-        <div class="wrapper" id="app">
-
-                <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-                        <!-- Left navbar links -->
-                        <ul class="navbar-nav">
-                          <li class="nav-item">
-                            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-                          </li>
-                          <li class="nav-item d-none d-sm-inline-block">
-                            <a href="index3.html" class="nav-link">Home</a>
-                          </li>
-                          <li class="nav-item d-none d-sm-inline-block">
-                            <a href="#" class="nav-link">Contact</a>
-                          </li>
-                        </ul>
-
-                        <!-- SEARCH FORM -->
-                        <form class="form-inline ml-3">
-                          <div class="input-group input-group-sm">
-                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                            <div class="input-group-append">
-                              <button class="btn btn-navbar" type="submit">
-                                <i class="fa fa-search"></i>
-                              </button>
-                            </div>
-                          </div>
-                        </form>
-
-                        <!-- Right navbar links -->
-                        <ul class="navbar-nav ml-auto">
-                          <!-- Messages Dropdown Menu -->
-                          <li class="nav-item dropdown">
-                            <a class="nav-link" data-toggle="dropdown" href="#">
-                              <i class="fa fa-comments-o"></i>
-                              <span class="badge badge-danger navbar-badge">3</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                              <a href="#" class="dropdown-item">
-                                <!-- Message Start -->
-                                <div class="media">
-                                  <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                                  <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                      Brad Diesel
-                                      <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">Call me whenever you can...</p>
-                                    <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
-                                  </div>
-                                </div>
-                                <!-- Message End -->
-                              </a>
-                              <div class="dropdown-divider"></div>
-                              <a href="#" class="dropdown-item">
-                                <!-- Message Start -->
-                                <div class="media">
-                                  <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                                  <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                      John Pierce
-                                      <span class="float-right text-sm text-muted"><i class="fa fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">I got your message bro</p>
-                                    <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
-                                  </div>
-                                </div>
-                                <!-- Message End -->
-                              </a>
-                              <div class="dropdown-divider"></div>
-                              <a href="#" class="dropdown-item">
-                                <!-- Message Start -->
-                                <div class="media">
-                                  <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                                  <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                      Nora Silvester
-                                      <span class="float-right text-sm text-warning"><i class="fa fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">The subject goes here</p>
-                                    <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
-                                  </div>
-                                </div>
-                                <!-- Message End -->
-                              </a>
-                              <div class="dropdown-divider"></div>
-                              <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-                            </div>
-                          </li>
-                          <!-- Notifications Dropdown Menu -->
-                          <li class="nav-item dropdown">
-                            <a class="nav-link" data-toggle="dropdown" href="#">
-                              <i class="fa fa-bell-o"></i>
-                              <span class="badge badge-warning navbar-badge">15</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                              <span class="dropdown-item dropdown-header">15 Notifications</span>
-                              <div class="dropdown-divider"></div>
-                              <a href="#" class="dropdown-item">
-                                <i class="fa fa-envelope mr-2"></i> 4 new messages
-                                <span class="float-right text-muted text-sm">3 mins</span>
-                              </a>
-                              <div class="dropdown-divider"></div>
-                              <a href="#" class="dropdown-item">
-                                <i class="fa fa-users mr-2"></i> 8 friend requests
-                                <span class="float-right text-muted text-sm">12 hours</span>
-                              </a>
-                              <div class="dropdown-divider"></div>
-                              <a href="#" class="dropdown-item">
-                                <i class="fa fa-file mr-2"></i> 3 new reports
-                                <span class="float-right text-muted text-sm">2 days</span>
-                              </a>
-                              <div class="dropdown-divider"></div>
-                              <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                            </div>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-                                class="fa fa-th-large"></i></a>
-                          </li>
-                          <li class="nav-item dropdown">
-                            <a class="nav-link" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell-o"></i>
-                                {{-- <!-- <span class="badge badge-warning navbar-badge">{{$logged_user->full_name}}</span> --> --}}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                {{-- <!-- <span class="dropdown-header">{{$logged_user->email}}</span> --> --}}
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                  document.getElementById('logout-form').submit();">
-                                                   <i class="fa fa-power-off nav-icon blue"></i>
-                                     <span>{{ __('Logout') }} </span>
-                                 </a>
-                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                     @csrf
-                                 </form>
-                            </div>
-                        </li>
-                        </ul>
-                    </nav>
-            <backend></backend>
-
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{URL::asset('adminlte3/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
-        <!-- ./wrapper -->
+        <div class="info">
+          <a href="#" class="d-block">Alexander Pierce</a>
+        </div>
+      </div>
 
-        <!-- REQUIRED SCRIPTS -->
-    <script src="{{URL::asset('js/app.js')}}"></script>
-    </body>
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+              <a href="./index.html" class="nav-link active">
+                <i class="fa fa-circle-o purple nav-icon"></i>
+                <p>Dashboard</p>
+              </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon purple fa fa-envelope-o"></i>
+              <p>Mailbox</p>
+            </a>
+          </li>
+          {{--  users  --}}
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon purple fas fa-users"></i>
+              <p>
+                Users
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-users red nav-icon"></i>
+                  <p>Directors</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-users blue nav-icon"></i>
+                  <p>Admins</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-users purple nav-icon"></i>
+                  <p>Other Employees</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-users green nav-icon"></i>
+                  <p>Tutors</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-users yellow nav-icon"></i>
+                  <p>Affiliates</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{--  courses  --}}
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon purple fas fa-school"></i>
+              <p>
+                Courses
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-school red nav-icon"></i>
+                  <p>All Courses</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-school blue nav-icon"></i>
+                  <p>Current Courses</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-school purple nav-icon"></i>
+                  <p>Approved Courses</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-school green nav-icon"></i>
+                  <p>Enrolled Courses</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-school yellow nav-icon"></i>
+                  <p>Pending Courses</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{--  sales department--}}
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon purple fas fa-user"></i>
+              <p>
+                Sales
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+               <li class="nav-item">
+                  <a href="pages/examples/invoice.html" class="nav-link">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    <p>Challenges
+                        <i class="fa fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                          <a href="pages/examples/invoice.html" class="nav-link">
+                            <i class="fa fa-circle-o nav-icon"></i>
+                            <p>Industrial</p>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="pages/examples/invoice.html" class="nav-link">
+                            <i class="fa fa-circle-o nav-icon"></i>
+                            <p>Domestic</p>
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+              <li class="nav-item">
+                  <a href="" class="nav-link">
+                    <i class="fas fa-certificate green nav-icon"></i>
+                    <p>Proposals</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="" class="nav-link">
+                    <i class="fas fa-certificate green nav-icon"></i>
+                    {{-- payment succsfull from the estimated sales --}}
+                    <p>Quotations</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="" class="nav-link">
+                    <i class="fas fa-certificate green nav-icon"></i>
+                    {{-- approved proposals to be projects and tasks --}}
+                    <p>Approved Proposals</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="" class="nav-link">
+                    <i class="fas fa-book purple nav-icon"></i>
+                    {{-- estimate income from all current projects --}}
+                    <p>Estimates</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="pages/examples/invoice.html" class="nav-link">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    {{-- all invoices --}}
+                    <p>Invoices</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-certificate green nav-icon"></i>
+                  {{-- payment succsfull from the estimated sales --}}
+                  <p>Payment Recieved</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-certificate green nav-icon"></i>
+                  <p>Sales settings
+                      <i class="fa fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="" class="nav-link">
+                          <i class="fas fa-certificate green nav-icon"></i>
+                          {{-- payment succsfull from the estimated sales --}}
+                          <p>Quotation Form</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="" class="nav-link">
+                          <i class="fas fa-certificate green nav-icon"></i>
+                          {{-- payment succsfull from the estimated sales --}}
+                          <p>Proposal Form</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="" class="nav-link">
+                          <i class="fas fa-certificate green nav-icon"></i>
+                          {{-- payment succsfull from the estimated sales --}}
+                          <p>Tax Rates</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="pages/examples/invoice.html" class="nav-link">
+                          <i class="fa fa-circle-o nav-icon"></i>
+                          {{-- design --}}
+                          <p>Invoice</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="pages/examples/invoice.html" class="nav-link">
+                          <i class="fa fa-circle-o nav-icon"></i>
+                          {{-- Design of invoices for servicec we offer like maintance 24/7 --}}
+                          <p>Reccuring Invoice</p>
+                        </a>
+                      </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          {{--  course adminstrator  --}}
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon purple fas fa-user"></i>
+              <p>
+                Adminstrator
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-book-open red nav-icon"></i>
+                  {{--  approve payment  --}}
+                  <p>Registered Courses</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-book purple nav-icon"></i>
+                  <p>Course Reviews</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-certificate green nav-icon"></i>
+                  <p>Client Certificates</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- Project & Tasks --}}
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon purple fas fa-user"></i>
+              <p>
+                Project Manager
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-book-open red nav-icon"></i>
+                  <p>Projects
+                    <i class="fa fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="fas fa-book-open red nav-icon"></i>
+                      <p>Project Registration</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="fas fa-book-open red nav-icon"></i>
+                      <p>Project Assigning</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-book purple nav-icon"></i>
+                  <p>Tasks
+                    <i class="fa fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="fas fa-book-open red nav-icon"></i>
+                      <p>Task Registration</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="fas fa-book-open red nav-icon"></i>
+                      <p>Task Assigning</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="fas fa-book purple nav-icon"></i>
+                  {{-- internal assigning --}}
+                  <p>Innovation Projects
+                    <i class="fa fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="fas fa-book-open red nav-icon"></i>
+                      <p>IV Projects Registration</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="fas fa-book-open red nav-icon"></i>
+                      <p>IV Projects Assigning</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="fas fa-book-open red nav-icon"></i>
+                      <p>Incubation</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="fas fa-book-open red nav-icon"></i>
+                      <p>Patented</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="fas fa-book-open red nav-icon"></i>
+                      <p>Shares</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          {{--  accounts  --}}
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon purple fa fa-book"></i>
+              <p>
+                Accounts
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/examples/invoice.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Expenses</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/examples/profile.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Deposits</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/examples/login.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Transfers</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/examples/register.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Transaction Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/examples/lockscreen.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Balance Sheet</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/examples/lockscreen.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Bank & Cash</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{--  human Resource  --}}
+          <li class="nav-item has-treeview">
+            <a href="#"class="nav-link">
+              <i class="nav-icon purple fa fa-book"></i>
+              <p>
+                Human Resource
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/examples/invoice.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Jobs</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/examples/invoice.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Opportunities</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">
+                  <p>Payroll
+                    <i class="fa fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="pages/examples/invoice.html" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Salary Template</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/examples/invoice.html" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Hourly Template</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/examples/invoice.html" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Afiliates Template</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/examples/invoice.html" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Salary List</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/examples/invoice.html" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Make Payment</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/examples/invoice.html" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Payroll Summary</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/examples/invoice.html" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Advance Salary</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/examples/invoice.html" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Over Time</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          {{-- Reports --}}
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon purple fa fa-book"></i>
+              <p>
+                Reports
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/examples/invoice.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Projects</p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>Projects Report</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>Tasks Report</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        {{-- innovation projects --}}
+                        <p>IV Projects Report</p>
+                      </a>
+                    </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="pages/examples/invoice.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Accounts</p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>Accounts Statement</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>Transfer Report</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>Income Report</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>Expense Report</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>Income vs Expense Report</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>Report By Date</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>Report By Month</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>All Income Report</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>All Expense Report</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/invoice.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>All Transaction Report</p>
+                      </a>
+                    </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          {{--settings --}}
+          <li class="nav-item has-treeview">
+            <a href="pages/examples/invoice.html" class="nav-link">
+               <i class="fa fa-circle-o purple nav-icon"></i>
+               <p>Settings</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard v2</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
+
+                <p>New Orders</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                <p>Bounce Rate</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>User Registrations</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Unique Visitors</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <section class="col-lg-7 connectedSortable">
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="card">
+              <div class="card-header d-flex p-0">
+                <h3 class="card-title p-3">
+                  <i class="fa fa-pie-chart mr-1"></i>
+                  Sales
+                </h3>
+                <ul class="nav nav-pills ml-auto p-2">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                  </li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content p-0">
+                  <!-- Morris chart - Sales -->
+                  <div class="chart tab-pane active" id="revenue-chart"
+                       style="position: relative; height: 300px;"></div>
+                  <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+                </div>
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- DIRECT CHAT -->
+            <div class="card direct-chat direct-chat-primary">
+              <div class="card-header">
+                <h3 class="card-title">Direct Chat</h3>
+
+                <div class="card-tools">
+                  <span data-toggle="tooltip" title="3 New Messages" class="badge badge-primary">3</span>
+                  <button type="button" class="btn btn-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
+                          data-widget="chat-pane-toggle">
+                    <i class="fa fa-comments"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <!-- Conversations are loaded here -->
+                <div class="direct-chat-messages">
+                  <!-- Message. Default to the left -->
+                  <div class="direct-chat-msg">
+                    <div class="direct-chat-info clearfix">
+                      <span class="direct-chat-name float-left">Alexander Pierce</span>
+                      <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+                    </div>
+                    <!-- /.direct-chat-info -->
+                    <img class="direct-chat-img" src="{{URL::asset('adminlte3/dist/img/user1-128x128.jpg')}}" alt="message user image">
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      Is this template really for free? That's unbelievable!
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                  <!-- Message to the right -->
+                  <div class="direct-chat-msg right">
+                    <div class="direct-chat-info clearfix">
+                      <span class="direct-chat-name float-right">Sarah Bullock</span>
+                      <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
+                    </div>
+                    <!-- /.direct-chat-info -->
+                    <img class="direct-chat-img" src="{{URL::asset('adminlte3/dist/img/user3-128x128.jpg')}}" alt="message user image">
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      You better believe it!
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                  <!-- Message. Default to the left -->
+                  <div class="direct-chat-msg">
+                    <div class="direct-chat-info clearfix">
+                      <span class="direct-chat-name float-left">Alexander Pierce</span>
+                      <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
+                    </div>
+                    <!-- /.direct-chat-info -->
+                    <img class="direct-chat-img" src="{{URL::asset('adminlte3/dist/img/user1-128x128.jpg')}}" alt="message user image">
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      Working with AdminLTE on a great new app! Wanna join?
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                  <!-- Message to the right -->
+                  <div class="direct-chat-msg right">
+                    <div class="direct-chat-info clearfix">
+                      <span class="direct-chat-name float-right">Sarah Bullock</span>
+                      <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
+                    </div>
+                    <!-- /.direct-chat-info -->
+                    <img class="direct-chat-img" src="{{URL::asset('adminlte3/dist/img/user3-128x128.jpg')}}" alt="message user image">
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      I would love to.
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                </div>
+                <!--/.direct-chat-messages-->
+
+                <!-- Contacts are loaded here -->
+                <div class="direct-chat-contacts">
+                  <ul class="contacts-list">
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{URL::asset('adminlte3/dist/img/user1-128x128.jpg')}}">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            Count Dracula
+                            <small class="contacts-list-date float-right">2/28/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">How have you been? I was...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{URL::asset('adminlte3/dist/img/user7-128x128.jpg')}}">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            Sarah Doe
+                            <small class="contacts-list-date float-right">2/23/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">I will be waiting for...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{URL::asset('adminlte3/dist/img/user3-128x128.jpg')}}">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            Nadia Jolie
+                            <small class="contacts-list-date float-right">2/20/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">I'll call you back at...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{URL::asset('adminlte3/dist/img/user5-128x128.jpg')}}">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            Nora S. Vans
+                            <small class="contacts-list-date float-right">2/10/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">Where is your new...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{URL::asset('adminlte3/dist/img/user6-128x128.jpg')}}">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            John K.
+                            <small class="contacts-list-date float-right">1/27/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">Can I take a look at...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{URL::asset('adminlte3/dist/img/user8-128x128.jpg')}}">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            Kenneth M.
+                            <small class="contacts-list-date float-right">1/4/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">Never mind I found...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                  </ul>
+                  <!-- /.contacts-list -->
+                </div>
+                <!-- /.direct-chat-pane -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <form action="#" method="post">
+                  <div class="input-group">
+                    <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                    <span class="input-group-append">
+                      <button type="button" class="btn btn-primary">Send</button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+              <!-- /.card-footer-->
+            </div>
+            <!--/.direct-chat -->
+
+            <!-- TO DO List -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="ion ion-clipboard mr-1"></i>
+                  To Do List
+                </h3>
+
+                <div class="card-tools">
+                  <ul class="pagination pagination-sm">
+                    <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+                  </ul>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <ul class="todo-list">
+                  <li>
+                    <!-- drag handle -->
+                    <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                    <!-- checkbox -->
+                    <input type="checkbox" value="" name="">
+                    <!-- todo text -->
+                    <span class="text">Design a nice theme</span>
+                    <!-- Emphasis label -->
+                    <small class="badge badge-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                    <!-- General tools such as edit or delete-->
+                    <div class="tools">
+                      <i class="fa fa-edit"></i>
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                    <input type="checkbox" value="" name="">
+                    <span class="text">Make the theme responsive</span>
+                    <small class="badge badge-info"><i class="fa fa-clock-o"></i> 4 hours</small>
+                    <div class="tools">
+                      <i class="fa fa-edit"></i>
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                    <input type="checkbox" value="" name="">
+                    <span class="text">Let theme shine like a star</span>
+                    <small class="badge badge-warning"><i class="fa fa-clock-o"></i> 1 day</small>
+                    <div class="tools">
+                      <i class="fa fa-edit"></i>
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                    <input type="checkbox" value="" name="">
+                    <span class="text">Let theme shine like a star</span>
+                    <small class="badge badge-success"><i class="fa fa-clock-o"></i> 3 days</small>
+                    <div class="tools">
+                      <i class="fa fa-edit"></i>
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                    <input type="checkbox" value="" name="">
+                    <span class="text">Check your messages and notifications</span>
+                    <small class="badge badge-primary"><i class="fa fa-clock-o"></i> 1 week</small>
+                    <div class="tools">
+                      <i class="fa fa-edit"></i>
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                    <input type="checkbox" value="" name="">
+                    <span class="text">Let theme shine like a star</span>
+                    <small class="badge badge-secondary"><i class="fa fa-clock-o"></i> 1 month</small>
+                    <div class="tools">
+                      <i class="fa fa-edit"></i>
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <button type="button" class="btn btn-info float-right"><i class="fa fa-plus"></i> Add item</button>
+              </div>
+            </div>
+            <!-- /.card -->
+          </section>
+          <!-- /.Left col -->
+          <!-- right col (We are only adding the ID to make the widgets sortable)-->
+          <section class="col-lg-5 connectedSortable">
+
+            <!-- Map card -->
+            <div class="card bg-primary-gradient">
+              <div class="card-header no-border">
+                <h3 class="card-title">
+                  <i class="fa fa-map-marker mr-1"></i>
+                  Visitors
+                </h3>
+                <!-- card tools -->
+                <div class="card-tools">
+                  <button type="button"
+                          class="btn btn-primary btn-sm daterange"
+                          data-toggle="tooltip"
+                          title="Date range">
+                    <i class="fa fa-calendar"></i>
+                  </button>
+                  <button type="button"
+                          class="btn btn-primary btn-sm"
+                          data-widget="collapse"
+                          data-toggle="tooltip"
+                          title="Collapse">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <div class="card-body">
+                <div id="world-map" style="height: 250px; width: 100%;"></div>
+              </div>
+              <!-- /.card-body-->
+              <div class="card-footer bg-transparent">
+                <div class="row">
+                  <div class="col-4 text-center">
+                    <div id="sparkline-1"></div>
+                    <div class="text-white">Visitors</div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                    <div id="sparkline-2"></div>
+                    <div class="text-white">Online</div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                    <div id="sparkline-3"></div>
+                    <div class="text-white">Sales</div>
+                  </div>
+                  <!-- ./col -->
+                </div>
+                <!-- /.row -->
+              </div>
+            </div>
+            <!-- /.card -->
+
+            <!-- solid sales graph -->
+            <div class="card bg-info-gradient">
+              <div class="card-header no-border">
+                <h3 class="card-title">
+                  <i class="fa fa-th mr-1"></i>
+                  Sales Graph
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn bg-info btn-sm" data-widget="remove">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart" id="line-chart" style="height: 250px;"></div>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer bg-transparent">
+                <div class="row">
+                  <div class="col-4 text-center">
+                    <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
+                           data-fgColor="#39CCCC">
+
+                    <div class="text-white">Mail-Orders</div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                    <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
+                           data-fgColor="#39CCCC">
+
+                    <div class="text-white">Online</div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                    <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
+                           data-fgColor="#39CCCC">
+
+                    <div class="text-white">In-Store</div>
+                  </div>
+                  <!-- ./col -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+
+            <!-- Calendar -->
+            <div class="card bg-success-gradient">
+              <div class="card-header no-border">
+
+                <h3 class="card-title">
+                  <i class="fa fa-calendar"></i>
+                  Calendar
+                </h3>
+                <!-- tools card -->
+                <div class="card-tools">
+                  <!-- button with a dropdown -->
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa fa-bars"></i></button>
+                    <div class="dropdown-menu float-right" role="menu">
+                      <a href="#" class="dropdown-item">Add new event</a>
+                      <a href="#" class="dropdown-item">Clear events</a>
+                      <div class="dropdown-divider"></div>
+                      <a href="#" class="dropdown-item">View calendar</a>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-success btn-sm" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-success btn-sm" data-widget="remove">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+                <!-- /. tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <!--The calendar -->
+                <div id="calendar" style="width: 100%"></div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </section>
+          <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.0.0-alpha
+    </div>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="{{URL::asset('adminlte3/plugins/jquery/jquery.min.js')}}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{{URL::asset('adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- Morris.js charts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="{{URL::asset('adminlte3/plugins/morris/morris.min.js')}}"></script>
+<!-- Sparkline -->
+<script src="{{URL::asset('adminlte3/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
+<!-- jvectormap -->
+<script src="{{URL::asset('adminlte3/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
+<script src="{{URL::asset('adminlte3/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{URL::asset('adminlte3/plugins/knob/jquery.knob.js')}}"></script>
+<!-- daterangepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script src="{{URL::asset('adminlte3/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<!-- datepicker -->
+<script src="{{URL::asset('adminlte3/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="{{URL::asset('adminlte3/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+<!-- Slimscroll -->
+<script src="{{URL::asset('adminlte3/plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
+<!-- FastClick -->
+<script src="{{URL::asset('adminlte3/plugins/fastclick/fastclick.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{URL::asset('adminlte3/dist/js/adminlte.js')}}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{URL::asset('adminlte3/dist/js/pages/dashboard.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{URL::asset('adminlte3/dist/js/demo.js')}}"></script>
+</body>
 </html>

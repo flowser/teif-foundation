@@ -297,7 +297,7 @@
             },
             remoteMethod(query) {
                 // console.log(this.filterform)
-                 this.$Progress.start()
+                this.$Progress.start()
                 this.$store.dispatch("CoursesByFilter", this.filterform)
                 .then((response)=>{
                      toast({

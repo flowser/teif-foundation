@@ -31,8 +31,10 @@ Vue.component('datetime', Datetime);
 
 //vue-router support
 import VueRouter from 'vue-router';
+import router from './router';
+Vue.router = router;
 Vue.use(VueRouter);
-import{routes} from './routes';
+
 
 //support laravel pagination
 Vue.use(require('vue-resource'));
@@ -42,8 +44,6 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('backend', require('./components/BackendMaster.vue').default);
 Vue.component('frontend', require('./components/FrontendMaster.vue').default);
-// Vue.component('about-us', require('./components/public/standard/About-Us.vue').default);
-// Vue.component('filter-header', require('./components/public/standard/Filter.vue').default);
 //support pagination
 Vue.component('pagination', require('laravel-vue-pagination'));
 
@@ -93,13 +93,6 @@ Vue.use(VueFormWizard);
 // // global register
 // Vue.use(Editor);
 
-
-
-//vrouter
-const router = new VueRouter({
-    mode: 'history', //hash, history
-    routes // short for `routes: routes`
-  });
 const app = new Vue({
     el: '#app',
     router,
